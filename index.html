@@ -247,9 +247,10 @@ function Z(raw,{skipQuoted=false}={}){
     else out+=esc(c)}
   return out}
 const ZYSOUND=/[ㄅ-ㄩ]/;
-/* 考讀音、選字的題目：選項不標注音，免得直接看出答案 */
+/* 選項一律標注音；只有「看注音選國字」「問讀音」的題目不標，免得直接看出答案 */
 function zyPlan(it){const r=it.raw;if(!r)return null;const optsZy=(r.o||[]).some(o=>ZYSOUND.test(o));
-  const noOpt=ZYSOUND.test(r.qq)||/注音|念|讀音|聲調|第幾聲|（\s*）|（　）|\(\s*\)|哪一個字|哪個字|錯字|寫錯|正確的字|國字/.test(r.qq);
+  const toneOpts=(r.o||[]).every(o=>/^第[一二三四]聲$|^輕聲$/.test(o));     // 選項是「第幾聲」，標了也不會洩題
+  const noOpt=!toneOpts&&(ZYSOUND.test(r.qq)||/注音|讀音|聲調|第幾聲|怎麼念|怎麼讀|念作|讀作|念什麼|讀什麼/.test(r.qq));
   return{optsZy,noOpt}}
 
 /* ================= 單元清單 ================= */
