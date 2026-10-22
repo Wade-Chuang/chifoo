@@ -4,774 +4,428 @@
 <meta charset="utf-8">
 <meta name="referrer" content="no-referrer-when-downgrade">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>啟賦英文小學堂｜免費兒童英文：3D 單字圖卡・聽力小故事・聽音找圖</title>
-<meta name="description" content="免費親子英文網站：15 個主題 150 個單字，點圖就能聽發音、跟著念三次；8 篇慢速聽力小故事附中文翻譯；聽音找圖小遊戲。不用註冊，手機就能用。">
-<link rel="icon" type="image/webp" href="img/sea/dolphin.webp">
+<title>啟賦小學堂｜國小線上練習・國語 數學 英語 社會 自然</title>
+<meta name="description" content="免費國小線上練習：一到六年級國語、數學、英語、社會、自然，作答馬上批改、看解析，收集星星和 3D 動物貼紙。不用註冊，手機平板都能用。">
+<link rel="icon" type="image/webp" href="english/img/sea/dolphin.webp">
 <link rel="canonical" href="https://wade-chuang.github.io/chifoo/">
-<meta property="og:type" content="website"><meta property="og:site_name" content="啟賦英文小學堂">
-<meta property="og:title" content="啟賦英文小學堂｜點圖聽發音的免費單字網站"><meta property="og:description" content="免費親子英文網站：15 個主題 150 個單字，點圖就能聽發音、跟著念三次；8 篇慢速聽力小故事附中文翻譯；聽音找圖小遊戲。不用註冊，手機就能用。">
-<meta property="og:image" content="https://wade-chuang.github.io/chifoo/og.jpg"><meta property="og:url" content="https://wade-chuang.github.io/chifoo/"><meta property="og:locale" content="zh_TW">
+<meta property="og:type" content="website"><meta property="og:site_name" content="啟賦小學堂">
+<meta property="og:title" content="啟賦小學堂｜國小線上練習，答完馬上批改">
+<meta property="og:description" content="一到六年級國語、數學、英語、社會、自然，免費線上練習，收集星星和 3D 動物貼紙。">
+<meta property="og:image" content="https://wade-chuang.github.io/chifoo/og.jpg"><meta property="og:url" content="https://wade-chuang.github.io/chifoo/">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@500;700;800&family=Noto+Sans+TC:wght@500;700;900&display=swap">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Noto+Sans+TC:wght@500;700;900&display=swap">
+<script>
+window.MathJax={tex:{packages:{'[+]':['ams']},inlineMath:[['$','$']]},svg:{fontCache:'local'},
+  options:{enableAssistiveMml:false,enableMenu:false},
+  startup:{typeset:false,ready(){MathJax.startup.defaultReady();MathJax.startup.promise.then(()=>{window.__mj=true;document.dispatchEvent(new Event('mj-ready'))})}}};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js" async></script>
 <style>
-/* 版面概念：繪本式「單字貼紙簿」— 薄荷紙底、每個主題一種貼紙色、大字英文搭小字中文 */
+/* 版面：薄荷底的「學習冒險地圖」— 大按鈕、科目各自一個顏色、星星與貼紙當獎勵 */
 :root{
   --bg:#E8F4F0; --paper:#FFFFFF; --ink:#16324A; --muted:#5A7284; --line:#CFE2DC;
   --sun:#FFB703; --coral:#F25C4B; --sea:#1A86A8; --good:#2E9E5B; --bad:#D9483B;
-  --t-sea:#D6EEF7; --t-wild:#FBE7C6; --t-farm:#E3F1D3; --t-fruit:#FCDCDD; --t-go:#E2E1F7; --t-bug:#F3EEC9;
-  --shadow:0 2px 0 rgba(22,50,74,.10), 0 8px 20px -12px rgba(22,50,74,.35);
-  --f-en:"Fredoka","Nunito","Noto Sans TC",system-ui,sans-serif;
-  --f-body:"Nunito","Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;
-  --f-zh:"Noto Sans TC","Microsoft JhengHei","PingFang TC",sans-serif;
+  --c-zh:#F25C4B; --c-ma:#1A86A8; --c-en:#7A5CF0; --c-so:#E08A00; --c-sc:#2E9E5B; --c-li:#E05C9A;
+  --t-zh:#FCDCDD; --t-ma:#D6EEF7; --t-en:#E6E0FB; --t-so:#FBE7C6; --t-sc:#E3F1D3; --t-li:#FBE0EE;
+  --shadow:0 2px 0 rgba(22,50,74,.10),0 8px 20px -12px rgba(22,50,74,.35);
+  --f-en:"Fredoka","Noto Sans TC",system-ui,sans-serif; --f-zh:"Noto Sans TC","Microsoft JhengHei","PingFang TC",sans-serif;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0E1D25; --paper:#16303B; --ink:#E7F2F4; --muted:#93ABB6; --line:#244653;
-  --sun:#FFC43D; --coral:#FF7D6E; --sea:#57BCDD; --good:#4CC67D; --bad:#FF6F61;
-  --t-sea:#173F4E; --t-wild:#43381F; --t-farm:#26402A; --t-fruit:#4A2A30; --t-go:#2E2D4C; --t-bug:#3D3A1E;
-  --shadow:0 2px 0 rgba(0,0,0,.35), 0 10px 24px -14px rgba(0,0,0,.8); color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#0E1D25; --paper:#16303B; --ink:#E7F2F4; --muted:#93ABB6; --line:#244653;
-  --sun:#FFC43D; --coral:#FF7D6E; --sea:#57BCDD; --good:#4CC67D; --bad:#FF6F61;
-  --t-sea:#173F4E; --t-wild:#43381F; --t-farm:#26402A; --t-fruit:#4A2A30; --t-go:#2E2D4C; --t-bug:#3D3A1E;
-  --shadow:0 2px 0 rgba(0,0,0,.35), 0 10px 24px -14px rgba(0,0,0,.8); color-scheme:dark}
-
-*{box-sizing:border-box}
-[hidden]{display:none!important}
-body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55}
-.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0E1D25;--paper:#16303B;--ink:#E7F2F4;--muted:#93ABB6;--line:#244653;--good:#4CC67D;--bad:#FF6F61;
+  --t-zh:#4A2A30;--t-ma:#173F4E;--t-en:#2E2A4C;--t-so:#43381F;--t-sc:#26402A;--t-li:#47273A;
+  --shadow:0 2px 0 rgba(0,0,0,.35),0 10px 24px -14px rgba(0,0,0,.8);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0E1D25;--paper:#16303B;--ink:#E7F2F4;--muted:#93ABB6;--line:#244653;--good:#4CC67D;--bad:#FF6F61;
+  --t-zh:#4A2A30;--t-ma:#173F4E;--t-en:#2E2A4C;--t-so:#43381F;--t-sc:#26402A;--t-li:#47273A;
+  --shadow:0 2px 0 rgba(0,0,0,.35),0 10px 24px -14px rgba(0,0,0,.8);color-scheme:dark}
+*{box-sizing:border-box}[hidden]{display:none!important}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-zh);font-size:16px;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:16px max(16px,env(safe-area-inset-right,0px)) 40px max(16px,env(safe-area-inset-left,0px))}
 button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
-button:focus-visible,a:focus-visible{outline:3px solid var(--sea);outline-offset:2px;border-radius:10px}
-
-/* 頂部 */
-header{padding-block:20px 8px}
-.brand{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.logo{width:46px;height:46px;border-radius:14px;background:var(--sun);display:grid;place-items:center;font-family:var(--f-en);font-weight:700;font-size:22px;color:#16324A;transform:rotate(-6deg);box-shadow:var(--shadow)}
-.brand h1{margin:0;font-family:var(--f-zh);font-weight:900;font-size:clamp(22px,4vw,30px);letter-spacing:.02em}
-.brand p{margin:0;color:var(--muted);font-size:14px;width:100%}
-nav.tabs{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
-nav.tabs button{padding:10px 16px;border-radius:999px;background:var(--paper);border:2px solid var(--line);font-family:var(--f-zh);font-weight:700;font-size:15px}
-nav.tabs button[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-main{padding-block:12px 40px}
-.sec-head{display:flex;align-items:end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:14px 0 14px}
-.sec-head h2{margin:0;font-family:var(--f-zh);font-weight:900;font-size:22px;text-wrap:balance}
-.sec-head h2 small{display:block;font-family:var(--f-en);font-weight:600;color:var(--muted);font-size:15px;letter-spacing:.02em}
-.hint{color:var(--muted);font-size:14px;margin:0}
-
-/* 主題 */
-.themes{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
-@media (max-width:820px){.themes{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media (max-width:480px){.themes{gap:8px}.theme{padding:12px 10px}.theme .big{font-size:36px}.theme b{font-size:15px}.theme span{font-size:12px}}
-.theme{background:var(--tint);border-radius:22px;padding:16px;text-align:left;display:grid;gap:4px;box-shadow:var(--shadow);transition:transform .15s}
-.theme:hover{transform:translateY(-3px) rotate(-.6deg)}
-.theme .big{font-size:46px;line-height:1.1}
-.theme b{font-family:var(--f-zh);font-size:18px}
-.theme span{font-family:var(--f-en);color:var(--muted);font-weight:600;font-size:14px}
-.theme[aria-pressed="true"]{outline:3px solid var(--ink);outline-offset:-3px}
-
-.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:14px;background:var(--paper);border:2px solid var(--line);font-family:var(--f-zh);font-weight:700;font-size:15px}
-.btn.primary{background:var(--coral);border-color:var(--coral);color:#fff}
-.btn.sun{background:var(--sun);border-color:var(--sun);color:#16324A}
-.btn:disabled{opacity:.45;cursor:default}
-
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin-top:14px}
-.card{background:var(--paper);border-radius:20px;padding:14px 12px 12px;display:grid;justify-items:center;gap:2px;box-shadow:var(--shadow);text-align:center;position:relative}
-.card .pic{width:92px;height:92px;border-radius:50%;background:var(--tint);display:grid;place-items:center;font-size:54px;margin-bottom:6px}
-.card .en{font-family:var(--f-en);font-weight:600;font-size:22px;line-height:1.15}
-.card .kk{font-family:var(--f-body);color:var(--muted);font-size:13px}
-.card .zh{font-family:var(--f-zh);font-weight:700;font-size:15px}
-.card:hover .pic{animation:wiggle .5s}
-.card .pic img{width:100%;height:100%;border-radius:50%;object-fit:cover;transform:scale(1.18)}
-.card .pic:has(img){overflow:hidden;width:108px;height:108px}
-.reel .pic img{display:block;width:min(240px,62vw);height:auto;border-radius:28px;box-shadow:var(--shadow)}
-.choice img{display:block;width:min(140px,34vw);height:auto;border-radius:18px}
-@keyframes wiggle{25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
-
-/* 影片模式舞台 */
-.stage{position:fixed;inset:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);display:grid;place-items:center;padding:calc(16px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(16px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
-.reel{width:min(420px,100%);max-height:100%;overflow:auto;background:var(--tint);border-radius:28px;padding:22px 20px 18px;display:grid;justify-items:center;text-align:center;gap:6px;box-shadow:var(--shadow);position:relative}
-.reel .close{position:absolute;top:10px;right:12px;width:40px;height:40px;border-radius:50%;background:var(--paper);font-size:20px}
-.reel .count{font-family:var(--f-en);font-weight:600;color:var(--muted);font-size:14px}
-.reel .w{font-family:var(--f-en);font-weight:700;font-size:clamp(40px,11vw,58px);line-height:1.05;color:var(--ink)}
-.reel .k{color:var(--muted);font-size:17px}
-.reel .z{font-family:var(--f-zh);font-weight:900;font-size:22px;color:var(--coral)}
-.reel .pic{font-size:clamp(110px,32vw,150px);line-height:1.15;margin:4px 0}
-.reel .pic.pop{animation:pop .55s cubic-bezier(.3,1.6,.5,1)}
-@keyframes pop{0%{transform:scale(.5) rotate(-10deg);opacity:.2}100%{transform:none;opacity:1}}
-.reel .sent{background:var(--paper);border-radius:16px;padding:10px 14px;width:100%}
-.reel .sent .e{font-family:var(--f-en);font-weight:600;font-size:19px}
-.reel .sent .c{font-family:var(--f-zh);font-size:15px;color:var(--muted)}
-.reel .sent .e.on{color:var(--sea)}
-.reel .ctl{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:8px}
-.reel .ctl .btn{padding:9px 12px}
-
-/* 故事 */
-.story-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
-.story-pick{background:var(--paper);border-radius:20px;padding:16px;text-align:left;display:grid;gap:6px;box-shadow:var(--shadow);border:2px solid transparent}
-.story-pick[aria-pressed="true"]{border-color:var(--sea)}
-.story-pick .em{font-size:34px}
-.story-pick b{font-family:var(--f-en);font-size:19px;line-height:1.25}
-.story-pick span{font-family:var(--f-zh);color:var(--muted);font-size:14px}
-.lvl{display:inline-block;font-family:var(--f-en);font-weight:700;font-size:12px;letter-spacing:.08em;padding:2px 8px;border-radius:999px;background:var(--t-sea);color:var(--sea);width:max-content}
-.reader{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:18px;margin-top:18px;align-items:start}
-@media (max-width:820px){.reader{grid-template-columns:minmax(0,1fr)}}
-.panel{background:var(--paper);border-radius:22px;padding:18px;box-shadow:var(--shadow);min-width:0}
-.panel h3{margin:0 0 4px;font-family:var(--f-en);font-size:24px;text-wrap:balance}
-.panel h4{margin:0 0 10px;font-family:var(--f-zh);font-size:16px}
-.seg{display:inline-flex;background:var(--bg);border-radius:12px;padding:3px;gap:2px}
-.seg button{padding:6px 10px;border-radius:9px;font-family:var(--f-zh);font-weight:700;font-size:14px;color:var(--muted)}
-.seg button[aria-pressed="true"]{background:var(--paper);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
-.lines{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:4px}
-.lines li{display:grid;grid-template-columns:30px minmax(0,1fr);gap:8px;padding:8px 10px;border-radius:14px;cursor:pointer}
-.lines li:hover{background:var(--bg)}
-.lines li.on{background:var(--t-sea)}
-.lines .n{font-family:var(--f-en);font-weight:600;color:var(--muted);font-size:14px;padding-top:3px;font-variant-numeric:tabular-nums}
-.lines .e{font-family:var(--f-en);font-weight:500;font-size:19px;line-height:1.45}
-.lines .c{font-family:var(--f-zh);color:var(--muted);font-size:14.5px}
-.hide-en .lines .e{filter:blur(7px);user-select:none}
-.hide-en .lines li.on .e{filter:none}
-.hide-zh .lines .c{display:none}
-.vocab{display:grid;gap:8px;margin:0;padding:0;list-style:none}
-.vocab li{display:flex;justify-content:space-between;gap:8px;align-items:center;padding:6px 10px;background:var(--bg);border-radius:12px}
-.vocab b{font-family:var(--f-en);font-weight:600;font-size:17px}
-.vocab span{font-family:var(--f-zh);font-size:14px;color:var(--muted)}
-.mini{width:32px;height:32px;border-radius:50%;background:var(--paper);display:grid;place-items:center;flex:none}
-.q{margin-top:14px;display:grid;gap:6px}
-.q p{margin:0;font-family:var(--f-en);font-weight:600;font-size:16px}
-.q .opts{display:grid;gap:6px}
-.q .opts button{text-align:left;padding:8px 12px;border-radius:12px;border:2px solid var(--line);background:var(--paper);font-family:var(--f-en);font-size:15px}
-.q .opts button.ok{border-color:var(--good);background:color-mix(in srgb,var(--good) 15%,var(--paper))}
-.q .opts button.no{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 12%,var(--paper))}
-
-/* 遊戲 */
-.game{max-width:640px;margin:0 auto;display:grid;gap:14px}
-.scorebar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;font-family:var(--f-zh);font-weight:700}
-.dots{display:flex;gap:5px}
-.dots i{width:12px;height:12px;border-radius:50%;background:var(--line)}
-.dots i.ok{background:var(--good)} .dots i.no{background:var(--bad)} .dots i.cur{background:var(--sun)}
-.ask{background:var(--paper);border-radius:24px;padding:22px;text-align:center;box-shadow:var(--shadow);display:grid;gap:10px;justify-items:center}
-.speaker{width:96px;height:96px;border-radius:50%;background:var(--coral);color:#fff;font-size:44px;display:grid;place-items:center;box-shadow:var(--shadow)}
-.speaker:active{transform:scale(.95)}
-.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.choice{background:var(--tint,var(--paper));border-radius:22px;padding:14px 8px;font-size:clamp(58px,15vw,78px);line-height:1.15;box-shadow:var(--shadow);display:grid;justify-items:center;border:3px solid transparent}
-.choice small{font-family:var(--f-en);font-size:16px;font-weight:600;color:var(--muted);min-height:1.4em}
-.choice.ok{border-color:var(--good)} .choice.no{border-color:var(--bad);animation:shake .35s}
+button:focus-visible,a:focus-visible{outline:3px solid var(--sea);outline-offset:2px;border-radius:12px}
+a{color:inherit}
+.top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{width:48px;height:48px;border-radius:16px;background:var(--sun);display:grid;place-items:center;font:900 22px/1 var(--f-zh);color:#16324A;transform:rotate(-6deg);box-shadow:var(--shadow);text-decoration:none}
+.brand{font-weight:900;font-size:clamp(22px,4.5vw,30px);margin:0;text-decoration:none}
+.stats{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;background:var(--paper);border-radius:999px;padding:6px 12px;font-weight:700;font-size:14px;box-shadow:var(--shadow)}
+.chip b{font-family:var(--f-en);font-variant-numeric:tabular-nums}
+.lvl{margin-top:14px;background:var(--paper);border-radius:18px;padding:12px 16px;box-shadow:var(--shadow);display:grid;gap:6px}
+.lvl-row{display:flex;justify-content:space-between;font-weight:700;font-size:14px}
+.bar{height:12px;border-radius:999px;background:var(--line);overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--sun),var(--coral));border-radius:999px;transition:width .6s}
+h2{font-size:20px;font-weight:900;margin:22px 0 10px}
+h2 small{font:600 14px var(--f-en);color:var(--muted);margin-left:6px}
+.grades{display:flex;gap:8px;flex-wrap:wrap}
+.grades button{padding:10px 16px;border-radius:14px;background:var(--paper);border:2px solid var(--line);font-weight:700}
+.grades button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.subjects{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.subj{background:var(--tint);border-radius:22px;padding:16px;text-align:left;box-shadow:var(--shadow);display:grid;gap:4px;transition:transform .15s}
+.subj:hover{transform:translateY(-3px)}
+.subj .ic{font-size:40px;line-height:1.1}
+.subj b{font-size:20px;color:var(--col)}
+.subj span{font-size:13px;color:var(--muted);font-weight:700}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.big{background:var(--paper);border-radius:20px;padding:16px;box-shadow:var(--shadow);text-align:left;display:flex;gap:12px;align-items:center}
+.big .ic{font-size:34px}.big b{display:block;font-size:17px}.big span{font-size:13px;color:var(--muted)}
+.big.daily{background:linear-gradient(135deg,#FFE29A,#FFB703);color:#16324A}.big.daily span{color:#16324A}
+.units{display:grid;gap:10px}
+.unit{background:var(--paper);border-radius:18px;padding:14px 16px;box-shadow:var(--shadow);display:flex;align-items:center;gap:12px;text-align:left;width:100%}
+.unit .n{width:38px;height:38px;border-radius:12px;background:var(--tint);color:var(--col);display:grid;place-items:center;font:700 16px var(--f-en);flex:none}
+.unit div{flex:1;min-width:0}.unit b{display:block}.unit small{color:var(--muted)}
+.stars{color:var(--sun);letter-spacing:2px;font-size:18px;white-space:nowrap}.stars .off{color:var(--line)}
+.back{display:inline-flex;align-items:center;gap:6px;font-weight:700;color:var(--muted);padding:6px 0}
+/* 作答 */
+.qtop{display:flex;align-items:center;gap:10px;margin:6px 0 12px}
+.qtop .bar{flex:1}
+.combo{font:700 14px var(--f-en);color:var(--coral);min-width:70px;text-align:right}
+.card{background:var(--paper);border-radius:24px;padding:20px;box-shadow:var(--shadow)}
+.qtext{font-size:clamp(18px,4.2vw,22px);font-weight:700;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}
+.qtext .passage{display:block;font-weight:500;font-size:16px;background:var(--bg);border-radius:14px;padding:12px 14px;margin-bottom:12px;max-height:40vh;overflow:auto}
+.qfig{margin:10px 0;display:flex;justify-content:center}.qfig svg.fig{width:min(240px,70vw);height:auto;color:var(--ink)}
+.fig text{stroke:none;fill:currentColor;font-family:"Times New Roman",serif;font-size:10px}.fig text.it{font-style:italic}
+.qpic{display:flex;justify-content:center;margin:6px 0 4px}.qpic img{width:min(220px,55vw);border-radius:24px}.qpic .emo{font-size:110px;line-height:1.2}
+.say{display:inline-flex;align-items:center;gap:8px;background:var(--coral);color:#fff;border-radius:999px;padding:10px 18px;font-weight:700;margin-top:8px}
+.opts{display:grid;grid-template-columns:1fr;gap:10px;margin-top:16px}
+@media (min-width:640px){.opts{grid-template-columns:1fr 1fr}}
+.opt{background:var(--paper);border:3px solid var(--line);border-radius:18px;padding:14px 16px;text-align:left;font-size:18px;font-weight:700;display:flex;gap:10px;align-items:center;min-height:60px;overflow-wrap:anywhere}
+.opt .k{width:30px;height:30px;border-radius:50%;background:var(--bg);display:grid;place-items:center;font:700 15px var(--f-en);flex:none}
+.opt.pic{justify-content:center;font-size:64px;padding:8px}.opt.pic img{width:110px;height:110px;border-radius:18px;object-fit:cover}
+.opt:hover:not(:disabled){border-color:var(--sea)}
+.opt.ok{border-color:var(--good);background:color-mix(in srgb,var(--good) 14%,var(--paper))}
+.opt.no{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 12%,var(--paper));animation:shake .35s}
+.opt:disabled{cursor:default}
 @keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
-.result{background:var(--paper);border-radius:24px;padding:26px;text-align:center;box-shadow:var(--shadow);display:grid;gap:10px;justify-items:center}
-.result .stars{font-size:40px;letter-spacing:4px}
-.result b{font-family:var(--f-zh);font-size:24px}
-
-.notice{margin-top:10px;padding:10px 14px;border-radius:14px;background:color-mix(in srgb,var(--sun) 22%,var(--paper));font-family:var(--f-zh);font-size:14px}
-footer{padding-block:24px 30px;color:var(--muted);font-size:13px;font-family:var(--f-zh);border-top:2px dashed var(--line)}
+.fb{margin-top:14px;border-radius:16px;padding:12px 14px;font-weight:700;display:grid;gap:4px}
+.fb.ok{background:color-mix(in srgb,var(--good) 16%,var(--paper));color:var(--good)}
+.fb.no{background:color-mix(in srgb,var(--bad) 12%,var(--paper));color:var(--bad)}
+.fb p{margin:0;color:var(--ink);font-weight:500}
+.next{margin-top:14px;width:100%;padding:14px;border-radius:16px;background:var(--ink);color:var(--bg);font-weight:900;font-size:18px}
+/* 結果 */
+.result{text-align:center;display:grid;gap:10px;justify-items:center}
+.result .score{font:700 56px/1 var(--f-en)}
+.result .bigstars{font-size:54px;letter-spacing:6px}
+.result .bigstars span{display:inline-block;animation:pop .5s backwards}
+.result .bigstars span:nth-child(2){animation-delay:.25s}.result .bigstars span:nth-child(3){animation-delay:.5s}
+@keyframes pop{0%{transform:scale(0) rotate(-30deg)}70%{transform:scale(1.3)}100%{transform:none}}
+.reward{background:var(--bg);border-radius:20px;padding:14px;display:grid;justify-items:center;gap:4px;width:min(320px,100%)}
+.reward img{width:140px;height:140px;border-radius:24px;animation:pop .6s .7s backwards}
+.btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.btn{padding:12px 18px;border-radius:14px;background:var(--paper);border:2px solid var(--line);font-weight:700}
+.btn.primary{background:var(--coral);border-color:var(--coral);color:#fff}
+/* 貼紙冊 */
+.stickers{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:10px}
+.stk{aspect-ratio:1;border-radius:18px;background:var(--paper);box-shadow:var(--shadow);display:grid;place-items:center;overflow:hidden;position:relative}
+.stk img{width:100%;height:100%;object-fit:cover}
+.stk.lock img{filter:grayscale(1) brightness(.2);opacity:.18}
+.stk.lock::after{content:"?";position:absolute;font:700 26px var(--f-en);color:var(--muted)}
+.hint{color:var(--muted);font-size:14px;margin:4px 0 0}
+.empty{background:var(--paper);border-radius:20px;padding:24px;text-align:center;color:var(--muted);box-shadow:var(--shadow)}
+.en-card{background:var(--t-en);border-radius:22px;padding:16px;display:flex;gap:14px;align-items:center;text-decoration:none;box-shadow:var(--shadow)}
+.en-card img{width:72px;height:72px;border-radius:18px}
+.en-card b{font-size:18px}.en-card span{display:block;font-size:14px;color:var(--muted)}
+footer{margin-top:30px;padding-top:16px;border-top:2px dashed var(--line);color:var(--muted);font-size:13px;display:flex;flex-wrap:wrap;gap:6px 16px}
+footer a{font-weight:700}
+.share{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.share a,.share button{padding:10px 14px;border-radius:14px;font-weight:700;text-decoration:none}
+.sh1{background:var(--sun);color:#16324A}.sh2{background:#06c755;color:#fff}
+.mute{font-size:18px}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:50}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-</style>
-<style>
-html,body{margin:0}body{font-family:var(--f-body)}
-.cf-cta{background:var(--paper);border-radius:22px;padding:22px;box-shadow:var(--shadow);margin:8px 0 26px;display:grid;gap:10px}
-.cf-cta h2{margin:0;font-family:var(--f-zh);font-weight:900;font-size:20px}
-.cf-cta p{margin:0;color:var(--muted);font-family:var(--f-zh);font-size:15px}
-.cf-btns{display:flex;flex-wrap:wrap;gap:10px}
-.cf-btns a,.cf-btns button{display:inline-flex;align-items:center;padding:10px 16px;border-radius:14px;font-family:var(--f-zh);font-weight:700;font-size:15px;text-decoration:none;border:0;cursor:pointer}
-.cf-share{background:var(--sun);color:#16324A}.cf-line{background:#06c755;color:#fff}
-.cf-visits{display:inline-flex;gap:6px;align-items:center;font-weight:700}.cf-visits b{color:var(--coral);font-variant-numeric:tabular-nums}
-footer span{display:inline-block;margin-right:16px}footer a{color:inherit;font-weight:700}
 </style>
 </head>
 <body>
+<canvas id="confetti" hidden></canvas>
 <div class="wrap">
-  <header>
-    <div class="brand">
-      <div class="logo" aria-hidden="true">Ab</div>
-      <h1>啟賦英文小學堂</h1>
-      <p>看圖學單字、聽慢速小故事、玩聽音找圖。每個字都可以點來聽發音。</p>
+  <header class="top">
+    <a class="logo" href="#/" aria-label="回首頁">啟</a>
+    <a class="brand" href="#/">啟賦小學堂</a>
+    <div class="stats">
+      <span class="chip" title="連續練習天數">🔥 <b id="stStreak">0</b> 天</span>
+      <span class="chip" title="星星總數">⭐ <b id="stStars">0</b></span>
+      <span class="chip" title="貼紙">🎁 <b id="stStk">0</b>/<b id="stStkAll">0</b></span>
+      <button class="chip mute" id="muteBtn" aria-label="音效開關">🔊</button>
     </div>
-    <nav class="tabs" role="tablist">
-      <button role="tab" id="tab-words" aria-selected="true" data-view="words">🔤 主題單字</button>
-      <button role="tab" id="tab-story" aria-selected="false" data-view="story">📖 聽力小故事</button>
-      <button role="tab" id="tab-game" aria-selected="false" data-view="game">🎯 聽音找圖</button>
-    </nav>
-    <div class="notice" id="noVoice" hidden>這個瀏覽器沒有英文語音，請改用 Chrome、Edge 或手機 Safari 開啟。</div>
   </header>
-
-  <main>
-    <!-- 主題單字 -->
-    <section id="view-words">
-      <div class="sec-head"><h2>選一個主題<small>Pick a topic</small></h2></div>
-      <div class="themes" id="themes"></div>
-      <div class="sec-head" style="margin-top:26px">
-        <h2 id="themeTitle"></h2>
-        <div class="toolbar">
-          <button class="btn primary" id="playReel">▶ 自動播放（像影片一樣）</button>
-        </div>
-      </div>
-      <p class="hint">點卡片看大圖、聽發音與例句。自動播放會每個字念三次再念一句話，適合每天磨耳朵。</p>
-      <div class="cards" id="cards"></div>
-    </section>
-
-    <!-- 聽力小故事 -->
-    <section id="view-story" hidden>
-      <div class="sec-head"><h2>慢速聽力小故事<small>Easy English Listening · A2</small></h2></div>
-      <div class="story-list" id="storyList"></div>
-      <div class="reader" id="reader"></div>
-    </section>
-
-    <!-- 遊戲 -->
-    <section id="view-game" hidden>
-      <div class="sec-head"><h2>聽音找圖<small>Listen and choose</small></h2>
-        <div class="toolbar"><label for="gameTheme" class="hint">題目範圍</label>
-          <select id="gameTheme" class="btn" style="padding:8px 10px"></select></div>
-      </div>
-      <div class="game" id="game"></div>
-    </section>
-  </main>
-
-  <section class="cf-cta" aria-label="分享">
-  <h2>覺得好用嗎？分享給其他爸爸媽媽</h2>
-  <p>每一個單字都可以點來聽發音，睡前陪孩子念 10 個字只要 5 分鐘。</p>
-  <div class="cf-btns">
-    <button class="cf-share" type="button" id="cfShare">分享這個網站</button>
-    <a class="cf-line" href="https://social-plugins.line.me/lineit/share?url=https%3A%2F%2Fwade-chuang.github.io%2Fchifoo%2F" target="_blank" rel="noopener">LINE 分享</a>
-  </div>
-  <p id="cfMsg" aria-live="polite"></p>
-</section>
-<footer>
-  <span>© 2026 啟賦英文小學堂・免費親子英文</span>
-  <span>國中以上數學：<a href="https://wade-chuang.github.io/jenfoo/" target="_blank" rel="noopener">正賦文理</a></span>
-  <span class="cf-visits" id="visits" hidden>累計使用 <b id="busuanzi_value_page_pv"></b> 人次</span>
-  <span>發音使用裝置內建英文語音，建議用 Chrome、Edge 或手機 Safari 開啟。</span>
-</footer>
+  <main id="view"></main>
+  <footer>
+    <span>© 2026 啟賦小學堂・免費國小線上練習</span>
+    <span>國中以上數學：<a href="https://wade-chuang.github.io/jenfoo/" target="_blank" rel="noopener">正賦文理</a></span>
+    <span id="visits" hidden>累計使用 <b id="busuanzi_value_page_pv"></b> 人次</span>
+    <span>學習紀錄只存在這台裝置的瀏覽器裡，不需要註冊。</span>
+  </footer>
 </div>
 
-<div class="stage" id="stage" hidden></div>
-
+<script src="data/math_units.js"></script>
+<script>var BANK=[];</script>
+<script src="data/chinese_g1_3.js"></script>
+<script src="data/chinese_g4_6.js"></script>
+<script src="data/social.js"></script>
+<script src="data/science.js"></script>
+<script src="data/life.js"></script>
+<script src="data/english.js"></script>
+<script src="data/exam_chinese_g1_3.js"></script>
+<script src="data/exam_chinese_g4_6.js"></script>
+<script src="data/exam_math.js"></script>
+<script src="data/exam_social.js"></script>
+<script src="data/exam_science.js"></script>
+<script src="data/exam_english.js"></script>
+<script src="data/exam_life.js"></script>
+<script src="data/english_vocab.js"></script>
 <script>
-/* ===== 資料 ===== */
-const THEMES=[
- {id:'sea',zh:'海洋動物',en:'Sea Animals',icon:'🐬',words:[
-  ['dolphin','ˋdɑlfɪn','海豚','🐬','Dolphins are very smart.','海豚非常聰明。'],
-  ['octopus','ˋɑktəpəs','章魚','🐙','An octopus has eight arms.','章魚有八隻手臂。'],
-  ['crab','kræb','螃蟹','🦀','A crab walks sideways.','螃蟹橫著走路。'],
-  ['lobster','ˋlɑbstɚ','龍蝦','🦞','A lobster has two big claws.','龍蝦有兩隻大鉗子。'],
-  ['shark','ʃɑrk','鯊魚','🦈','A shark has many sharp teeth.','鯊魚有很多尖尖的牙齒。'],
-  ['whale','hwel','鯨魚','🐳','A whale is very, very big.','鯨魚非常非常大。'],
-  ['seal','sil','海豹','🦭','A seal can swim very fast.','海豹可以游得很快。'],
-  ['turtle','ˋtɝtḷ','烏龜；海龜','🐢','A turtle carries its home on its back.','烏龜把家背在背上。'],
-  ['shrimp','ʃrɪmp','蝦子','🦐','A shrimp is small and pink.','蝦子小小的、粉紅色。'],
-  ['fish','fɪʃ','魚','🐟','A fish lives in the water.','魚住在水裡。']]},
- {id:'wild',zh:'野生動物',en:'Wild Animals',icon:'🦁',words:[
-  ['tiger','ˋtaɪgɚ','老虎','🐯','A tiger has black stripes.','老虎有黑色的條紋。'],
-  ['lion','ˋlaɪən','獅子','🦁','The lion is the king of animals.','獅子是萬獸之王。'],
-  ['leopard','ˋlɛpɚd','花豹','🐆','A leopard can climb trees.','花豹會爬樹。'],
-  ['elephant','ˋɛləfənt','大象','🐘','An elephant has a long nose.','大象有長長的鼻子。'],
-  ['giraffe','dʒəˋræf','長頸鹿','🦒','A giraffe has a long neck.','長頸鹿有長長的脖子。'],
-  ['zebra','ˋzibrə','斑馬','🦓','A zebra is black and white.','斑馬是黑白色的。'],
-  ['monkey','ˋmʌŋkɪ','猴子','🐒','A monkey likes bananas.','猴子喜歡香蕉。'],
-  ['crocodile','ˋkrɑkəˏdaɪl','鱷魚','🐊','A crocodile has a big mouth.','鱷魚有一張大嘴巴。'],
-  ['hippo','ˋhɪpo','河馬','🦛','A hippo likes to stay in the water.','河馬喜歡待在水裡。'],
-  ['panda','ˋpændə','貓熊','🐼','A panda eats bamboo.','貓熊吃竹子。']]},
- {id:'farm',zh:'農場與寵物',en:'Farm & Pets',icon:'🐮',words:[
-  ['cow','kaʊ','乳牛','🐄','A cow gives us milk.','乳牛給我們牛奶。'],
-  ['pig','pɪg','豬','🐖','A pig says oink oink.','豬會「齁齁」叫。'],
-  ['horse','hɔrs','馬','🐎','A horse can run fast.','馬可以跑得很快。'],
-  ['sheep','ʃip','綿羊','🐑','A sheep has soft wool.','綿羊有柔軟的羊毛。'],
-  ['goat','got','山羊','🐐','A goat can climb rocks.','山羊會爬岩石。'],
-  ['chicken','ˋtʃɪkɪn','雞','🐔','A chicken lays eggs.','雞會下蛋。'],
-  ['duck','dʌk','鴨子','🦆','A duck says quack quack.','鴨子會「呱呱」叫。'],
-  ['rabbit','ˋræbɪt','兔子','🐇','A rabbit has long ears.','兔子有長長的耳朵。'],
-  ['dog','dɔg','狗','🐶','A dog is a good friend.','狗是好朋友。'],
-  ['cat','kæt','貓','🐱','A cat likes to sleep.','貓喜歡睡覺。']]},
- {id:'fruit',zh:'水果',en:'Fruits',icon:'🍓',words:[
-  ['apple','ˋæpḷ','蘋果','🍎','An apple is red and sweet.','蘋果紅紅的、甜甜的。'],
-  ['banana','bəˋnænə','香蕉','🍌','A banana is long and yellow.','香蕉長長的、黃黃的。'],
-  ['grapes','greps','葡萄','🍇','Grapes grow in bunches.','葡萄一串一串地長。',1],
-  ['orange','ˋɔrɪndʒ','柳橙','🍊','An orange is very juicy.','柳橙的汁很多。'],
-  ['strawberry','ˋstrɔˏbɛrɪ','草莓','🍓','A strawberry has tiny seeds.','草莓有小小的種子。'],
-  ['watermelon','ˋwɔtɚˏmɛlən','西瓜','🍉','A watermelon is big and green.','西瓜又大又綠。'],
-  ['pineapple','ˋpaɪnˏæpḷ','鳳梨','🍍','A pineapple is sweet and sour.','鳳梨酸酸甜甜的。'],
-  ['peach','pitʃ','桃子','🍑','A peach is soft and pink.','桃子軟軟的、粉紅色。'],
-  ['lemon','ˋlɛmən','檸檬','🍋','A lemon is very sour.','檸檬非常酸。'],
-  ['cherry','ˋtʃɛrɪ','櫻桃','🍒','A cherry is small and red.','櫻桃小小的、紅紅的。']]},
- {id:'go',zh:'交通工具',en:'Transportation',icon:'🚌',words:[
-  ['car','kɑr','汽車','🚗','We go to the park by car.','我們搭汽車去公園。'],
-  ['bus','bʌs','公車','🚌','The bus stops here.','公車停在這裡。'],
-  ['train','tren','火車','🚆','The train is very long.','火車非常長。'],
-  ['airplane','ˋɛrˏplen','飛機','✈️','An airplane flies in the sky.','飛機在天空飛。'],
-  ['bicycle','ˋbaɪsɪkḷ','腳踏車','🚲','I ride my bicycle in the park.','我在公園騎腳踏車。'],
-  ['ship','ʃɪp','船','🚢','A big ship sails on the sea.','一艘大船在海上航行。'],
-  ['truck','trʌk','卡車','🚚','A truck carries heavy things.','卡車載重重的東西。'],
-  ['helicopter','ˋhɛlɪˏkɑptɚ','直升機','🚁','A helicopter can fly up and down.','直升機可以直直地上下飛。'],
-  ['taxi','ˋtæksɪ','計程車','🚕','The taxi is yellow.','計程車是黃色的。'],
-  ['scooter','ˋskutɚ','機車','🛵','Many people ride scooters in Taiwan.','台灣很多人騎機車。']]},
- {id:'bug',zh:'昆蟲小世界',en:'Bugs',icon:'🦋',words:[
-  ['butterfly','ˋbʌtɚˏflaɪ','蝴蝶','🦋','A butterfly has pretty wings.','蝴蝶有漂亮的翅膀。'],
-  ['bee','bi','蜜蜂','🐝','A bee makes honey.','蜜蜂會做蜂蜜。'],
-  ['ant','ænt','螞蟻','🐜','An ant is small but strong.','螞蟻很小但很有力氣。'],
-  ['ladybug','ˋledɪˏbʌg','瓢蟲','🐞','A ladybug has black spots.','瓢蟲有黑色的斑點。'],
-  ['spider','ˋspaɪdɚ','蜘蛛','🕷️','A spider has eight legs.','蜘蛛有八隻腳。'],
-  ['snail','snel','蝸牛','🐌','A snail moves very slowly.','蝸牛爬得非常慢。'],
-  ['caterpillar','ˋkætɚˏpɪlɚ','毛毛蟲','🐛','A caterpillar becomes a butterfly.','毛毛蟲會變成蝴蝶。'],
-  ['mosquito','məsˋkito','蚊子','🦟','A mosquito can bite you.','蚊子會叮人。'],
-  ['beetle','ˋbitḷ','甲蟲','🪲','A beetle has a hard shell.','甲蟲有硬硬的殼。'],
-  ['cricket','ˋkrɪkɪt','蟋蟀','🦗','A cricket sings at night.','蟋蟀晚上會唱歌。']]},
- {id:'food',zh:'好吃的食物',en:'Food',icon:'🍔',words:[
-  ['bread','brɛd','麵包','🍞','I eat bread for breakfast.','我早餐吃麵包。',2],
-  ['rice','raɪs','米飯','🍚','We eat rice every day.','我們每天吃米飯。',2],
-  ['hamburger','ˋhæmbɝgɚ','漢堡','🍔','A hamburger has meat and bread.','漢堡裡有肉和麵包。'],
-  ['pizza','ˋpitsə','披薩','🍕','Pizza has a lot of cheese.','披薩有很多起司。'],
-  ['noodles','ˋnudḷz','麵條','🍜','Noodles are long and hot.','麵條長長的、熱熱的。',1],
-  ['egg','ɛg','蛋','🥚','A chicken lays an egg.','雞生了一顆蛋。'],
-  ['milk','mɪlk','牛奶','🥛','Milk makes us strong.','牛奶讓我們長得強壯。',2],
-  ['cake','kek','蛋糕','🍰','We eat cake on birthdays.','生日時我們吃蛋糕。'],
-  ['ice cream','ˋaɪs ˏkrim','冰淇淋','🍦','Ice cream is cold and sweet.','冰淇淋冰冰的、甜甜的。',2],
-  ['cookie','ˋkʊkɪ','餅乾','🍪','Grandma bakes cookies for me.','奶奶烤餅乾給我吃。']]},
- {id:'veg',zh:'蔬菜',en:'Vegetables',icon:'🥕',words:[
-  ['carrot','ˋkærət','紅蘿蔔','🥕','Rabbits love carrots.','兔子很愛紅蘿蔔。'],
-  ['corn','kɔrn','玉米','🌽','Corn is yellow and sweet.','玉米黃黃的、甜甜的。',2],
-  ['tomato','təˋmeto','番茄','🍅','A tomato is red and round.','番茄紅紅的、圓圓的。'],
-  ['potato','pəˋteto','馬鈴薯','🥔','French fries are made from potatoes.','薯條是用馬鈴薯做的。'],
-  ['onion','ˋʌnjən','洋蔥','🧅','An onion can make you cry.','洋蔥會讓你流眼淚。'],
-  ['broccoli','ˋbrɑkəlɪ','綠花椰菜','🥦','Broccoli looks like a little tree.','綠花椰菜看起來像一棵小樹。',2],
-  ['mushroom','ˋmʌʃrʊm','蘑菇','🍄','A mushroom grows in wet places.','蘑菇長在潮濕的地方。'],
-  ['eggplant','ˋɛgˏplænt','茄子','🍆','An eggplant is purple.','茄子是紫色的。'],
-  ['cucumber','ˋkjukʌmbɚ','小黃瓜','🥒','A cucumber is long and green.','小黃瓜長長的、綠綠的。'],
-  ['chili','ˋtʃɪlɪ','辣椒','🌶️','A chili is very hot.','辣椒非常辣。']]},
- {id:'color',zh:'顏色',en:'Colors',icon:'🎨',words:[
-  ['red','rɛd','紅色','🔴','An apple is red.','蘋果是紅色的。','It is red.','它是紅色的。'],
-  ['orange','ˋɔrɪndʒ','橘色','🟠','A carrot is orange.','紅蘿蔔是橘色的。','It is orange.','它是橘色的。'],
-  ['yellow','ˋjɛlo','黃色','🟡','A banana is yellow.','香蕉是黃色的。','It is yellow.','它是黃色的。'],
-  ['green','grin','綠色','🟢','The grass is green.','草是綠色的。','It is green.','它是綠色的。'],
-  ['blue','blu','藍色','🔵','The sky is blue.','天空是藍色的。','It is blue.','它是藍色的。'],
-  ['purple','ˋpɝpḷ','紫色','🟣','Grapes are purple.','葡萄是紫色的。','It is purple.','它是紫色的。'],
-  ['pink','pɪŋk','粉紅色','🎀','A peach is pink.','桃子是粉紅色的。','It is pink.','它是粉紅色的。'],
-  ['brown','braʊn','棕色','🟤','A bear is brown.','熊是棕色的。','It is brown.','它是棕色的。'],
-  ['black','blæk','黑色','⚫','My hair is black.','我的頭髮是黑色的。','It is black.','它是黑色的。'],
-  ['white','hwaɪt','白色','⚪','Snow is white.','雪是白色的。','It is white.','它是白色的。']]},
- {id:'body',zh:'身體部位',en:'My Body',icon:'👀',words:[
-  ['eye','aɪ','眼睛','👁️','I see with my eyes.','我用眼睛看。'],
-  ['ear','ɪr','耳朵','👂','I hear with my ears.','我用耳朵聽。'],
-  ['nose','noz','鼻子','👃','I smell with my nose.','我用鼻子聞。'],
-  ['mouth','maʊθ','嘴巴','👄','I eat with my mouth.','我用嘴巴吃東西。'],
-  ['hand','hænd','手','✋','I have two hands.','我有兩隻手。'],
-  ['arm','ɑrm','手臂','💪','My arms are strong.','我的手臂很有力。'],
-  ['leg','lɛg','腿','🦵','I run with my legs.','我用腿跑步。'],
-  ['foot','fʊt','腳','🦶','I kick the ball with my foot.','我用腳踢球。'],
-  ['tooth','tuθ','牙齒','🦷','Brush your teeth every day.','每天都要刷牙。'],
-  ['brain','bren','大腦','🧠','I think with my brain.','我用大腦思考。']]},
- {id:'weather',zh:'天氣與天空',en:'Weather',icon:'🌈',words:[
-  ['sun','sʌn','太陽','☀️','The sun is hot and bright.','太陽又熱又亮。','This is the sun.','這是太陽。'],
-  ['cloud','klaʊd','雲','☁️','A cloud is white and soft.','雲白白的、軟軟的。'],
-  ['rain','ren','雨','🌧️','Take an umbrella when it rains.','下雨時要帶雨傘。','It is raining.','正在下雨。'],
-  ['snow','sno','雪','❄️','Snow is white and cold.','雪白白的、冷冷的。','It is snowing.','正在下雪。'],
-  ['wind','wɪnd','風','🌬️','The wind blows the leaves.','風吹動樹葉。','It is windy.','風很大。'],
-  ['rainbow','ˋrenˏbo','彩虹','🌈','A rainbow has seven colors.','彩虹有七種顏色。'],
-  ['moon','mun','月亮','🌙','The moon comes out at night.','月亮晚上會出來。','This is the moon.','這是月亮。'],
-  ['star','stɑr','星星','⭐','Stars shine at night.','星星在晚上發亮。'],
-  ['lightning','ˋlaɪtnɪŋ','閃電','⚡','Lightning is very bright.','閃電非常亮。',2],
-  ['typhoon','taɪˋfun','颱風','🌀','Typhoons often come to Taiwan in summer.','台灣夏天常有颱風。','A typhoon is coming!','颱風要來了！']]},
- {id:'school',zh:'學校用品',en:'School Things',icon:'🎒',words:[
-  ['book','bʊk','書','📕','I read a book every night.','我每天晚上讀一本書。'],
-  ['pencil','ˋpɛnsḷ','鉛筆','✏️','I write with a pencil.','我用鉛筆寫字。'],
-  ['pen','pɛn','原子筆','🖊️','Can I borrow your pen?','可以借我你的原子筆嗎？'],
-  ['ruler','ˋrulɚ','尺','📏','A ruler helps me draw straight lines.','尺幫我畫出直線。'],
-  ['scissors','ˋsɪzɚz','剪刀','✂️','Be careful with scissors.','用剪刀要小心。',1],
-  ['backpack','ˋbækˏpæk','書包','🎒','My backpack is heavy.','我的書包很重。'],
-  ['crayon','ˋkreən','蠟筆','🖍️','I draw a picture with crayons.','我用蠟筆畫圖。'],
-  ['notebook','ˋnotˏbʊk','筆記本','📓','I write notes in my notebook.','我在筆記本上寫筆記。'],
-  ['computer','kəmˋpjutɚ','電腦','💻','We use a computer in class.','我們上課會用電腦。'],
-  ['clock','klɑk','時鐘','⏰',"The clock says it is eight o'clock.",'時鐘顯示現在八點。']]},
- {id:'home',zh:'我的家',en:'At Home',icon:'🏠',words:[
-  ['bed','bɛd','床','🛏️','I sleep in my bed.','我睡在我的床上。'],
-  ['chair','tʃɛr','椅子','🪑','Please sit on the chair.','請坐在椅子上。'],
-  ['door','dor','門','🚪','Please close the door.','請把門關上。'],
-  ['window','ˋwɪndo','窗戶','🪟','Open the window, please.','請打開窗戶。'],
-  ['sofa','ˋsofə','沙發','🛋️','Dad is sitting on the sofa.','爸爸坐在沙發上。'],
-  ['TV','ˋtiˋvi','電視','📺','We watch TV after dinner.','我們晚餐後看電視。'],
-  ['phone','fon','手機','📱',"Mom's phone is ringing.",'媽媽的手機在響。'],
-  ['key','ki','鑰匙','🔑','I lost my key!','我把鑰匙弄丟了！'],
-  ['toothbrush','ˋtuθˏbrʌʃ','牙刷','🪥','I use my toothbrush every morning.','我每天早上用牙刷刷牙。'],
-  ['cup','kʌp','杯子','☕','I drink water from a cup.','我用杯子喝水。']]},
- {id:'sports',zh:'運動',en:'Sports',icon:'⚽',words:[
-  ['soccer','ˋsɑkɚ','足球','⚽','A soccer team has eleven players.','一支足球隊有十一個球員。',"Let's play soccer.",'我們來踢足球吧。'],
-  ['basketball','ˋbæskɪtˏbɔl','籃球','🏀','Basketball players are very tall.','籃球員都很高。',"Let's play basketball.",'我們來打籃球吧。'],
-  ['baseball','ˋbesˏbɔl','棒球','⚾','Baseball is very popular in Taiwan.','棒球在台灣很受歡迎。',"Let's play baseball.",'我們來打棒球吧。'],
-  ['tennis','ˋtɛnɪs','網球','🎾','A tennis ball is yellow.','網球是黃色的。',"Let's play tennis.",'我們來打網球吧。'],
-  ['volleyball','ˋvɑlɪˏbɔl','排球','🏐','We play volleyball on the beach.','我們在海灘打排球。',"Let's play volleyball.",'我們來打排球吧。'],
-  ['badminton','ˋbædmɪntən','羽毛球','🏸','Badminton is fun to play with friends.','和朋友打羽毛球很好玩。',"Let's play badminton.",'我們來打羽毛球吧。'],
-  ['table tennis','ˋtebḷ ˏtɛnɪs','桌球','🏓','Table tennis is very fast.','桌球的速度非常快。',"Let's play table tennis.",'我們來打桌球吧。'],
-  ['swimming','ˋswɪmɪŋ','游泳','🏊','Swimming is great in summer.','夏天游泳最棒了。','I like swimming.','我喜歡游泳。'],
-  ['running','ˋrʌnɪŋ','跑步','🏃','Running makes me strong.','跑步讓我變強壯。','I like running.','我喜歡跑步。'],
-  ['skating','ˋsketɪŋ','溜冰','⛸️','Skating on ice is fun.','在冰上溜冰很好玩。','I like skating.','我喜歡溜冰。']]},
- {id:'jobs',zh:'職業',en:'Jobs',icon:'👩‍🚀',words:[
-  ['teacher','ˋtitʃɚ','老師','🧑‍🏫','A teacher helps students learn.','老師幫助學生學習。'],
-  ['doctor','ˋdɑktɚ','醫生','🧑‍⚕️','A doctor helps sick people.','醫生幫助生病的人。'],
-  ['police officer','pəˋlis ˏɔfəsɚ','警察','👮','A police officer keeps us safe.','警察保護我們的安全。'],
-  ['firefighter','ˋfaɪrˏfaɪtɚ','消防員','🧑‍🚒','A firefighter puts out fires.','消防員負責滅火。'],
-  ['cook','kʊk','廚師','🧑‍🍳','A cook makes delicious food.','廚師做好吃的食物。'],
-  ['farmer','ˋfɑrmɚ','農夫','🧑‍🌾','A farmer grows rice and vegetables.','農夫種稻米和蔬菜。'],
-  ['pilot','ˋpaɪlət','機師','🧑‍✈️','A pilot flies an airplane.','機師駕駛飛機。'],
-  ['singer','ˋsɪŋɚ','歌手','🧑‍🎤','A singer sings on the stage.','歌手在舞台上唱歌。'],
-  ['scientist','ˋsaɪəntɪst','科學家','🧑‍🔬','A scientist does experiments.','科學家做實驗。'],
-  ['astronaut','ˋæstrəˏnɔt','太空人','🧑‍🚀','An astronaut goes into space.','太空人到太空去。']]}
-];
-const article=w=>/^[aeiou]/.test(w)?'an':'a';
-const MW={sea:'隻',wild:'隻',farm:'隻',bug:'隻',fruit:'個',go:'輛',body:'隻',jobs:'位'},
-MW2={airplane:'架',helicopter:'架',ship:'艘',banana:'根',egg:'顆',cookie:'塊',cake:'塊',carrot:'根',cucumber:'根',chili:'根',eggplant:'根',tomato:'顆',potato:'顆',onion:'顆',mushroom:'朵',
- nose:'個',mouth:'張',leg:'條',tooth:'顆',brain:'個',cloud:'朵',rainbow:'道',star:'顆',book:'本',notebook:'本',pencil:'枝',pen:'枝',crayon:'枝',ruler:'把',computer:'台',
- bed:'張',chair:'張',sofa:'張',door:'扇',window:'扇',TV:'台',phone:'支',key:'把',toothbrush:'支'};
-// r[6]：1＝複數、2＝不可數、字串＝自訂介紹句（r[7] 為中文）
-const intro=(r,tid)=>{const f=r[6],zh=r[2].split('；')[0];
-  if(f===1)return['These are '+r[0]+'.','這些是'+zh+'。'];
-  if(f===2)return['This is '+r[0]+'.','這是'+zh+'。'];
-  if(typeof f==='string'&&r[7])return[f,r[7]];
-  return['This is '+article(r[0])+' '+r[0]+'.','這是一'+(MW2[r[0]]||MW[tid]||'個')+zh+'。']};
-
-const STORIES=[
- {id:'map',em:'🗺️',title:'The Night Market Map',zh:'夜市地圖',lines:[
-  ['Mia and her little brother Leo live in Luodong.','米亞和弟弟里歐住在羅東。'],
-  ['Every Saturday night, their family goes to the night market.','每個星期六晚上，他們一家人都會去夜市。'],
-  ['This week, Dad gave Mia a paper map and said, "You are the leader tonight."','這個星期，爸爸給米亞一張紙地圖，說：「今晚你是隊長。」'],
-  ['Mia felt proud, but the market was very busy.','米亞覺得很驕傲，但是夜市人非常多。'],
-  ['Leo wanted green onion pancakes, and Mom wanted bubble tea.','里歐想吃蔥油餅，媽媽想喝珍珠奶茶。'],
-  ['Mia looked at the map and turned left, then right, then left again.','米亞看著地圖，先左轉、再右轉、又左轉。'],
-  ['Soon they were in front of a toy shop, not a food stand.','很快地，他們站在一家玩具店前面，不是小吃攤。'],
-  ['Leo laughed and said, "Mia, the map is upside down!"','里歐笑著說：「米亞，地圖拿反了啦！」'],
-  ['Mia turned the map around, and everyone laughed together.','米亞把地圖轉過來，大家一起笑了。'],
-  ['Ten minutes later, they found the pancakes and the bubble tea.','十分鐘後，他們找到了蔥油餅和珍珠奶茶。'],
-  ['"Next week," said Dad, "Leo can be the leader."','爸爸說：「下星期換里歐當隊長。」'],
-  ['Leo smiled and said, "Then I will practice reading maps!"','里歐笑著說：「那我要先練習看地圖！」']],
-  vocab:[['night market','夜市'],['leader','隊長；領導者'],['proud','驕傲的'],['busy','熱鬧的；忙碌的'],['upside down','上下顛倒']],
-  qs:[['Who was the leader tonight?',['Mia','Leo','Dad'],0],['What did Mom want?',['Bubble tea','Green onion pancakes','A toy'],0],['Why did they go to the toy shop?',['The map was upside down.','Leo wanted a toy.','It was raining.'],0]]},
- {id:'puppy',em:'🐶',title:'The Lost Puppy at School',zh:'學校裡的迷路小狗',lines:[
-  ['On Monday morning, Ken saw a small brown puppy near the school gate.','星期一早上，阿肯在校門附近看到一隻棕色的小狗。'],
-  ['The puppy was wet, and it looked very hungry.','小狗全身濕濕的，看起來非常餓。'],
-  ['Ken wanted to help, but the school bell was ringing.','阿肯想幫忙，可是上課鐘聲正在響。'],
-  ['He ran to his classroom and told his teacher, Ms. Lin.','他跑進教室，告訴林老師。'],
-  ['Ms. Lin said, "Let\'s ask the school nurse for a towel."','林老師說：「我們去跟護理師借一條毛巾。」'],
-  ['At break time, Ken and his friends gave the puppy some water and a little bread.','下課時，阿肯和朋友們給小狗一些水和一點麵包。'],
-  ['The puppy wagged its tail and licked Ken\'s hand.','小狗搖搖尾巴，舔了舔阿肯的手。'],
-  ['"Does it have a home?" asked Amy.','艾咪問：「牠有家嗎？」'],
-  ['Ms. Lin found a phone number on the puppy\'s collar.','林老師在小狗的項圈上找到一個電話號碼。'],
-  ['In the afternoon, a girl and her grandma came to the school.','下午，一個女孩和她的奶奶來到學校。'],
-  ['The girl hugged the puppy and cried, "Coco! I missed you!"','女孩抱住小狗，大喊：「可可！我好想你！」'],
-  ['She said thank you to Ken, and Ken felt warm and happy all day.','她向阿肯道謝，阿肯一整天都覺得暖暖的、很開心。']],
-  vocab:[['puppy','小狗'],['gate','大門'],['hungry','餓的'],['towel','毛巾'],['collar','項圈']],
-  qs:[['Where did Ken see the puppy?',['Near the school gate','In the park','At the night market'],0],['What did the children give the puppy?',['Water and bread','Milk and rice','A ball'],0],['What is the puppy\'s name?',['Coco','Amy','Ken'],0]]},
- {id:'garden',em:'🌱',title:'Grandpa\'s Rainy Day Garden',zh:'爺爺的雨天花園',lines:[
-  ['It was raining, and Lily could not play outside.','外面在下雨，莉莉不能出去玩。'],
-  ['She sat by the window and felt bored.','她坐在窗邊，覺得好無聊。'],
-  ['Grandpa came in with two small pots and a bag of seeds.','爺爺拿著兩個小花盆和一包種子走進來。'],
-  ['"Let\'s make a garden inside the house," he said.','他說：「我們在家裡做一個小花園吧。」'],
-  ['They put soil in the pots and planted the seeds.','他們把泥土放進花盆，種下種子。'],
-  ['Lily gave the seeds a little water every morning.','莉莉每天早上給種子澆一點水。'],
-  ['After five days, she saw tiny green leaves.','五天後，她看到小小的綠葉子。'],
-  ['"They are growing!" she shouted.','她大叫：「它們在長大了！」'],
-  ['Grandpa told her, "Plants need water, sun, and time."','爺爺告訴她：「植物需要水、陽光和時間。」'],
-  ['Two weeks later, the plants were big enough to eat.','兩個星期後，植物已經長大到可以吃了。'],
-  ['They were basil plants, and Grandma used them to cook dinner.','原來是九層塔，奶奶用它們煮了晚餐。'],
-  ['Lily said, "Rainy days are not boring anymore!"','莉莉說：「下雨天再也不無聊了！」']],
-  vocab:[['bored','覺得無聊的'],['seed','種子'],['soil','泥土'],['plant','種植；植物'],['grow','生長']],
-  qs:[['Why couldn\'t Lily play outside?',['It was raining.','She was sick.','It was night.'],0],['When did Lily see green leaves?',['After five days','After one day','After a month'],0],['What did Grandma do with the basil?',['She cooked dinner.','She sold it.','She gave it to a friend.'],0]]},
- {id:'typhoon',em:'🌀',title:'The Typhoon Night',zh:'颱風夜',lines:[
-  ['The news said a big typhoon was coming to Yilan.','新聞說有一個大颱風要來宜蘭。'],
-  ['"No school tomorrow!" shouted Ben.','班大喊：「明天不用上學！」'],
-  ['But Mom said, "A typhoon day is not a holiday. We need to get ready."','但媽媽說：「颱風假不是去玩的，我們要先做好準備。」'],
-  ['Ben helped Dad bring the plants inside.','班幫爸爸把盆栽搬進屋裡。'],
-  ['They bought water, bread, and batteries at the store.','他們在商店買了水、麵包和電池。'],
-  ['That night, the wind was very loud, and the rain hit the windows.','那天晚上風聲很大，雨一直打在窗戶上。'],
-  ['Suddenly, the lights went out.','突然間，停電了。'],
-  ['Ben was a little scared, but Dad turned on a flashlight.','班有一點害怕，但爸爸打開了手電筒。'],
-  ['The family sat together and played cards by the light.','一家人坐在一起，在燈光下玩撲克牌。'],
-  ['Mom told funny stories about her school days.','媽媽講了她以前上學時的好笑故事。'],
-  ['The next morning, the sky was blue again.','隔天早上，天空又變藍了。'],
-  ['Ben said, "The typhoon was scary, but the night was fun."','班說：「颱風很可怕，但那個晚上很好玩。」']],
-  vocab:[['typhoon','颱風'],['get ready','做好準備'],['battery','電池'],['flashlight','手電筒'],['scared','害怕的']],
-  qs:[['What did they buy at the store?',['Water, bread, and batteries','Toys and candy','Rice and fish'],0],['What happened that night?',['The lights went out.','The door broke.','Ben went outside.'],0],['How did Ben feel about the night?',['It was fun.','It was boring.','He was angry.'],0]]},
- {id:'firstday',em:'🎒',title:'My First English Class',zh:'第一次上英文課',lines:[
-  ["Today was Amy's first day at her new English class.",'今天是艾咪第一天到新的英文班上課。'],
-  ["She held her mom's hand at the door.",'她在門口緊緊牽著媽媽的手。'],
-  ['"I don\'t know anyone," she said quietly.','她小聲地說：「我一個人都不認識。」'],
-  ['Her teacher, Mr. Wang, smiled and said, "Welcome! What\'s your name?"','王老師微笑著說：「歡迎！你叫什麼名字？」'],
-  ['"My name is Amy," she answered.','她回答：「我叫艾咪。」'],
-  ['Mr. Wang gave her a name card and a green crayon.','王老師給她一張名牌和一枝綠色蠟筆。'],
-  ['In class, they sang an animal song and played a word game.','上課時，他們唱了一首動物歌，還玩了單字遊戲。'],
-  ['Amy knew the word "elephant," and everyone clapped.','艾咪知道 elephant 這個字，大家都替她拍手。'],
-  ['A girl named Joy sat next to her and shared her stickers.','一個叫喬伊的女生坐在她旁邊，分她貼紙。'],
-  ['After class, Amy ran to her mom.','下課後，艾咪跑向媽媽。'],
-  ['"Mom, I have a new friend, and I know ten new words!"','「媽媽，我交到新朋友了，還學會十個新單字！」'],
-  ['She could not wait for the next class.','她等不及要上下一堂課了。']],
-  vocab:[['first','第一的'],['quietly','小聲地'],['welcome','歡迎'],['clap','拍手'],['share','分享']],
-  qs:[["Who is Amy's teacher?",['Mr. Wang','Joy','Mom'],0],['What word did Amy know?',['Elephant','Tiger','Banana'],0],['What did Joy share with Amy?',['Stickers','Crayons','Snacks'],0]]},
- {id:'cake',em:'🎂',title:'The Salty Birthday Cake',zh:'鹹鹹的生日蛋糕',lines:[
-  ["Tomorrow is Mom's birthday, so Tom and Dad want to make a cake.",'明天是媽媽的生日，所以湯姆和爸爸想做一個蛋糕。'],
-  ['They read the recipe carefully.','他們仔細地讀食譜。'],
-  ['They need flour, eggs, milk, butter, and sugar.','他們需要麵粉、蛋、牛奶、奶油和糖。'],
-  ['Tom mixed everything in a big bowl.','湯姆把所有材料放進大碗裡攪拌。'],
-  ['Dad put the cake in the oven for forty minutes.','爸爸把蛋糕放進烤箱烤四十分鐘。'],
-  ['The kitchen smelled wonderful.','廚房聞起來好香。'],
-  ['When the cake was ready, Tom took the first bite.','蛋糕烤好後，湯姆咬了第一口。'],
-  ['"Yuck! It\'s salty!" he cried.','他大叫：「噁！是鹹的！」'],
-  ['Dad looked at the jar and laughed, "We used salt, not sugar!"','爸爸看了看罐子笑著說：「我們放的是鹽，不是糖！」'],
-  ['They made a second cake, and this time it was sweet.','他們又做了第二個蛋糕，這次是甜的。'],
-  ['Mom loved the cake, and she loved the story even more.','媽媽很喜歡那個蛋糕，更喜歡這個故事。'],
-  ['Now Tom always checks the jar before he cooks.','現在湯姆做菜前都會先檢查罐子。']],
-  vocab:[['recipe','食譜'],['flour','麵粉'],['oven','烤箱'],['salty','鹹的'],['check','檢查']],
-  qs:[['Why did they make a cake?',["It was Mom's birthday.",'It was Christmas.','Tom was hungry.'],0],['What was wrong with the first cake?',['It was salty.','It was burnt.','It was too small.'],0],['What does Tom do now?',['He checks the jar.','He buys cakes.','He never cooks.'],0]]},
- {id:'zoo',em:'🦒',title:'The Giraffe Took My Hat!',zh:'長頸鹿搶走我的帽子！',lines:[
-  ['On Sunday, Grace and her class went to the zoo by bus.','星期天，葛蕾絲和班上同學搭公車去動物園。'],
-  ['First, they saw the pandas eating bamboo.','首先，他們看到貓熊在吃竹子。'],
-  ['Next, they visited the giraffes.','接著，他們去看長頸鹿。'],
-  ["One giraffe put its long neck over the fence and took Grace's hat!",'有一隻長頸鹿把長脖子伸過圍欄，叼走了葛蕾絲的帽子！'],
-  ['"Hey, that\'s mine!" Grace shouted.','葛蕾絲大喊：「嘿，那是我的！」'],
-  ['The giraffe chewed the hat slowly, like it was a snack.','長頸鹿慢慢地嚼著帽子，好像在吃點心。'],
-  ['Everyone laughed, and a zookeeper came to help.','大家都笑了，一位動物園管理員過來幫忙。'],
-  ['He gave the giraffe some leaves, and it dropped the hat.','他給長頸鹿一些葉子，牠就把帽子放下了。'],
-  ['The hat was wet, but Grace was not angry.','帽子濕濕的，但葛蕾絲沒有生氣。'],
-  ['"Giraffes like hats, but they like leaves more," said the zookeeper.','管理員說：「長頸鹿喜歡帽子，但牠們更喜歡葉子。」'],
-  ['That night, Grace drew a picture of the giraffe in her notebook.','那天晚上，葛蕾絲在筆記本上畫了那隻長頸鹿。'],
-  ['It was her favorite day of the year.','那是她今年最喜歡的一天。']],
-  vocab:[['zoo','動物園'],['fence','圍欄'],['chew','咀嚼'],['zookeeper','動物園管理員'],['favorite','最喜歡的']],
-  qs:[['How did they go to the zoo?',['By bus','By train','On foot'],0],['What did the giraffe take?',["Grace's hat","Grace's lunch","Grace's notebook"],0],['How did the zookeeper help?',['He gave the giraffe leaves.','He climbed the fence.','He bought a new hat.'],0]]},
- {id:'robot',em:'🤖',title:'Beep the Robot Helper',zh:'機器人小幫手嗶嗶',lines:[
-  ['Sam got a small robot for Christmas.','山姆聖誕節收到一個小機器人。'],
-  ['Its name was Beep, and it could talk and move.','它叫做嗶嗶，會說話也會走路。'],
-  ['"Beep, please clean my room," Sam said.','山姆說：「嗶嗶，請幫我打掃房間。」'],
-  ['Beep picked up the toys, but it put them in the fridge!','嗶嗶把玩具撿起來，卻把它們放進冰箱！'],
-  ['"No, Beep! Toys go in the toy box," Sam said.','山姆說：「不對，嗶嗶！玩具要放進玩具箱。」'],
-  ['Next, Sam asked Beep to water the plants.','接著，山姆請嗶嗶幫植物澆水。'],
-  ['Beep watered the plants, the floor, and the cat.','嗶嗶幫植物、地板，還有貓，全都澆了水。'],
-  ['The cat jumped up and ran under the bed.','貓跳了起來，躲到床底下。'],
-  ['Sam sighed and said, "Maybe I should do it myself."','山姆嘆了口氣說：「也許我應該自己來。」'],
-  ['So Sam cleaned his room, and Beep played music for him.','於是山姆自己打掃房間，嗶嗶幫他放音樂。'],
-  ['The room was clean in twenty minutes.','二十分鐘後，房間就乾淨了。'],
-  ['Sam learned that Beep was a great DJ, but a bad cleaner.','山姆發現嗶嗶是很棒的 DJ，卻是很糟的清潔工。']],
-  vocab:[['robot','機器人'],['clean','打掃'],['fridge','冰箱'],['water','澆水'],['myself','我自己']],
-  qs:[['Where did Beep put the toys?',['In the fridge','In the toy box','Under the bed'],0],['What did Beep water?',['The plants, the floor, and the cat','Only the plants','The TV'],0],['What is Beep good at?',['Playing music','Cleaning','Cooking'],0]]}
-];
-
-/* ===== 語音 ===== */
-const synth=window.speechSynthesis;
-let voice=null;
-function pickVoice(){
-  if(!synth)return;
-  const vs=synth.getVoices().filter(v=>/^en[-_]/i.test(v.lang));
-  const pref=[/Google US English/i,/Aria|Jenny|Ava|Samantha/i,/en[-_]US/i,/en[-_]GB/i];
-  for(const p of pref){const v=vs.find(v=>p.test(v.name)||p.test(v.lang));if(v){voice=v;break}}
-  if(!voice&&vs[0])voice=vs[0];
-}
-if(synth){pickVoice();synth.onvoiceschanged=pickVoice;setTimeout(()=>{if(!voice&&!synth.getVoices().length)document.getElementById('noVoice').hidden=false},1500)}
-else document.getElementById('noVoice').hidden=false;
-
-let speakToken=0;
-function stopSpeak(){speakToken++;if(synth)synth.cancel()}
-function speak(text,rate=0.85){
-  return new Promise(res=>{
-    if(!synth){setTimeout(res,600);return}
-    const u=new SpeechSynthesisUtterance(text);
-    if(voice)u.voice=voice;u.lang=voice?voice.lang:'en-US';u.rate=rate;
-    let done=false;const fin=()=>{if(!done){done=true;res()}};
-    u.onend=fin;u.onerror=fin;
-    setTimeout(fin,1500+text.length*140/rate);
-    synth.speak(u);
-  });
-}
-const wait=ms=>new Promise(r=>setTimeout(r,ms));
-
-/* ===== 小工具 ===== */
+/* ================= 基本設定 ================= */
+const SUBJ={
+  '國語':{k:'zh',ic:'📖',en:'Chinese'},'數學':{k:'ma',ic:'🔢',en:'Math'},'英語':{k:'en',ic:'🔤',en:'English'},
+  '社會':{k:'so',ic:'🗺️',en:'Social Studies'},'自然':{k:'sc',ic:'🔬',en:'Science'},'生活':{k:'li',ic:'🌱',en:'Life'}};
+const GZH=['','一','二','三','四','五','六'];
+const subjOf=g=>g<=2?['國語','數學','英語','生活']:['國語','數學','英語','社會','自然'];
+const LEVELS=['小種子','小嫩芽','小樹苗','小樹','大樹','森林小隊長','知識探險家','學習小博士','啟賦小達人','傳說中的學霸'];
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
-const TINT={food:'fruit',veg:'farm',color:'go',body:'wild',weather:'sea',school:'bug',home:'fruit',sports:'farm',jobs:'sea'};
-const tint=id=>`var(--t-${TINT[id]||id})`;
-// 已有 AI 3D 圖的主題（img/主題/單字.webp），其餘主題先用表情符號
-// 1＝整個主題都有圖；字串＝只有列出的字有圖（其餘先用表情符號）
-const AI_IMG={sea:1,wild:1,farm:1,bug:1,fruit:1,veg:1,food:1,go:1,jobs:1};
-const hasImg=(r,tid)=>AI_IMG[tid]===1||(typeof AI_IMG[tid]==='string'&&AI_IMG[tid].split(',').includes(r[0]));
-const pic=(r,tid)=>hasImg(r,tid)?`<img src="img/${tid}/${r[0].replace(/ /g,'-')}.webp" alt="" loading="lazy" width="480" height="480">`:r[3];
+const shuffleArr=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const today=()=>{const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()};
 
-/* ===== 分頁 ===== */
-function showView(v){
-  stopSpeak();
-  document.querySelectorAll('nav.tabs button').forEach(b=>b.setAttribute('aria-selected',b.dataset.view===v));
-  ['words','story','game'].forEach(x=>$('#view-'+x).hidden=x!==v);
-  store.set('view',v);
-  if(v==='game'&&!game.started)newGame();
-}
-document.querySelectorAll('nav.tabs button').forEach(b=>b.onclick=()=>showView(b.dataset.view));
+/* ================= 學習紀錄（只存在這台裝置） ================= */
+const KEY='chifoo.v1';
+let S={grade:3,xp:0,stars:0,best:{},stickers:[],wrong:[],days:[],mute:false};
+try{const v=JSON.parse(localStorage.getItem(KEY)||'null');if(v)S=Object.assign(S,v)}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+function streak(){const set=new Set(S.days);let n=0;const d=new Date();if(!set.has(today()))d.setDate(d.getDate()-1);
+  for(;;){const k=d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();if(set.has(k)){n++;d.setDate(d.getDate()-1)}else break}return n}
+const level=()=>Math.min(LEVELS.length,Math.floor(S.xp/300)+1);
 
-/* ===== 主題單字 ===== */
-let curTheme=THEMES.find(t=>t.id===store.get('theme','sea'))||THEMES[0];
-function renderThemes(){
-  $('#themes').innerHTML=THEMES.map(t=>`<button class="theme" style="--tint:${tint(t.id)}" data-id="${t.id}" aria-pressed="${t===curTheme}">
-    <span class="big" aria-hidden="true">${t.icon}</span><b>${t.zh}</b><span>${t.en} · ${t.words.length} 個字</span></button>`).join('');
-  document.querySelectorAll('.theme').forEach(b=>b.onclick=()=>{curTheme=THEMES.find(t=>t.id===b.dataset.id);store.set('theme',curTheme.id);renderThemes();renderCards();$('#themeTitle').scrollIntoView({behavior:'smooth',block:'start'})});
-}
-function renderCards(){
-  $('#themeTitle').innerHTML=`${curTheme.icon} ${curTheme.zh}<small>${curTheme.en}</small>`;
-  $('#cards').innerHTML=curTheme.words.map((r,i)=>`<button class="card" style="--tint:${tint(curTheme.id)}" data-i="${i}" aria-label="${r[0]} ${r[2]}">
-    <span class="pic" aria-hidden="true">${pic(r,curTheme.id)}</span><span class="en">${r[0]}</span><span class="kk">[${r[1]}]</span><span class="zh">${r[2]}</span></button>`).join('');
-  document.querySelectorAll('.card').forEach(c=>c.onclick=()=>{openReel(+c.dataset.i,false)});
-}
+/* ================= 貼紙（英文單字的 3D 角色） ================= */
+const STICKERS=[];
+EN_THEMES.forEach(t=>{if(AI_IMG[t.id]===1)t.words.forEach(w=>STICKERS.push({id:t.id+'/'+w[0].replace(/ /g,'-'),name:w[0],zh:w[2].split('；')[0]}))});
+const stkSrc=id=>'english/img/'+id+'.webp';
 
-/* 影片模式 */
-let reel={i:0,auto:false,run:0,slow:false};
-function openReel(i,auto){reel.i=i;reel.auto=auto;$('#stage').hidden=false;document.body.style.overflow='hidden';drawReel();playCurrent()}
-function closeReel(){stopSpeak();reel.auto=false;$('#stage').hidden=true;document.body.style.overflow=''}
-function drawReel(){
-  const r=curTheme.words[reel.i],[s,sz]=intro(r,curTheme.id);
-  $('#stage').innerHTML=`<div class="reel" style="--tint:${tint(curTheme.id)}" role="dialog" aria-label="單字播放">
-    <button class="close" id="rClose" aria-label="關閉">✕</button>
-    <div class="count">${curTheme.en} · ${reel.i+1} / ${curTheme.words.length}</div>
-    <div class="w">${r[0]}</div><div class="k">[${r[1]}]</div><div class="z">${r[2]}</div>
-    <div class="pic pop" aria-hidden="true">${pic(r,curTheme.id)}</div>
-    <div class="sent"><div class="e" id="s1">${esc(s)}</div><div class="c">${sz}</div></div>
-    <div class="sent"><div class="e" id="s2">${esc(r[4])}</div><div class="c">${r[5]}</div></div>
-    <div class="ctl">
-      <button class="btn" id="rPrev" aria-label="上一個">⏮</button>
-      <button class="btn sun" id="rWord">🔊 單字</button>
-      <button class="btn sun" id="rSent">🔊 例句</button>
-      <button class="btn ${reel.auto?'':'primary'}" id="rAuto">${reel.auto?'⏸ 暫停':'▶ 自動'}</button>
-      <button class="btn" id="rNext" aria-label="下一個">⏭</button>
-    </div>
-    <div class="ctl"><div class="seg" role="group" aria-label="語速">
-      <button id="spN" aria-pressed="${!reel.slow}">正常速</button><button id="spS" aria-pressed="${reel.slow}">慢速</button></div></div>
-  </div>`;
-  $('#rClose').onclick=closeReel;
-  $('#rPrev').onclick=()=>go(-1);$('#rNext').onclick=()=>go(1);
-  $('#rWord').onclick=()=>{reel.auto=false;stopSpeak();drawReel();speak(r[0],rate())};
-  $('#rSent').onclick=()=>{reel.auto=false;stopSpeak();drawReel();sayLine('s1',s).then(()=>sayLine('s2',r[4]))};
-  $('#rAuto').onclick=()=>{reel.auto=!reel.auto;stopSpeak();drawReel();if(reel.auto)playCurrent()};
-  $('#spN').onclick=()=>{reel.slow=false;$('#spN').setAttribute('aria-pressed',true);$('#spS').setAttribute('aria-pressed',false)};
-  $('#spS').onclick=()=>{reel.slow=true;$('#spS').setAttribute('aria-pressed',true);$('#spN').setAttribute('aria-pressed',false)};
-}
-const rate=()=>reel.slow?0.6:0.85;
-async function sayLine(id,t){const el=document.getElementById(id);el&&el.classList.add('on');await speak(t,rate());el&&el.classList.remove('on')}
-function go(d){stopSpeak();const n=curTheme.words.length;reel.i=(reel.i+d+n)%n;drawReel();playCurrent()}
-async function playCurrent(){
-  const tok=++speakToken; if(synth)synth.cancel();
-  const r=curTheme.words[reel.i],[s]=intro(r,curTheme.id);
-  const alive=()=>tok===speakToken&&!$('#stage').hidden;
-  await wait(250);
-  for(let k=0;k<3&&alive();k++){await speak(r[0],rate());await wait(250)}
-  if(!alive())return; await sayLine('s1',s);
-  if(!reel.auto||!alive())return; await wait(300); await sayLine('s2',r[4]);
-  if(reel.auto&&alive()){await wait(900);if(reel.auto&&alive())go(1)}
-}
-$('#playReel').onclick=()=>openReel(0,true);
-document.addEventListener('keydown',e=>{if($('#stage').hidden)return;if(e.key==='Escape')closeReel();if(e.key==='ArrowRight')go(1);if(e.key==='ArrowLeft')go(-1)});
-$('#stage').addEventListener('click',e=>{if(e.target.id==='stage')closeReel()});
+/* ================= 音效（不用音檔） ================= */
+let AC=null;
+function beep(ok){if(S.mute)return;try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();const t=AC.currentTime;
+  const notes=ok?[[660,0],[880,.09]]:[[220,0],[180,.12]];
+  notes.forEach(([f,dt])=>{const o=AC.createOscillator(),g=AC.createGain();o.type=ok?'triangle':'sawtooth';o.frequency.value=f;
+    g.gain.setValueAtTime(.0001,t+dt);g.gain.exponentialRampToValueAtTime(ok?.18:.08,t+dt+.02);g.gain.exponentialRampToValueAtTime(.0001,t+dt+.18);
+    o.connect(g).connect(AC.destination);o.start(t+dt);o.stop(t+dt+.2)})}catch(e){}}
+function speak(text){try{const u=new SpeechSynthesisUtterance(text);const v=speechSynthesis.getVoices().find(v=>/^en[-_]US/i.test(v.lang))||speechSynthesis.getVoices().find(v=>/^en/i.test(v.lang));
+  if(v)u.voice=v;u.lang='en-US';u.rate=.8;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
 
-/* ===== 故事 ===== */
-let story=null,sMode={en:true,zh:true,rate:0.85};
-function renderStoryList(){
-  $('#storyList').innerHTML=STORIES.map(s=>`<button class="story-pick" data-id="${s.id}" aria-pressed="${s===story}">
-    <span class="em" aria-hidden="true">${s.em}</span><span class="lvl">A2 · ${s.lines.length} 句</span><b>${esc(s.title)}</b><span>${s.zh}</span></button>`).join('');
-  document.querySelectorAll('.story-pick').forEach(b=>b.onclick=()=>{stopSpeak();story=STORIES.find(s=>s.id===b.dataset.id);store.set('story',story.id);renderStoryList();renderReader();$('#reader').scrollIntoView({behavior:'smooth',block:'start'})});
-}
-function renderReader(){
-  const s=story;
-  $('#reader').innerHTML=`<div class="panel ${sMode.en?'':'hide-en'} ${sMode.zh?'':'hide-zh'}" id="sp">
-      <span class="lvl">Easy English · A2</span>
-      <h3>${esc(s.title)}</h3><div class="hint" style="font-family:var(--f-zh)">${s.zh}</div>
-      <div class="toolbar" style="margin-top:12px">
-        <button class="btn primary" id="sPlay">▶ 從頭播放</button>
-        <button class="btn" id="sStop">⏹ 停止</button>
-        <div class="seg" role="group" aria-label="語速">
-          <button data-r="0.6" aria-pressed="${sMode.rate==0.6}">慢</button><button data-r="0.75" aria-pressed="${sMode.rate==0.75}">中</button><button data-r="0.85" aria-pressed="${sMode.rate==0.85}">正常</button></div>
-        <div class="seg" role="group" aria-label="顯示">
-          <button id="tEn" aria-pressed="${!sMode.en}">盲聽</button><button id="tZh" aria-pressed="${sMode.zh}">中文翻譯</button></div>
-      </div>
-      <ol class="lines">${s.lines.map((l,i)=>`<li data-i="${i}"><span class="n">${i+1}</span><div><div class="e">${esc(l[0])}</div><div class="c">${l[1]}</div></div></li>`).join('')}</ol>
-    </div>
-    <div style="display:grid;gap:18px">
-      <div class="panel"><h4>重點單字</h4><ul class="vocab">${s.vocab.map(v=>`<li><div><b>${v[0]}</b> <span>${v[1]}</span></div><button class="mini" data-say="${esc(v[0])}" aria-label="念 ${esc(v[0])}">🔊</button></li>`).join('')}</ul></div>
-      <div class="panel"><h4>聽完考考你</h4>${s.qs.map((q,qi)=>`<div class="q"><p>${qi+1}. ${esc(q[0])}</p><div class="opts">${shuffleIdx(q[1].length,s.id+qi).map(oi=>`<button data-q="${qi}" data-o="${oi}">${esc(q[1][oi])}</button>`).join('')}</div></div>`).join('')}</div>
-    </div>`;
-  $('#sPlay').onclick=()=>playStory(0);
-  $('#sStop').onclick=()=>{stopSpeak();markLine(-1)};
-  document.querySelectorAll('#reader .seg [data-r]').forEach(b=>b.onclick=()=>{sMode.rate=+b.dataset.r;document.querySelectorAll('#reader .seg [data-r]').forEach(x=>x.setAttribute('aria-pressed',x===b))});
-  $('#tEn').onclick=()=>{sMode.en=!sMode.en;$('#sp').classList.toggle('hide-en',!sMode.en);$('#tEn').setAttribute('aria-pressed',!sMode.en)};
-  $('#tZh').onclick=()=>{sMode.zh=!sMode.zh;$('#sp').classList.toggle('hide-zh',!sMode.zh);$('#tZh').setAttribute('aria-pressed',sMode.zh)};
-  document.querySelectorAll('.lines li').forEach(li=>li.onclick=()=>playStory(+li.dataset.i,true));
-  document.querySelectorAll('[data-say]').forEach(b=>b.onclick=()=>{stopSpeak();speak(b.dataset.say,0.8)});
-  document.querySelectorAll('.q .opts button').forEach(b=>b.onclick=()=>{
-    const q=s.qs[+b.dataset.q],ok=+b.dataset.o===q[2];
-    b.parentElement.querySelectorAll('button').forEach(x=>{x.classList.remove('ok','no');if(+x.dataset.o===q[2]&&ok)x.classList.add('ok')});
-    b.classList.add(ok?'ok':'no');
-  });
-}
-function shuffleIdx(n,seed){let h=0;for(const c of seed)h=(h*31+c.charCodeAt(0))>>>0;const a=[...Array(n).keys()];for(let i=n-1;i>0;i--){h=(h*1103515245+12345)>>>0;const j=h%(i+1);[a[i],a[j]]=[a[j],a[i]]}return a}
-function markLine(i){document.querySelectorAll('.lines li').forEach(li=>li.classList.toggle('on',+li.dataset.i===i));const el=document.querySelector(`.lines li[data-i="${i}"]`);if(el)el.scrollIntoView({block:'nearest',behavior:'smooth'})}
-async function playStory(from,single){
-  stopSpeak();const tok=speakToken;
-  for(let i=from;i<story.lines.length;i++){
-    if(tok!==speakToken)return; markLine(i);
-    await speak(story.lines[i][0],sMode.rate);
-    if(single||tok!==speakToken)break; await wait(500);
-  }
-  if(tok===speakToken)markLine(-1);
-}
+/* ================= 單元清單 ================= */
+const gnum=g=>({'小一':1,'小二':2,'小三':3,'小四':4,'小五':5,'小六':6})[g]||0;
+function unitsFor(s,g){
+  const out=[];
+  if(s==='數學')MATH_UNITS.filter(u=>gnum(u.g)===g).forEach(u=>out.push({id:'m:'+u.id,s,g,name:u.name.replace(/（附圖）/,''),n:'∞',kind:'math',src:u}));
+  BANK.filter(u=>u.s===s&&u.g===g).forEach(u=>out.push({id:'b:'+u.id,s,g,name:u.u,n:u.items.length,kind:'bank',src:u}));
+  if(s==='英語')EN_THEMES.forEach(t=>out.push({id:'v:'+t.id,s,g,name:'單字：'+t.zh+'（'+t.en+'）',n:t.words.length,kind:'vocab',src:t}));
+  return out}
+function unitById(id){const [k,u]=[id.slice(0,1),id.slice(2)];
+  if(k==='m'){const m=MATH_UNITS.find(x=>x.id===u);return m&&{id,s:'數學',g:gnum(m.g),name:m.name.replace(/（附圖）/,''),kind:'math',src:m}}
+  if(k==='b'){const b=BANK.find(x=>x.id===u);return b&&{id,s:b.s,g:b.g,name:b.u,kind:'bank',src:b}}
+  if(k==='v'){const t=EN_THEMES.find(x=>x.id===u);return t&&{id,s:'英語',g:0,name:'單字：'+t.zh,kind:'vocab',src:t}}
+  return null}
 
-/* ===== 遊戲 ===== */
-const game={started:false,qs:[],i:0,res:[],locked:false};
-const ALL={id:'all',zh:'全部主題',words:THEMES.flatMap(t=>t.words.map(w=>[...w,t.id]))};
-$('#gameTheme').innerHTML=`<option value="all">全部主題</option>`+THEMES.map(t=>`<option value="${t.id}">${t.zh}</option>`).join('');
-$('#gameTheme').value=store.get('gameTheme','all');
-$('#gameTheme').onchange=()=>{store.set('gameTheme',$('#gameTheme').value);newGame()};
-const rnd=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
-function pool(){const v=$('#gameTheme').value;return v==='all'?ALL.words:THEMES.find(t=>t.id===v).words.map(w=>[...w,v])}
-function newGame(){
-  game.started=true;game.i=0;game.res=[];
-  const p=pool();game.qs=rnd(p).slice(0,10).map(ans=>({ans,opts:rnd([ans,...rnd(p.filter(w=>w[0]!==ans[0])).slice(0,3)])}));
-  drawQ(true);
-}
-function drawQ(first){
-  game.locked=false;
-  if(game.i>=game.qs.length)return drawResult();
-  const q=game.qs[game.i];
-  $('#game').innerHTML=`<div class="scorebar"><span>第 ${game.i+1} 題 / ${game.qs.length}</span>
-    <div class="dots">${game.qs.map((_,k)=>`<i class="${game.res[k]===true?'ok':game.res[k]===false?'no':k===game.i?'cur':''}"></i>`).join('')}</div></div>
-    <div class="ask"><button class="speaker" id="gSay" aria-label="再聽一次">🔊</button><div class="hint">點喇叭聽單字，再選出對的圖</div></div>
-    <div class="choices">${q.opts.map((o,k)=>`<button class="choice" style="--tint:${tint(o[o.length-1])}" data-k="${k}" aria-label="選項 ${k+1}">${pic(o,o[o.length-1])}<small></small></button>`).join('')}</div>`;
-  $('#gSay').onclick=()=>{stopSpeak();speak(q.ans[0],0.8)};
-  document.querySelectorAll('.choice').forEach(b=>b.onclick=()=>pick(+b.dataset.k,b));
-  if(!first){stopSpeak();speak(q.ans[0],0.8)}
-}
-async function pick(k,b){
-  if(game.locked)return;game.locked=true;
-  const q=game.qs[game.i],ok=q.opts[k][0]===q.ans[0];
-  document.querySelectorAll('.choice').forEach((x,j)=>{x.querySelector('small').textContent=q.opts[j][0];if(q.opts[j][0]===q.ans[0])x.classList.add('ok')});
-  if(!ok)b.classList.add('no');
-  game.res[game.i]=ok;
-  stopSpeak();await speak(ok?'Great job!':'It is '+q.ans[0]+'.',0.9);
-  await wait(ok?300:700);game.i++;drawQ(false);
-}
-function drawResult(){
-  const n=game.res.filter(Boolean).length,st=n>=9?3:n>=6?2:n>=3?1:0;
-  const best=store.get('best',{}),key=$('#gameTheme').value;if(!(best[key]>=n)){best[key]=n;store.set('best',best)}
-  const wrong=game.qs.filter((_,k)=>!game.res[k]);
-  $('#game').innerHTML=`<div class="result"><div class="stars">${'⭐'.repeat(st)}${'☆'.repeat(3-st)}</div>
-    <b>答對 ${n} / ${game.qs.length} 題</b><div class="hint">這個範圍的最佳紀錄：${best[key]} 題</div>
-    ${wrong.length?`<div class="hint">再練一下：${wrong.map(w=>`<button class="btn" style="padding:4px 10px;margin:3px" data-say="${w[0]}">${w[3]} ${w[0]}</button>`).join('')}</div>`:''}
-    <button class="btn primary" id="again">再玩一次</button></div>`;
-  $('#again').onclick=newGame;
-  document.querySelectorAll('#game [data-say]').forEach(b=>b.onclick=()=>speak(b.dataset.say,0.8));
-  speak(st===3?'Excellent!':'Good try!',0.9);
+/* ================= 出題：統一成 {q,opts,ans,e,fig,pic,say,math,src} ================= */
+function fromBank(it){const idx=shuffleArr([0,1,2,3]);
+  let q=esc(it.q);const m=q.match(/^閱讀(短文|文章|詩)?：([\s\S]*?)\n\n(問題：)?([\s\S]*)$/);
+  if(m)q=`<span class="passage">${m[2]}</span>${m[4]}`;
+  const math=/\$[^$]+\$/.test(it.q+it.o.join('')+it.e);
+  return{q,opts:idx.map(i=>esc(it.o[i])),ans:idx.indexOf(it.a),e:esc(it.e),math}}
+
+/* 數學：產生器只給正確答案，錯誤選項用「改其中一個數字」做出同格式的近似答案 */
+/* 數字（含 1{,}800 這種千分位、小數）→ 換成「看起來合理」的錯誤數字：
+   分母不動、分子要比分母小且最簡、帶分數整數部分不變成 0、「點」1~12、「分」0~59、二位數才做數字對調 */
+const gcdi=(a,b)=>{while(b)[a,b]=[b,a%b];return a};
+const fmtThou=n=>String(n).replace(/\B(?=(\d{3})+(?!\d))/g,'{,}');
+function numVariants(ans){
+  const re=/\d{1,3}(?:\{,\}\d{3})+|\d+(?:\.\d+)?/g,nums=[...ans.matchAll(re)];if(!nums.length)return[];
+  const out=new Set();
+  for(let tries=0;tries<80&&out.size<8;tries++){
+    const m=nums[Math.random()*nums.length|0],v=m[0],before=ans.slice(0,m.index),after=ans.slice(m.index+v.length);
+    if(/\}\{$/.test(before))continue;                                   // 分母
+    const thou=v.includes('{,}'),isDec=v.includes('.'),n=parseFloat(v.replace(/\{,\}/g,''));
+    let w;const r=Math.random();
+    if(isDec){const k=v.split('.')[1].length,step=Math.pow(10,-k);w=(n+(r<.5?-1:1)*step*(1+(Math.random()*3|0))).toFixed(k)}
+    else if(n>=100&&n%100===0){let st=1;while(n%(st*10)===0)st*=10;w=n+(Math.random()<.5?-1:1)*st*(1+(Math.random()*2|0))}
+    else if(n>=20&&r<.25)w=n+(Math.random()<.5?-10:10);
+    else if(n>=12&&n<100&&r<.4&&n%10!==Math.floor(n/10))w=+String(n).split('').reverse().join('');
+    else w=n+(Math.random()<.5?-1:1)*(1+(Math.random()*2|0));
+    const wn=+w;if(wn<0||(wn===0&&n!==0)||wn===n)continue;
+    if(/\\frac\{$/.test(before)){const d=+(after.match(/^\}\{(\d+)\}/)||[])[1];if(!d||wn>=d||gcdi(wn,d)!==1)continue}
+    if(/^\s*點/.test(after)&&(wn<1||wn>12))continue;
+    if(/^\s*分/.test(after)&&wn>59)continue;
+    const ws=isDec?String(w):thou||wn>=10000&&thou?fmtThou(wn):String(wn);
+    out.add(before+(thou?fmtThou(wn):ws)+after)}
+  out.delete(ans);return[...out]}
+function fromMath(u,d){
+  let it=null;for(let i=0;i<30&&!it;i++){try{it=u.gen(d)}catch(e){it=null}}if(!it)return null;
+  const ans=it.a;let wrong=shuffleArr(numVariants(ans)).slice(0,3);
+  for(let i=0;i<20&&wrong.length<3;i++){let o=null;try{o=u.gen(d)}catch(e){}if(o&&o.a!==ans&&!wrong.includes(o.a))wrong.push(o.a)}
+  if(wrong.length<3)return null;
+  const opts=shuffleArr([ans,...wrong]);
+  return{q:it.q,opts,ans:opts.indexOf(ans),e:'正確答案是 '+ans,fig:it.fig||'',math:true,key:it.k||(it.q+'|'+ans)}}
+
+/* 英語單字：看圖選字、聽音選圖、中翻英、英翻中 */
+function vocabPic(t,w){const slug=w[0].replace(/ /g,'-');return AI_IMG[t.id]===1||(typeof AI_IMG[t.id]==='string'&&AI_IMG[t.id].split(',').includes(w[0]))?`<img src="english/img/${t.id}/${slug}.webp" alt="">`:`<span class="emo">${w[3]}</span>`}
+function fromVocab(t,w){
+  const others=shuffleArr(t.words.filter(x=>x[0]!==w[0])).slice(0,3),all=shuffleArr([w,...others]),ans=all.indexOf(w);
+  const e=`${w[0]} [${w[1]}] ${w[2]}`,type=Math.random()*4|0;
+  if(type===0)return{q:'這是什麼？選出正確的英文。',pic:vocabPic(t,w),opts:all.map(x=>esc(x[0])),ans,e};
+  if(type===1)return{q:'聽聽看，選出正確的圖。',say:w[0],opts:all.map(x=>vocabPic(t,x)),ans,e,picOpts:true};
+  if(type===2)return{q:`「${esc(w[2].split('；')[0])}」的英文是哪一個？`,opts:all.map(x=>esc(x[0])),ans,e};
+  return{q:`<span style="font-family:var(--f-en)">${esc(w[0])}</span> 是什麼意思？`,say:w[0],opts:all.map(x=>esc(x[2].split('；')[0])),ans,e}}
+
+function makeSet(unit,n=10){
+  const out=[];
+  if(unit.kind==='bank'){shuffleArr(unit.src.items).slice(0,n).forEach(it=>out.push(fromBank(it)))}
+  else if(unit.kind==='vocab'){shuffleArr(unit.src.words).slice(0,n).forEach(w=>out.push(fromVocab(unit.src,w)))}
+  else{const plan=[1,1,1,1,2,2,2,2,3,3];const seen=new Set();
+    for(let i=0,tries=0;i<n&&tries<n*6;tries++){const it=fromMath(unit.src,plan[i]);if(!it||seen.has(it.key))continue;seen.add(it.key);out.push(it);i++}}
+  out.forEach(x=>x.src=unit.id);return out}
+
+/* 每日挑戰：這個年級所有科目各抽幾題 */
+function dailySet(){const g=S.grade,items=[];
+  subjOf(g).forEach(s=>{const us=unitsFor(s,g).filter(u=>u.kind!=='vocab'||s==='英語');if(!us.length)return;
+    for(let k=0;k<(subjOf(g).length<5?3:2);k++){const u=us[Math.random()*us.length|0];const one=makeSet(u,1)[0];if(one)items.push(one)}});
+  return shuffleArr(items).slice(0,10)}
+
+/* ================= 畫面 ================= */
+function header(){$('#stStreak').textContent=streak();$('#stStars').textContent=S.stars;$('#stStk').textContent=S.stickers.length;$('#stStkAll').textContent=STICKERS.length;$('#muteBtn').textContent=S.mute?'🔇':'🔊'}
+function tintVars(s){const k=SUBJ[s]?SUBJ[s].k:'en';return`--tint:var(--t-${k});--col:var(--c-${k})`}
+function starStr(n){return'<span class="stars">'+'★'.repeat(n)+'<span class="off">'+'★'.repeat(3-n)+'</span></span>'}
+
+function viewHome(){
+  const g=S.grade,lv=level(),into=S.xp%300;
+  $('#view').innerHTML=`
+  <section class="lvl" aria-label="等級"><div class="lvl-row"><span>Lv.${lv}　${LEVELS[lv-1]}</span><span>${into} / 300 經驗值</span></div><div class="bar"><i style="width:${into/3}%"></i></div></section>
+  <h2>我是幾年級？</h2>
+  <div class="grades" role="group" aria-label="年級">${[1,2,3,4,5,6].map(n=>`<button data-g="${n}" aria-pressed="${n===g}">${GZH[n]}年級</button>`).join('')}</div>
+  <h2>選一科開始練習<small>${GZH[g]}年級</small></h2>
+  <div class="subjects">${subjOf(g).map(s=>{const us=unitsFor(s,g);const got=us.reduce((a,u)=>a+(S.best[u.id]||0),0);
+    return`<button class="subj" style="${tintVars(s)}" data-s="${s}"><span class="ic" aria-hidden="true">${SUBJ[s].ic}</span><b>${s}</b><span>${us.length} 個單元・已拿 ${got} 顆星</span></button>`}).join('')}</div>
+  <h2>今天也來挑戰</h2>
+  <div class="row">
+    <button class="big daily" id="goDaily"><span class="ic">🎯</span><div><b>每日挑戰</b><span>${GZH[g]}年級各科混合 10 題</span></div></button>
+    <button class="big" id="goWrong"><span class="ic">📒</span><div><b>錯題本</b><span>${S.wrong.length} 題等你再挑戰</span></div></button>
+    <button class="big" id="goStk"><span class="ic">🎁</span><div><b>貼紙收集冊</b><span>已收集 ${S.stickers.length} / ${STICKERS.length} 張</span></div></button>
+  </div>
+  <h2>英文小學堂</h2>
+  <a class="en-card" href="english/"><img src="english/img/sea/dolphin.webp" alt=""><div><b>點圖聽發音・聽力小故事</b><span>150 個英文單字、8 篇慢速故事、聽音找圖遊戲</span></div></a>
+  <h2>覺得好用嗎？</h2>
+  <div class="share"><button class="sh1" id="shareBtn">分享給其他爸爸媽媽</button><a class="sh2" href="https://social-plugins.line.me/lineit/share?url=${encodeURIComponent('https://wade-chuang.github.io/chifoo/')}" target="_blank" rel="noopener">LINE 分享</a></div>
+  <p class="hint" id="shareMsg" aria-live="polite"></p>`;
+  document.querySelectorAll('.grades button').forEach(b=>b.onclick=()=>{S.grade=+b.dataset.g;save();viewHome()});
+  document.querySelectorAll('.subj').forEach(b=>b.onclick=()=>location.hash='#/s/'+encodeURIComponent(b.dataset.s));
+  $('#goDaily').onclick=()=>location.hash='#/daily';$('#goWrong').onclick=()=>location.hash='#/wrong';$('#goStk').onclick=()=>location.hash='#/stickers';
+  $('#shareBtn').onclick=()=>{const u='https://wade-chuang.github.io/chifoo/';if(navigator.share)navigator.share({title:document.title,url:u}).catch(()=>{});
+    else if(navigator.clipboard)navigator.clipboard.writeText(u).then(()=>$('#shareMsg').textContent='已複製網址，貼到 LINE 給朋友吧！')};
 }
 
-/* ===== 啟動 ===== */
-story=STORIES.find(s=>s.id===store.get('story','map'))||STORIES[0];
-renderThemes();renderCards();renderStoryList();renderReader();
-const hashV=(location.hash||'').slice(1);
-showView(['words','story','game'].includes(hashV)?hashV:store.get('view','words'));
-</script>
-<script>
-document.getElementById('cfShare').addEventListener('click',function(){var u=location.href.split('#')[0],t=document.title;
- if(navigator.share){navigator.share({title:t,url:u}).catch(function(){})}else if(navigator.clipboard){navigator.clipboard.writeText(u).then(function(){document.getElementById('cfMsg').textContent='已複製網址，貼到 LINE 給朋友吧！'})}});
+function viewSubject(s){
+  const g=S.grade,all=unitsFor(s,g),isExam=u=>/-exam$/.test(u.id);
+  const card=(u,i)=>`<button class="unit" style="${tintVars(s)}" data-id="${u.id}"><span class="n">${isExam(u)?'📝':i+1}</span><div><b>${esc(u.name)}</b><small>${u.kind==='math'?'題目每次都不一樣':isExam(u)?'參考各校段考題型改寫・'+u.n+' 題・每次抽 10 題':u.n+' 題題庫・每次抽 10 題'}</small></div>${starStr(S.best[u.id]||0)}</button>`;
+  const ex=all.filter(isExam),us=all.filter(u=>!isExam(u));
+  $('#view').innerHTML=`<a class="back" href="#/">← 回首頁</a>
+  <h2>${SUBJ[s].ic} ${s}<small>${GZH[g]}年級・${SUBJ[s].en}</small></h2>
+  ${s==='英語'&&g<=2?'<p class="hint">一、二年級先從「單字」開始，聽一聽、看圖選一選。</p>':''}
+  ${ex.length?`<h2 style="font-size:17px">段考前練一練</h2><div class="units">${ex.map(card).join('')}</div><h2 style="font-size:17px">單元練習</h2>`:''}
+  <div class="units">${us.map(card).join('')||'<div class="empty">這一科的題目正在準備中，先去別科練習吧！</div>'}</div>`;
+  document.querySelectorAll('.unit').forEach(b=>b.onclick=()=>location.hash='#/q/'+encodeURIComponent(b.dataset.id));
+}
+
+/* ---------- 作答 ---------- */
+let Q=null;
+function startQuiz(items,meta){Q={items,i:0,right:0,combo:0,meta,wrongNow:[]};drawQ()}
+function typeset(el){if(!el.querySelector||!/\$/.test(el.innerHTML))return;const run=()=>MathJax.typesetPromise([el]).catch(()=>{});if(window.__mj)run();else document.addEventListener('mj-ready',run,{once:true})}
+function drawQ(){
+  const it=Q.items[Q.i],n=Q.items.length;
+  $('#view').innerHTML=`<a class="back" href="${Q.meta.back}">← 離開</a>
+  <div class="qtop"><span>${Q.i+1} / ${n}</span><div class="bar"><i style="width:${Q.i/n*100}%"></i></div><span class="combo" id="combo">${Q.combo>=2?'🔥 連對 '+Q.combo:''}</span></div>
+  <section class="card" aria-live="polite">
+    <div class="qtext">${it.q}</div>
+    ${it.fig?`<div class="qfig">${it.fig}</div>`:''}
+    ${it.pic?`<div class="qpic">${it.pic}</div>`:''}
+    ${it.say?`<button class="say" id="sayBtn">🔊 再聽一次</button>`:''}
+    <div class="opts">${it.opts.map((o,k)=>`<button class="opt${it.picOpts?' pic':''}" data-k="${k}">${it.picOpts?'':`<span class="k">${'ABCD'[k]}</span>`}<span>${o}</span></button>`).join('')}</div>
+    <div id="fb"></div>
+  </section>`;
+  if(it.math)typeset($('.card'));
+  if(it.say){$('#sayBtn').onclick=()=>speak(it.say);setTimeout(()=>speak(it.say),300)}
+  document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>answer(+b.dataset.k));
+}
+function answer(k){
+  const it=Q.items[Q.i],ok=k===it.ans,bs=document.querySelectorAll('.opt');
+  bs.forEach(b=>b.disabled=true);bs[it.ans].classList.add('ok');if(!ok)bs[k].classList.add('no');
+  beep(ok);
+  if(ok){Q.right++;Q.combo++;if(Q.meta.fromWrong)S.wrong=S.wrong.filter(w=>w.q!==it.q)}
+  else{Q.combo=0;Q.wrongNow.push(it);if(!S.wrong.some(w=>w.q===it.q))S.wrong.unshift(it);S.wrong=S.wrong.slice(0,120)}
+  save();
+  $('#combo').textContent=Q.combo>=2?'🔥 連對 '+Q.combo:'';
+  const fb=$('#fb');
+  fb.innerHTML=`<div class="fb ${ok?'ok':'no'}">${ok?pick(['答對了！','好棒！','太厲害了！','完全正確！']):'差一點點！'}<p>${it.e}</p></div><button class="next" id="nextBtn">${Q.i+1<Q.items.length?'下一題 →':'看成績 →'}</button>`;
+  if(it.math)typeset(fb);
+  $('#nextBtn').onclick=next;$('#nextBtn').focus({preventScroll:true});
+  if(ok)Q.auto=setTimeout(next,1300);
+}
+/* pick() 用 math_units.js 裡的同名函式 */
+function next(){clearTimeout(Q.auto);if(!Q)return;Q.i++;if(Q.i<Q.items.length)drawQ();else finish()}
+function finish(){
+  const n=Q.items.length,r=Q.right,ratio=r/n,stars=ratio>=1?3:ratio>=.8?2:ratio>=.6?1:0;
+  const gain=r*10+stars*20;S.xp+=gain;S.stars+=stars;
+  if(!S.days.includes(today()))S.days.push(today());S.days=S.days.slice(-60);
+  let newBest=false;if(Q.meta.unit&&stars>(S.best[Q.meta.unit]||0)){S.best[Q.meta.unit]=stars;newBest=true}
+  let got=null;if(stars>=2){const left=STICKERS.filter(s=>!S.stickers.includes(s.id));if(left.length){got=pick(left);S.stickers.push(got.id)}}
+  save();header();
+  $('#view').innerHTML=`<a class="back" href="${Q.meta.back}">← 回單元</a>
+  <section class="card result">
+    <div class="bigstars">${[0,1,2].map(i=>`<span style="color:${i<stars?'var(--sun)':'var(--line)'}">★</span>`).join('')}</div>
+    <div class="score">${r} / ${n}</div>
+    <b>${stars===3?'全對！你是今天的小學霸！':stars===2?'很棒！差一點就全對了！':stars===1?'不錯喔，再練一次會更好！':'沒關係，看看錯題再挑戰一次！'}</b>
+    <span class="hint">獲得 ${gain} 經驗值${newBest?'・刷新這個單元的最佳紀錄':''}</span>
+    ${got?`<div class="reward"><b>🎁 得到新貼紙！</b><img src="${stkSrc(got.id)}" alt=""><span>${esc(got.name)}・${esc(got.zh)}</span></div>`:stars<2?'<span class="hint">拿到 2 顆星以上就能抽一張新貼紙喔！</span>':''}
+    <div class="btns"><button class="btn primary" id="again">再練一次</button>${Q.wrongNow.length?`<button class="btn" id="review">看這次的錯題（${Q.wrongNow.length}）</button>`:''}<a class="btn" href="#/stickers">貼紙收集冊</a></div>
+  </section>`;
+  if(stars===3)confetti();
+  const meta=Q.meta,wn=Q.wrongNow;
+  $('#again').onclick=()=>{if(meta.unit){const u=unitById(meta.unit);startQuiz(makeSet(u),meta)}else route()};
+  if($('#review'))$('#review').onclick=()=>startQuiz(wn.map(x=>Object.assign({},x)),{back:meta.back,fromWrong:true});
+}
+
+function viewWrong(){
+  if(!S.wrong.length){$('#view').innerHTML=`<a class="back" href="#/">← 回首頁</a><h2>📒 錯題本</h2><div class="empty">目前沒有錯題，太厲害了！</div>`;return}
+  $('#view').innerHTML=`<a class="back" href="#/">← 回首頁</a><h2>📒 錯題本<small>${S.wrong.length} 題</small></h2>
+  <p class="hint">答錯的題目會自動收進來，再答對一次就會從錯題本拿掉。</p>
+  <div class="btns" style="justify-content:flex-start;margin:12px 0"><button class="btn primary" id="doWrong">挑戰錯題（最多 10 題）</button><button class="btn" id="clrWrong">清空錯題本</button></div>`;
+  $('#doWrong').onclick=()=>startQuiz(S.wrong.slice(0,10).map(x=>Object.assign({},x)),{back:'#/wrong',fromWrong:true});
+  $('#clrWrong').onclick=()=>{const b=$('#clrWrong');if(b.dataset.c){S.wrong=[];save();viewWrong()}else{b.dataset.c=1;b.textContent='再按一次確定清空'}};
+}
+function viewStickers(){
+  $('#view').innerHTML=`<a class="back" href="#/">← 回首頁</a><h2>🎁 貼紙收集冊<small>${S.stickers.length} / ${STICKERS.length}</small></h2>
+  <p class="hint">每次練習拿到 2 顆星以上，就能抽一張還沒有的貼紙。點貼紙可以聽英文！</p>
+  <div class="stickers" style="margin-top:12px">${STICKERS.map(s=>{const has=S.stickers.includes(s.id);return`<button class="stk${has?'':' lock'}" data-w="${has?esc(s.name):''}" aria-label="${has?esc(s.name+' '+s.zh):'還沒收集到'}"><img src="${stkSrc(s.id)}" alt="" loading="lazy"></button>`}).join('')}</div>`;
+  document.querySelectorAll('.stk').forEach(b=>b.onclick=()=>{if(b.dataset.w)speak(b.dataset.w)});
+}
+
+/* ---------- 路由 ---------- */
+function route(){
+  speechSynthesis&&speechSynthesis.cancel();if(Q)clearTimeout(Q.auto);
+  const h=decodeURIComponent(location.hash.slice(1)||'/'),p=h.split('/').filter(Boolean);header();window.scrollTo(0,0);
+  if(p[0]==='s'&&SUBJ[p[1]])return viewSubject(p[1]);
+  if(p[0]==='q'){const u=unitById(p.slice(1).join('/'));if(u){const items=makeSet(u);if(items.length)return startQuiz(items,{unit:u.id,back:'#/s/'+encodeURIComponent(u.s)})}}
+  if(p[0]==='daily'){const items=dailySet();if(items.length)return startQuiz(items,{back:'#/'})}
+  if(p[0]==='wrong')return viewWrong();
+  if(p[0]==='stickers')return viewStickers();
+  viewHome()}
+window.addEventListener('hashchange',route);
+$('#muteBtn').onclick=()=>{S.mute=!S.mute;save();header()};
+route();
+
+/* ---------- 全對撒彩紙 ---------- */
+function confetti(){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;const c=$('#confetti'),x=c.getContext('2d');c.hidden=false;c.width=innerWidth;c.height=innerHeight;
+  const cols=['#FFB703','#F25C4B','#1A86A8','#2E9E5B','#7A5CF0'],ps=Array.from({length:120},()=>({x:Math.random()*c.width,y:-20-Math.random()*c.height*.5,vx:(Math.random()-.5)*3,vy:2+Math.random()*3,r:4+Math.random()*5,c:pick(cols),a:Math.random()*6}));
+  let t=0;(function f(){x.clearRect(0,0,c.width,c.height);ps.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.a+=.1;x.save();x.translate(p.x,p.y);x.rotate(p.a);x.fillStyle=p.c;x.fillRect(-p.r,-p.r/2,p.r*2,p.r);x.restore()});
+    if(++t<150)requestAnimationFrame(f);else{c.hidden=true}})()}
 </script>
 <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <script>
-/* 瀏覽人次（不蒜子）：數字回來才顯示。換到 chifoo.tw 時把舊網址的累計人次填進 OFFSET 接續 */
 (function(){var OFFSET=0,n=0,t=setInterval(function(){var el=document.getElementById('busuanzi_value_page_pv'),v=parseInt(el&&el.textContent,10);
   if(v>0){clearInterval(t);el.textContent=(v+OFFSET).toLocaleString('en-US');document.getElementById('visits').hidden=false}else if(++n>40)clearInterval(t)},500)})();
 </script>
