@@ -183,6 +183,7 @@ footer a{font-weight:700}
 <script src="data/exam_science.js?v=ccbf3567"></script>
 <script src="data/exam_english.js?v=1473c342"></script>
 <script src="data/exam_life.js?v=e8fcd4e6"></script>
+<script src="data/book_hanlin_s3a.js?v=48716afb"></script>
 <script src="data/english_vocab.js?v=e0a3e917"></script>
 <script src="data/zhuyin.js?v=40d14816"></script>
 <script>
@@ -370,11 +371,15 @@ function viewHome(){
 function viewSubject(s){
   const g=S.grade,all=unitsFor(s,g),isExam=u=>/-exam$/.test(u.id);
   const card=(u,i)=>`<button class="unit" style="${tintVars(s)}" data-id="${u.id}"><span class="n">${isExam(u)?'📝':i+1}</span><div><b>${esc(u.name)}</b><small>${u.kind==='math'?'題目每次都不一樣':isExam(u)?'參考各校段考題型改寫・'+u.n+' 題・每次抽 10 題':u.n+' 題題庫・每次抽 10 題'}</small></div>${starStr(S.best[u.id]||0)}</button>`;
-  const ex=all.filter(isExam),us=all.filter(u=>!isExam(u));
+  const bookOf=u=>u.kind==='bank'&&u.src.book,books=[...new Set(all.map(bookOf).filter(Boolean))];
+  const ex=all.filter(isExam),us=all.filter(u=>!isExam(u)&&!bookOf(u));
+  const bookCard=(u,i)=>card(u,i).replace('題題庫・每次抽 10 題',`題・照${esc(u.src.book)}課本單元`);
   $('#view').innerHTML=`<a class="back" href="#/">← 回首頁</a>
   <h2>${SUBJ[s].ic} ${s}<small>${GZH[g]}年級・${SUBJ[s].en}</small></h2>
   ${s==='英語'&&g<=2?'<p class="hint">一、二年級先從「單字」開始，聽一聽、看圖選一選。</p>':''}
-  ${ex.length?`<h2 style="font-size:17px">段考前練一練</h2><div class="units">${ex.map(card).join('')}</div><h2 style="font-size:17px">單元練習</h2>`:''}
+  ${books.map(b=>`<h2 style="font-size:17px">📗 依課本單元（${esc(b)}）</h2><div class="units">${all.filter(u=>bookOf(u)===b).map(bookCard).join('')}</div>`).join('')}
+  ${ex.length?`<h2 style="font-size:17px">段考前練一練</h2><div class="units">${ex.map(card).join('')}</div>`:''}
+  ${ex.length||books.length?'<h2 style="font-size:17px">主題練習</h2>':''}
   <div class="units">${us.map(card).join('')||'<div class="empty">這一科的題目正在準備中，先去別科練習吧！</div>'}</div>`;
   document.querySelectorAll('.unit').forEach(b=>b.onclick=()=>location.hash='#/q/'+encodeURIComponent(b.dataset.id));
 }
