@@ -59,6 +59,7 @@ h2 small{font:600 14px var(--f-en);color:var(--muted);margin-left:6px}
 .grades{display:flex;gap:8px;flex-wrap:wrap}
 .grades button{padding:10px 16px;border-radius:14px;background:var(--paper);border:2px solid var(--line);font-weight:700}
 .grades button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.verpick{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin:4px 0 8px}.verpick .hint{flex-basis:100%;margin:0}
 .subjects{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
 .subj{background:var(--tint);border-radius:22px;padding:16px;text-align:left;box-shadow:var(--shadow);display:grid;gap:4px;transition:transform .15s}
 .subj:hover{transform:translateY(-3px)}
@@ -387,15 +388,19 @@ function viewSubject(s){
   const card=(u,i)=>`<button class="unit" style="${tintVars(s)}" data-id="${u.id}"><span class="n">${isExam(u)?'📝':i+1}</span><div><b>${esc(u.name)}</b><small>${u.kind==='math'?'題目每次都不一樣':isExam(u)?'參考各校段考題型改寫・'+u.n+' 題・每次抽 10 題':u.n+' 題題庫・每次抽 10 題'}</small></div>${starStr(S.best[u.id]||0)}</button>`;
   const bookOf=u=>u.kind==='bank'&&u.src.book,books=[...new Set(all.map(bookOf).filter(Boolean))];
   const ex=all.filter(isExam),us=all.filter(u=>!isExam(u)&&!bookOf(u));
+  // 課本版本：每一科分開記（學校常常各科用不同出版社）
+  const pick=(S.ver||{})[s],shown=books.includes(pick)?[pick]:books;
   const bookCard=(u,i)=>card(u,i).replace('題題庫・每次抽 10 題',`題・照${esc(u.src.book)}課本單元`);
   $('#view').innerHTML=`<a class="back" href="#/">← 回首頁</a>
   <h2>${SUBJ[s].ic} ${s}<small>${GZH[g]}年級・${SUBJ[s].en}</small></h2>
   ${s==='英語'&&g<=2?'<p class="hint">一、二年級先從「單字」開始，聽一聽、看圖選一選。</p>':''}
-  ${books.map(b=>`<h2 style="font-size:17px">📗 依課本單元（${esc(b)}）</h2><div class="units">${all.filter(u=>bookOf(u)===b).map(bookCard).join('')}</div>`).join('')}
+  ${books.length>1?`<div class="verpick"><b>我的課本：</b><div class="grades">${books.map(b=>`<button data-v="${esc(b)}" aria-pressed="${pick===b}">${esc(b)}</button>`).join('')}<button data-v="all" aria-pressed="${pick==='all'}">都看</button></div>${pick?'':'<p class="hint">選學校用的版本，就只會出現那一版的單元。不知道的話，看課本封面或封底。</p>'}</div>`:''}
+  ${shown.map(b=>`<h2 style="font-size:17px">📗 依課本單元（${esc(b)}）</h2><div class="units">${all.filter(u=>bookOf(u)===b).map(bookCard).join('')}</div>`).join('')}
   ${ex.length?`<h2 style="font-size:17px">段考前練一練</h2><div class="units">${ex.map(card).join('')}</div>`:''}
   ${ex.length||books.length?'<h2 style="font-size:17px">主題練習</h2>':''}
   <div class="units">${us.map(card).join('')||'<div class="empty">這一科的題目正在準備中，先去別科練習吧！</div>'}</div>`;
   document.querySelectorAll('.unit').forEach(b=>b.onclick=()=>location.hash='#/q/'+encodeURIComponent(b.dataset.id));
+  document.querySelectorAll('.verpick button').forEach(b=>b.onclick=()=>{S.ver=Object.assign({},S.ver,{[s]:b.dataset.v});save();viewSubject(s)});
 }
 
 /* ---------- 作答 ---------- */
