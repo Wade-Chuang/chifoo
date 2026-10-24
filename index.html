@@ -143,6 +143,102 @@ footer a{font-weight:700}
 .zyon .opt{font-size:24px;line-height:2}
 .zyon .fb p{font-size:21px;line-height:2.2}
 .chip.zy-on{background:var(--ink);color:var(--bg)}
+/* 闖關模式 */
+.advgo{display:flex;align-items:center;gap:12px;width:100%;padding:14px 18px;border-radius:22px;background:linear-gradient(135deg,#FFD166,#F25C4B);color:#fff;font-weight:900;font-size:21px;text-decoration:none;box-shadow:var(--shadow);margin:2px 0 14px;text-shadow:0 1px 0 rgba(0,0,0,.18)}
+.advgo .ic{font-size:36px;line-height:1}.advgo small{display:block;font-size:13px;font-weight:700}.advgo .go{margin-left:auto;font-size:24px}
+.subj .advp{color:var(--col);font-size:12px}
+.advtop{background:var(--paper);border-radius:20px;padding:12px 16px;box-shadow:var(--shadow);display:grid;gap:8px}
+.advtop .row2{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.advtop .grades button{padding:6px 12px;font-size:14px;border-radius:12px}
+.advmap{position:relative;border-radius:28px;overflow:hidden;margin:12px auto 0;max-width:560px;box-shadow:var(--shadow);color:#16324A;background:var(--abg)}
+.advmap.night{color:#fff}
+.advmap svg.path{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.advmap .ttl{position:absolute;left:16px;top:12px;font-weight:900;font-size:20px;z-index:1}
+.node{position:absolute;transform:translate(-50%,-50%);width:60px;height:60px;border-radius:50%;display:grid;place-items:center;font:700 22px var(--f-en);background:#fff;color:#16324A;border:4px solid var(--apc);box-shadow:0 4px 0 rgba(0,0,0,.2);z-index:2;padding:0}
+.node.done{background:#FFF3C4}
+.node.lock{background:#D7DDE1;border-color:#A9B3BA;color:#76838D;cursor:not-allowed;font-size:22px}
+.node.boss{width:88px;height:88px;font-size:46px;background:#FFF;border-width:5px}
+.node.boss.lock{filter:grayscale(1);opacity:.85}
+.node.cur{animation:npulse 1.3s ease-in-out infinite}
+@keyframes npulse{0%,100%{box-shadow:0 4px 0 rgba(0,0,0,.2),0 0 0 0 rgba(255,183,3,.75)}50%{box-shadow:0 4px 0 rgba(0,0,0,.2),0 0 0 12px rgba(255,183,3,0)}}
+.node .st{position:absolute;bottom:-11px;left:50%;transform:translateX(-50%);font-size:12px;line-height:1.4;color:#FFC93C;background:#16324A;border-radius:999px;padding:0 6px;letter-spacing:1px;white-space:nowrap}
+.node .st .off{color:#5A7284}
+.nlabel{position:absolute;transform:translateX(-50%);width:128px;text-align:center;font-size:12.5px;font-weight:700;line-height:1.3;background:rgba(255,255,255,.86);color:#16324A;border-radius:10px;padding:2px 6px;z-index:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.nlabel.lockt{opacity:.7}
+.hero{position:absolute;font-size:36px;line-height:1;z-index:3;pointer-events:none;transform:translate(-50%,-100%);animation:hop .9s ease-in-out infinite}
+@keyframes hop{0%,100%{transform:translate(-50%,-100%)}50%{transform:translate(-50%,-128%)}}
+.mark{position:absolute;transform:translate(-50%,-50%);font-size:30px;line-height:1;pointer-events:none;z-index:0;filter:drop-shadow(0 2px 0 rgba(0,0,0,.12))}
+.goal{position:absolute;transform:translate(-50%,-50%);font-size:44px;z-index:2;pointer-events:none}
+.advhud{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:-4px 0 10px;font-weight:700;font-size:14px;color:var(--muted)}
+.hearts{font-size:26px;letter-spacing:2px;white-space:nowrap}
+.hearts span{display:inline-block}.hearts .lost{filter:grayscale(1);opacity:.3}.hearts .pop{animation:hlost .7s}
+@keyframes hlost{0%{transform:scale(1.5)}40%{transform:scale(.6) rotate(-20deg)}100%{transform:none}}
+.bossbox{display:flex;gap:14px;align-items:center;background:var(--paper);border-radius:22px;padding:10px 16px;margin-bottom:12px;box-shadow:var(--shadow)}
+.bossbox>div{flex:1;min-width:0}.bossbox b{display:block}.bossbox small{font:700 13px var(--f-en);color:var(--muted)}
+.bossic{font-size:64px;line-height:1;display:inline-block}
+.bossic.hit{animation:bhit .55s}.bossic.atk{animation:batk .5s}
+@keyframes bhit{0%{transform:none}20%{transform:translateX(-12px) rotate(-10deg) scale(.88);filter:brightness(2.2) saturate(0)}45%{transform:translateX(10px) rotate(8deg)}70%{transform:translateX(-5px)}100%{transform:none;filter:none}}
+@keyframes batk{0%{transform:none}40%{transform:scale(1.3) translateY(6px)}100%{transform:none}}
+.hp{height:16px;border-radius:999px;background:var(--line);overflow:hidden;margin:4px 0 2px}.hp i{display:block;height:100%;background:linear-gradient(90deg,#FF6F61,#FFB703);border-radius:999px;transition:width .4s}
+.badge{width:96px;height:96px;border-radius:50%;display:grid;place-items:center;font-size:52px;background:radial-gradient(circle at 35% 30%,#FFF3C4,#FFB703);box-shadow:0 0 0 6px #fff,0 0 0 9px #FFB703,var(--shadow);animation:pop .6s .4s backwards}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .advmap::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.22);pointer-events:none}}
+:root[data-theme="dark"] .advmap::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.22);pointer-events:none}
+/* 陀螺大對戰 */
+.big.topc{background:linear-gradient(135deg,#7A5CF0,#1A86A8);color:#fff}.big.topc span{color:#E8F4F0}
+.topgo{display:flex;align-items:center;gap:10px;width:100%;padding:10px 16px;border-radius:18px;background:linear-gradient(135deg,#7A5CF0,#1A86A8);color:#fff;font-weight:900;font-size:16px;text-decoration:none;box-shadow:var(--shadow);margin:-6px 0 14px}
+.topgo .ic{font-size:26px;line-height:1}.topgo .go{margin-left:auto}
+.tlobby{display:grid;gap:12px}
+.tbox{background:var(--paper);border-radius:20px;padding:14px 16px;box-shadow:var(--shadow);display:grid;gap:10px;min-width:0}
+.tbox h3{margin:0;font-size:17px;font-weight:900}
+.tsel{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.tsel canvas{width:132px;height:132px;flex:none}
+.tsel .info{flex:1;min-width:170px;display:grid;gap:4px}
+.tsel .info b{font-size:20px}
+.sbar{display:grid;grid-template-columns:44px 1fr 26px;align-items:center;gap:6px;font-size:13px;font-weight:700}
+.sbar .bar{height:10px}.sbar em{font:700 13px var(--f-en);font-style:normal;text-align:right}
+.tlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px}
+.tpick{background:var(--bg);border:3px solid transparent;border-radius:16px;padding:6px 4px;display:grid;justify-items:center;gap:2px;font-weight:700;font-size:13px;position:relative}
+.tpick canvas{width:56px;height:56px}
+.tpick[aria-pressed="true"]{border-color:var(--c-en);background:var(--t-en)}
+.tpick.lock canvas{filter:grayscale(1) brightness(.6);opacity:.5}
+.tpick small{font-size:11px;color:var(--muted);line-height:1.3;text-align:center}
+.opps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.opp{background:var(--bg);border:3px solid transparent;border-radius:16px;padding:8px 4px;display:grid;justify-items:center;gap:2px;font-weight:900;font-size:15px;text-align:center}
+.opp .ic{font-size:28px;line-height:1.1}.opp small{font-size:11px;font-weight:700;color:var(--muted);line-height:1.3}
+.opp[aria-pressed="true"]{border-color:var(--coral);background:color-mix(in srgb,var(--coral) 14%,var(--paper))}
+.opp.lock{opacity:.55;cursor:not-allowed}
+.srcs{display:flex;flex-wrap:wrap;gap:8px}
+.srcs button{padding:8px 14px;border-radius:14px;background:var(--bg);border:2px solid var(--line);font-weight:700}
+.srcs button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tgo{width:100%;padding:16px;border-radius:18px;background:linear-gradient(135deg,#FFB703,#F25C4B);color:#fff;font-weight:900;font-size:20px;box-shadow:var(--shadow);text-shadow:0 1px 0 rgba(0,0,0,.2)}
+.tgo:disabled{filter:grayscale(1);opacity:.6;cursor:not-allowed}
+.trec{display:flex;flex-wrap:wrap;gap:8px}
+.tophud{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;background:var(--paper);border-radius:16px;padding:8px 12px;margin:-4px 0 10px;box-shadow:var(--shadow);font-weight:700;font-size:15px}
+.tophud .bar{flex:1 1 120px;height:14px}.tophud .bar i{background:linear-gradient(90deg,#7A5CF0,#1A86A8,#FFB703)}
+.tophud b{font-family:var(--f-en);font-variant-numeric:tabular-nums}
+.tophud .tleft.warn{color:var(--bad)}
+.tophud .pop{display:inline-block;animation:pop .45s}
+.charge{display:grid;gap:8px;justify-items:center;text-align:center}
+.cmeter{width:min(320px,100%);height:22px;border-radius:999px;background:var(--line);overflow:hidden}.cmeter i{display:block;height:100%;background:linear-gradient(90deg,#7A5CF0,#1A86A8,#FFB703);border-radius:999px;transition:width 1s}
+.bonus{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;width:min(420px,100%)}
+.bonus div{background:var(--bg);border-radius:16px;padding:10px 4px;display:grid;gap:2px}.bonus b{font:700 22px var(--f-en)}.bonus span{font-size:12px;color:var(--muted);font-weight:700}
+.arena{display:grid;gap:8px;justify-items:center;max-width:480px;margin:0 auto;touch-action:manipulation}
+.bhud{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:8px;align-items:center;width:100%}
+.bhud .side{display:grid;gap:2px;min-width:0;font-size:13px;font-weight:900}
+.bhud .side span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bhud .side.r{text-align:right}
+.bhud .hp{height:14px;margin:0}.bhud .side.r .hp{transform:scaleX(-1)}
+.bhud .hp i{transition:width .2s}
+.bhud .me .hp i{background:linear-gradient(90deg,#2EC4F1,#7A5CF0)}
+.bhud .clock{font:700 22px var(--f-en);min-width:44px;text-align:center;font-variant-numeric:tabular-nums}
+#topCv{width:100%;aspect-ratio:1;border-radius:50%;touch-action:none;display:block;user-select:none;-webkit-user-select:none;cursor:crosshair}
+.bctl{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%}
+.bctl button{position:relative;overflow:hidden;min-height:60px;border-radius:18px;font-weight:900;font-size:18px;color:#fff;box-shadow:var(--shadow)}
+.bctl .dash{background:#1A86A8}.bctl .sp{background:#F25C4B}.bctl .launch{grid-column:1/-1;background:linear-gradient(135deg,#FFB703,#F25C4B)}
+.bctl button:disabled{filter:grayscale(.8);opacity:.6;cursor:default}
+.bctl button i{position:absolute;left:0;bottom:0;height:5px;background:rgba(255,255,255,.85);width:0}
+.bctl small{display:block;font-size:11px;font-weight:700;opacity:.9}
+.bmsg{min-height:1.6em;font-weight:900;text-align:center}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -170,7 +266,7 @@ footer a{font-weight:700}
   </footer>
 </div>
 
-<script src="data/math_units.js?v=ba86e25a"></script>
+<script src="data/math_units.js?v=68758f94"></script>
 <script>var BANK=[];</script>
 <script src="data/chinese_g1_3.js?v=e801eadf"></script>
 <script src="data/chinese_g4_6.js?v=64291b1a"></script>
@@ -372,11 +468,12 @@ function viewHome(){
   <div class="grades" role="group" aria-label="年級">${[1,2,3,4,5,6].map(n=>`<button data-g="${n}" aria-pressed="${n===g}">${GZH[n]}年級</button>`).join('')}</div>
   <h2>選一科開始練習<small>${GZH[g]}年級</small></h2>
   <div class="subjects">${subjOf(g).map(s=>{const us=unitsFor(s,g);const got=us.reduce((a,u)=>a+(S.best[u.id]||0),0);
-    return`<button class="subj" style="${tintVars(s)}" data-s="${s}"><span class="ic" aria-hidden="true">${SUBJ[s].ic}</span><b>${s}</b><span>${us.length} 個單元・已拿 ${got} 顆星</span></button>`}).join('')}</div>
+    return`<button class="subj" style="${tintVars(s)}" data-s="${s}"><span class="ic" aria-hidden="true">${SUBJ[s].ic}</span><b>${s}</b><span>${us.length} 個單元・已拿 ${got} 顆星</span>${(p=>p.total?`<span class="advp">🗺️ 闖關 ${p.done}/${p.total}</span>`:'')(advProgress(s,g))}</button>`}).join('')}</div>
   <h2>今天也來挑戰</h2>
   <div class="row">
     <button class="big daily" id="goDaily"><span class="ic">🎯</span><div><b>每日挑戰</b><span>${GZH[g]}年級各科混合 10 題</span></div></button>
     <button class="big" id="goWrong"><span class="ic">📒</span><div><b>錯題本</b><span>${S.wrong.length} 題等你再挑戰</span></div></button>
+    <button class="big topc" id="goTop"><span class="ic">🌀</span><div><b>陀螺大對戰</b><span>答題幫陀螺充能，挑戰電腦對手</span></div></button>
     <button class="big" id="goStk"><span class="ic">🎁</span><div><b>貼紙收集冊</b><span>已收集 ${S.stickers.length} / ${STICKERS.length} 張</span></div></button>
   </div>
   <h2>英文小學堂</h2>
@@ -386,7 +483,7 @@ function viewHome(){
   <p class="hint" id="shareMsg" aria-live="polite"></p>`;
   document.querySelectorAll('.grades button').forEach(b=>b.onclick=()=>{S.grade=+b.dataset.g;save();header();viewHome()});
   document.querySelectorAll('.subj').forEach(b=>b.onclick=()=>location.hash='#/s/'+encodeURIComponent(b.dataset.s));
-  $('#goDaily').onclick=()=>location.hash='#/daily';$('#goWrong').onclick=()=>location.hash='#/wrong';$('#goStk').onclick=()=>location.hash='#/stickers';
+  $('#goDaily').onclick=()=>location.hash='#/daily';$('#goWrong').onclick=()=>location.hash='#/wrong';$('#goStk').onclick=()=>location.hash='#/stickers';$('#goTop').onclick=()=>location.hash='#/top';
   $('#shareBtn').onclick=()=>{const u='https://wade-chuang.github.io/chifoo/';if(navigator.share)navigator.share({title:document.title,url:u}).catch(()=>{});
     else if(navigator.clipboard)navigator.clipboard.writeText(u).then(()=>$('#shareMsg').textContent='已複製網址，貼到 LINE 給朋友吧！')};
 }
@@ -401,6 +498,8 @@ function viewSubject(s){
   const bookCard=(u,i)=>card(u,i).replace('題題庫・每次抽 10 題',`題・照${esc(u.src.book)}課本單元`);
   $('#view').innerHTML=`<a class="back" href="#/">← 回首頁</a>
   <h2>${SUBJ[s].ic} ${s}<small>${GZH[g]}年級・${SUBJ[s].en}</small></h2>
+  ${(p=>p.total?`<a class="advgo" href="#/adv/${encodeURIComponent(s)}"><span class="ic" aria-hidden="true">🗺️</span><span>闖關模式<small>${ADV[s].name}・已過 ${p.done}/${p.total} 關・★ ${p.stars}</small></span><span class="go" aria-hidden="true">▶</span></a>`:'')(advProgress(s,g))}
+  <a class="topgo" href="#/top/${encodeURIComponent(s)}"><span class="ic" aria-hidden="true">🌀</span><span>用${s}題目充能・陀螺大對戰</span><span class="go" aria-hidden="true">▶</span></a>
   ${s==='英語'&&g<=2?'<p class="hint">一、二年級先從「單字」開始，聽一聽、看圖選一選。</p>':''}
   ${books.length>1?`<div class="verpick"><b>我的課本：</b><div class="grades">${books.map(b=>`<button data-v="${esc(b)}" aria-pressed="${pick===b}">${esc(b)}</button>`).join('')}<button data-v="all" aria-pressed="${pick==='all'}">都看</button></div>${pick?'':'<p class="hint">選學校用的版本，就只會出現那一版的單元。不知道的話，看課本封面或封底。</p>'}</div>`:''}
   ${shown.map(b=>`<h2 style="font-size:17px">📗 依課本單元（${esc(b)}）</h2><div class="units">${all.filter(u=>bookOf(u)===b).map(bookCard).join('')}</div>`).join('')}
@@ -413,7 +512,7 @@ function viewSubject(s){
 
 /* ---------- 作答 ---------- */
 let Q=null;
-function startQuiz(items,meta){Q={items,i:0,right:0,combo:0,meta,wrongNow:[]};drawQ()}
+function startQuiz(items,meta){Q={items,i:0,right:0,combo:0,meta,wrongNow:[],hearts:3,hp:100};drawQ()}
 function typeset(el){if(!el.querySelector||!/\$/.test(el.innerHTML))return;const run=()=>MathJax.typesetPromise([el]).catch(()=>{});if(window.__mj)run();else document.addEventListener('mj-ready',run,{once:true})}
 function drawQ(){
   const it=Q.items[Q.i],n=Q.items.length,zon=zyOn()&&!!it.raw,plan=zon?zyPlan(it):null;
@@ -421,6 +520,7 @@ function drawQ(){
   const ohtml=zon&&it.raw.o&&!plan.noOpt?it.raw.o.map(o=>Z(o)):it.opts;
   $('#view').innerHTML=`<a class="back" href="${Q.meta.back}">← ${zon?Z('離開'):'離開'}</a>
   <div class="qtop"><span>${Q.i+1} / ${n}</span><div class="bar"><i style="width:${Q.i/n*100}%"></i></div><span class="combo" id="combo">${Q.combo>=2?'🔥 連對 '+Q.combo:''}</span></div>
+  ${Q.meta.adv?advHud():''}${Q.meta.top?topHud():''}
   <section class="card${zon?' zyon':''}" aria-live="polite">
     <div class="qtext">${qhtml}</div>
     ${it.fig?`<div class="qfig">${it.fig}</div>`:''}
@@ -446,11 +546,15 @@ function answer(k){
   fb.innerHTML=`<div class="fb ${ok?'ok':'no'}"><div>${T(ok?pick(['答對了！','好棒！','太厲害了！','完全正確！']):'差一點點！')}</div><p>${zon?Z(it.raw.e):it.e}</p></div><button class="next" id="nextBtn">${T(Q.i+1<Q.items.length?'下一題 →':'看成績 →')}</button>`;
   if(it.math)typeset(fb);
   $('#nextBtn').onclick=next;$('#nextBtn').focus({preventScroll:true});
-  if(ok)Q.auto=setTimeout(next,1300);
+  if(ok)Q.auto=setTimeout(next,Q.meta.top?800:1300);
+  if(Q.meta.adv)advHit(ok);
+  if(Q.meta.top)topHit(ok);
 }
 /* pick() 用 math_units.js 裡的同名函式 */
-function next(){clearTimeout(Q.auto);if(!Q)return;Q.i++;if(Q.i<Q.items.length)drawQ();else finish()}
+function next(){if(!Q)return;clearTimeout(Q.auto);if(Q.meta.adv&&Q.hearts<=0)return finish();Q.i++;if(Q.i<Q.items.length)drawQ();else finish()}
 function finish(){
+  if(Q.meta.adv)return advFinish();
+  if(Q.meta.top)return topChargeEnd();
   const n=Q.items.length,r=Q.right,ratio=r/n,stars=ratio>=1?3:ratio>=.8?2:ratio>=.6?1:0;
   const gain=r*10+stars*20;S.xp+=gain;S.stars+=stars;
   if(!S.days.includes(today()))S.days.push(today());S.days=S.days.slice(-60);
@@ -487,17 +591,435 @@ function viewStickers(){
   document.querySelectorAll('.stk').forEach(b=>b.onclick=()=>{if(b.dataset.w)speak(b.dataset.w)});
 }
 
+/* ================= 闖關模式 ================= */
+/* 進度存在 S.adv["年級|科目|版本"]＝{b:{關卡id:最佳星星}}；版本＝課本版本名或 general（主題練習）
+   一般關 id＝單元 id；魔王關 id＝boss1、boss2…（第幾隻魔王） */
+const ADV={
+  '國語':{name:'書香古城',ic:'📜',marks:['📜','🏯','🏮','🖌️','📚','🎋','🍵','🪭'],boss:'🐲',bossName:'錯字墨龍',badge:'🏯',bg:'linear-gradient(180deg,#FFF4DC 0%,#F9DDB0 55%,#F2BC86 100%)',pc:'#C0612B'},
+  '數學':{name:'數字森林',ic:'🌳',marks:['🌳','🔢','🌲','🍄','🦉','🐿️','➕','📐'],boss:'🦖',bossName:'算錯大暴龍',badge:'🌳',bg:'linear-gradient(180deg,#E9F8E3 0%,#BFE7AE 55%,#93D38B 100%)',pc:'#3E8B3A'},
+  '英語':{name:'英語城堡',ic:'🏰',marks:['🏰','🔤','👑','🛡️','🗝️','🦄','🎠','📖'],boss:'🐉',bossName:'ABC 噴火龍',badge:'🏰',bg:'linear-gradient(180deg,#F0EBFF 0%,#D4C8FB 55%,#B7A5F3 100%)',pc:'#5B3FC4'},
+  '社會':{name:'寶島探險',ic:'🏝️',marks:['🏝️','🗺️','⛰️','🚂','🏮','🐟','🌾','⛵'],boss:'🐙',bossName:'迷路大章魚',badge:'🏝️',bg:'linear-gradient(180deg,#D8F1FB 0%,#FDF1CC 50%,#F6D48A 100%)',pc:'#C07F00'},
+  '自然':{name:'自然星球',ic:'🪐',marks:['🪐','🔬','🌋','🌱','🦋','☄️','🧪','🌙'],boss:'👾',bossName:'混亂外星怪',badge:'🪐',bg:'linear-gradient(180deg,#1F2B5C 0%,#3C4F92 55%,#6383C6 100%)',pc:'#FFC93C',night:true},
+  '生活':{name:'快樂小鎮',ic:'🏡',marks:['🏡','🎈','🌷','🚲','🧸','🍰','🎡','🐶'],boss:'👻',bossName:'搗蛋小幽靈',badge:'🎈',bg:'linear-gradient(180deg,#FFEDF5 0%,#FFD3E6 55%,#FBB6D4 100%)',pc:'#C2417F'}};
+function advLevels(s,g){
+  const all=unitsFor(s,g),isExam=u=>/-exam$/.test(u.id),bookOf=u=>u.kind==='bank'&&u.src.book;
+  const books=[...new Set(all.map(bookOf).filter(Boolean))],pick=(S.ver||{})[s];
+  let ver=books.includes(pick)?pick:'general';
+  let units=ver==='general'?all.filter(u=>!isExam(u)&&!bookOf(u)).concat(all.filter(isExam)):all.filter(u=>bookOf(u)===ver);
+  if(!units.length&&books.length){ver=books[0];units=all.filter(u=>bookOf(u)===ver)}
+  const levels=[];let grp=0,bn=0;
+  units.forEach((u,i)=>{levels.push({type:'n',id:u.id,unit:u,name:u.name});grp++;
+    if(grp===4||i===units.length-1){bn++;levels.push({type:'b',id:'boss'+bn,bn,pool:units.slice(Math.max(0,i-3),i+1),name:'魔王關 '+bn});grp=0}});
+  return{ver,key:g+'|'+s+'|'+ver,levels,books,pick}}
+function advRec(key){S.adv=S.adv||{};return S.adv[key]||(S.adv[key]={b:{}})}
+function advProgress(s,g){const L=advLevels(s,g),b=((S.adv||{})[L.key]||{b:{}}).b;let done=0,stars=0,badges=0;
+  L.levels.forEach(l=>{const v=b[l.id]||0;if(v>0){done++;stars+=v;if(l.type==='b')badges++}});
+  return{done,total:L.levels.length,stars,max:L.levels.length*3,badges,L,b}}
+const advUnlocked=(L,b,i)=>i===0||(b[L.levels[i-1].id]||0)>0;
+function bossSet(pool){const per=Math.ceil(10/pool.length)+1,sets=pool.map(u=>makeSet(u,per)),out=[];
+  for(let k=0;out.length<10&&sets.some(x=>x.length);k=(k+1)%sets.length){const it=sets[k].shift();if(it)out.push(it)}
+  return shuffleArr(out)}
+function viewAdv(s){
+  const g=S.grade,T=ADV[s],P=advProgress(s,g),L=P.L,b=P.b;
+  if(!L.levels.length){$('#view').innerHTML=`<a class="back" href="#/s/${encodeURIComponent(s)}">← 回${s}</a><div class="empty">這一科的關卡正在準備中，先去別科闖關吧！</div>`;return}
+  // 位置：蜿蜒小路（x 用百分比、y 用 px）
+  const pts=[];let y=86;L.levels.forEach((l,i)=>{const x=50+27*Math.sin(i*Math.PI/3);if(l.type==='b')y+=14;pts.push({x,y});y+=l.type==='b'?132:112});
+  const H=y+40,cur=L.levels.findIndex((l,i)=>!(b[l.id]>0)&&advUnlocked(L,b,i));
+  let d=`M${pts[0].x} ${pts[0].y-60}`;let prev={x:pts[0].x,y:pts[0].y-60};
+  pts.concat([{x:50,y:H-30}]).forEach(p=>{const m=(p.y-prev.y)/2;d+=` C${prev.x} ${prev.y+m} ${p.x} ${p.y-m} ${p.x} ${p.y}`;prev=p});
+  const verName=L.ver==='general'?'主題練習':L.ver;
+  const nodes=L.levels.map((l,i)=>{const p=pts[i],v=b[l.id]||0,un=advUnlocked(L,b,i),boss=l.type==='b';
+    const cls='node'+(boss?' boss':'')+(v>0?' done':'')+(un?'':' lock')+(i===cur?' cur':'');
+    const inner=boss?(v>0?T.badge:T.boss):(un?String(i+1-Math.floor(i/5)):'🔒');
+    const st=v>0?`<span class="st">${'★'.repeat(v)}<span class="off">${'★'.repeat(3-v)}</span></span>`:'';
+    const lab=boss?(v>0?'打倒了！':T.bossName):l.name;
+    const side=i%2?-1:1,mx=p.x>=58?13:p.x<=42?87:(side>0?87:13);
+    return`<button class="${cls}" style="left:${p.x}%;top:${p.y}px" data-i="${i}" aria-label="${esc((boss?'魔王關：':'第'+(i+1-Math.floor(i/5))+'關：')+l.name)}${un?'':'（還沒解鎖）'}"${un?'':' aria-disabled="true"'}>${inner}${st}</button>
+      <span class="nlabel${un?'':' lockt'}" style="left:${p.x}%;top:${p.y+(boss?52:42)}px">${esc(lab)}</span>
+      <span class="mark" aria-hidden="true" style="left:${mx}%;top:${p.y+20}px">${T.marks[i%T.marks.length]}</span>`}).join('');
+  const hero=cur>=0?`<span class="hero" aria-hidden="true" style="left:${pts[cur].x}%;top:${pts[cur].y-(L.levels[cur].type==='b'?44:30)}px">🧒</span>`:'';
+  const bookPick=L.books.length?`<div class="row2"><b style="font-size:14px">我的課本：</b><div class="grades">${L.books.map(x=>`<button data-v="${esc(x)}" aria-pressed="${L.ver===x}">${esc(x)}</button>`).join('')}<button data-v="all" aria-pressed="${L.ver==='general'}">主題練習</button></div></div>`:'';
+  $('#view').innerHTML=`<a class="back" href="#/s/${encodeURIComponent(s)}">← 回${s}</a>
+  <h2>🗺️ ${s}闖關・${T.name} ${T.ic}<small>${GZH[g]}年級・${esc(verName)}</small></h2>
+  <section class="advtop"><div class="row2"><span class="chip">★ <b>${P.stars}</b> / ${P.max}</span><span class="chip">🏅 徽章 <b>${P.badges}</b> 枚</span><span class="chip">已過 <b>${P.done}</b> / ${P.total} 關</span></div>
+    ${bookPick}<p class="hint" style="margin:0">每關 8 題、有 3 顆愛心，答錯扣 1 顆。每 4 關會遇到魔王，打倒牠可以拿貼紙和徽章！</p>
+    ${cur>=0?`<button class="btn primary" id="advGo" style="justify-self:start">▶ 繼續闖關：${L.levels[cur].type==='b'?'魔王關':'第 '+(cur+1-Math.floor(cur/5))+' 關'}</button>`:'<b>🏆 整張地圖都闖完了！可以再挑戰拿滿三顆星喔。</b>'}</section>
+  <div class="advmap${T.night?' night':''}" style="--abg:${T.bg};--apc:${T.pc};height:${H}px">
+    <svg class="path" viewBox="0 0 100 ${H}" preserveAspectRatio="none" aria-hidden="true"><path d="${d}" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="22" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path d="${d}" fill="none" stroke="${T.pc}" stroke-opacity=".55" stroke-width="4" stroke-dasharray="2 12" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>
+    <span class="ttl">${T.ic} ${T.name}</span>
+    ${nodes}${hero}<span class="goal" aria-hidden="true" style="left:50%;top:${H-34}px">${P.done===P.total?'🏆':'🚩'}</span>
+  </div>`;
+  document.querySelectorAll('.advmap .node').forEach(n=>n.onclick=()=>{const i=+n.dataset.i;if(advUnlocked(L,b,i))location.hash='#/adv/'+encodeURIComponent(s)+'/'+i});
+  document.querySelectorAll('.advtop .grades button').forEach(x=>x.onclick=()=>{S.ver=Object.assign({},S.ver,{[s]:x.dataset.v});save();viewAdv(s)});
+  if($('#advGo'))$('#advGo').onclick=()=>location.hash='#/adv/'+encodeURIComponent(s)+'/'+cur;
+  if(cur>2){const el=document.querySelector('.node.cur');if(el)setTimeout(()=>el.scrollIntoView({block:'center',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'}),60)}
+}
+function startAdv(s,i){
+  const L=advLevels(s,S.grade),b=advRec(L.key).b,l=L.levels[i];
+  if(!l||!advUnlocked(L,b,i))return false;
+  const items=l.type==='b'?bossSet(l.pool):makeSet(l.unit,8);if(!items.length)return false;
+  startQuiz(items,{back:'#/adv/'+encodeURIComponent(s),adv:{s,i,key:L.key,id:l.id,boss:l.type==='b',name:l.name,num:i+1-Math.floor(i/5),last:i===L.levels.length-1,total:L.levels.length}});
+  return true}
+function advHud(){const A=Q.meta.adv,T=ADV[A.s];
+  const hearts=[0,1,2].map(k=>`<span${k<Q.hearts?'':' class="lost"'}>❤️</span>`).join('');
+  return`<div class="advhud"><span class="hearts" id="hearts" aria-label="剩下 ${Q.hearts} 顆愛心">${hearts}</span><span>${A.boss?'👑 魔王關':'第 '+A.num+' 關'}・${esc(A.boss?T.name:A.name)}</span></div>`+
+    (A.boss?`<div class="bossbox"><span class="bossic" id="bossIc" aria-hidden="true">${T.boss}</span><div><b>${T.bossName}</b><div class="hp" role="progressbar" aria-label="魔王血量" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Q.hp}"><i id="hpBar" style="width:${Q.hp}%"></i></div><small id="hpTxt">HP ${Q.hp} / 100</small></div></div>`:'')}
+function replayAnim(el,c){if(!el)return;el.classList.remove(c);void el.offsetWidth;el.classList.add(c)}
+function advHit(ok){const A=Q.meta.adv;
+  if(ok){if(A.boss){Q.hp=Math.max(0,Q.hp-10);const bar=$('#hpBar');if(bar){bar.style.width=Q.hp+'%';bar.parentNode.setAttribute('aria-valuenow',Q.hp)}$('#hpTxt').textContent='HP '+Q.hp+' / 100';replayAnim($('#bossIc'),'hit')}}
+  else{Q.hearts=Math.max(0,Q.hearts-1);const hs=document.querySelectorAll('#hearts span');if(hs[Q.hearts]){hs[Q.hearts].classList.add('lost');replayAnim(hs[Q.hearts],'pop')}
+    $('#hearts').setAttribute('aria-label','剩下 '+Q.hearts+' 顆愛心');if(A.boss)replayAnim($('#bossIc'),'atk')}
+  if(Q.hearts<=0){clearTimeout(Q.auto);const nb=$('#nextBtn');if(nb)nb.innerHTML=(zyOn()?Z('愛心用完了，看結果'):'愛心用完了，看結果')+' →'}}
+function advFinish(){
+  const A=Q.meta.adv,T=ADV[A.s],n=Q.items.length,r=Q.right,win=Q.hearts>0&&(!A.boss||Q.hp<=20),stars=win?Q.hearts:0;
+  const rec=advRec(A.key),old=rec.b[A.id]||0;if(stars>old)rec.b[A.id]=stars;
+  const gain=r*10+stars*20+(win&&A.boss?50:0);S.xp+=gain;S.stars+=stars;
+  if(!S.days.includes(today()))S.days.push(today());S.days=S.days.slice(-60);
+  let got=null;if(win&&A.boss){const left=STICKERS.filter(x=>!S.stickers.includes(x.id));if(left.length){got=pick(left);S.stickers.push(got.id)}}
+  save();header();
+  const allDone=win&&A.last;
+  const msg=allDone?`恭喜你闖完整張地圖！你是${T.name}的大英雄！`:
+    win&&A.boss?pick(['你打倒了魔王！真是勇敢的小勇士！','魔王被你打跑了！你太厲害了！','勝利！你的努力讓魔王投降了！']):
+    win?(stars===3?'三顆愛心全部保住，滿分過關！你是闖關高手！':pick(['過關了！你越來越厲害囉！','好棒！下一關也難不倒你！','成功過關！繼續往前衝吧！'])):
+    A.boss?pick(['魔王好強，但你也很勇敢！看看錯題，再來打倒牠！','差一點就贏了！複習一下前面的關卡，再來挑戰！']):
+    pick(['愛心用完了，沒關係！看看解析再試一次，你一定可以！','差一點點！每次挑戰都會讓你變更強，再來一次吧！','別灰心！把錯的題目弄懂，下次就會過關！']);
+  const Zs=s=>zyOn()?Z(s):s,nextOk=win&&A.i+1<A.total;
+  $('#view').innerHTML=`<a class="back" href="${Q.meta.back}">← 回地圖</a>
+  <section class="card result">
+    ${A.boss?`<div class="bossic${win?'':' atk'}" style="font-size:80px;${win?'filter:grayscale(1);opacity:.45;transform:rotate(-90deg)':''}" aria-hidden="true">${T.boss}</div>`:''}
+    <div class="bigstars">${[0,1,2].map(i=>`<span style="color:${i<stars?'var(--sun)':'var(--line)'}">★</span>`).join('')}</div>
+    <div class="score">${win?(A.boss?'打倒魔王！':'過關！'):'挑戰失敗'}</div>
+    <b class="${zyOn()?'zyon':''}" style="line-height:2.1">${Zs(msg)}</b>
+    <span class="hint">答對 ${r} / ${n} 題・剩下 ${Q.hearts} 顆愛心${A.boss?'・魔王血量 '+Q.hp:''}・獲得 ${gain} 經驗值${stars>old&&old?'・刷新最佳紀錄':''}</span>
+    ${win&&A.boss?`<div class="reward"><div class="badge" aria-hidden="true">${T.badge}</div><b>🏅 得到「${T.name}」徽章！</b></div>`:''}
+    ${got?`<div class="reward"><b>🎁 得到新貼紙！</b><img src="${stkSrc(got.id)}" alt=""><span>${esc(got.name)}・${esc(got.zh)}</span></div>`:''}
+    <div class="btns">${nextOk?`<button class="btn primary" id="advNext">下一關 →</button>`:''}<button class="btn${nextOk?'':' primary'}" id="again">${win?'再玩一次':'再試一次'}</button>${Q.wrongNow.length?`<button class="btn" id="review">看這次的錯題（${Q.wrongNow.length}）</button>`:''}<a class="btn" href="${Q.meta.back}">回地圖</a></div>
+  </section>`;
+  if(win&&(A.boss||stars===3))confetti();
+  const meta=Q.meta,wn=Q.wrongNow;
+  $('#again').onclick=()=>{if(!startAdv(A.s,A.i))route()};
+  if($('#advNext'))$('#advNext').onclick=()=>location.hash='#/adv/'+encodeURIComponent(A.s)+'/'+(A.i+1);
+  if($('#review'))$('#review').onclick=()=>startQuiz(wn.map(x=>Object.assign({},x)),{back:meta.back,fromWrong:true});
+}
+
+/* ================= 陀螺大對戰（原創陀螺；答題充能 → 跟電腦對戰） ================= */
+/* 紀錄存在 S.top＝{sel,opp,src,wins:{easy,pro,champ},plays,losses,unlocked:[]}，不影響其他存檔 */
+const TOPS=[
+  {id:'hawk',name:'疾風隼',ic:'🦅',atk:7,def:4,sta:5,col:['#7FE3FF','#0B6FA8','#063A5C'],pat:'wing',sp:'旋風爪擊',desc:'速度快，衝撞最猛'},
+  {id:'turtle',name:'岩甲龜',ic:'🐢',atk:4,def:8,sta:6,col:['#B6E58C','#3C8A3F','#1F4D24'],pat:'hex',sp:'磐石重壓',desc:'很重很硬，不怕撞'},
+  {id:'tiger',name:'雷光虎',ic:'🐯',atk:8,def:5,sta:4,col:['#FFE37A','#F29A00','#7A4300'],pat:'bolt',sp:'雷霆猛撲',desc:'攻擊最強，轉得較短',need:{stars:20}},
+  {id:'cat',name:'星砂貓',ic:'🐱',atk:5,def:5,sta:8,col:['#E6D4FF','#8A63E8','#3F2A8C'],pat:'star',sp:'星砂迴旋',desc:'轉最久，慢慢磨贏',need:{stars:50}},
+  {id:'koi',name:'焰尾鯉',ic:'🐟',atk:7,def:6,sta:5,col:['#FFC2A8','#F25C4B','#8C1F14'],pat:'flame',sp:'烈焰甩尾',desc:'攻守平均的好手',need:{beat:'pro'}},
+  {id:'dragon',name:'霜月龍',ic:'🐉',atk:8,def:7,sta:7,col:['#E3FAFF','#55A8F0','#1D3F8F'],pat:'moon',sp:'霜月龍捲',desc:'冠軍的陀螺，全能型',need:{beat:'champ'}}];
+const TOPP={
+  easy:{name:'新手',who:'阿星',ic:'🙂',top:'cat',mul:.8,dash:.22,noise:.9,sp:0,need:null},
+  pro:{name:'高手',who:'小雷',ic:'😎',top:'tiger',mul:1,dash:.55,noise:.4,sp:1,need:'easy'},
+  champ:{name:'冠軍',who:'龍王',ic:'👑',top:'dragon',mul:1.1,dash:.9,noise:.12,sp:2,smart:true,need:'pro'}};
+const topById=id=>TOPS.find(t=>t.id===id)||TOPS[0];
+const RM=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+function topRec(){const d={sel:'hawk',opp:'easy',src:null,wins:{easy:0,pro:0,champ:0},plays:0,losses:0,unlocked:['hawk','turtle']};
+  if(!S.top||!S.top.__ok){S.top=Object.assign(d,S.top||{});S.top.wins=Object.assign({easy:0,pro:0,champ:0},S.top.wins);
+    Object.defineProperty(S.top,'__ok',{value:1,enumerable:false})}
+  return S.top}
+function topUnlockCheck(){const R=topRec(),fresh=[];
+  TOPS.forEach(t=>{if(R.unlocked.includes(t.id)||!t.need)return;
+    if((t.need.stars&&S.stars>=t.need.stars)||(t.need.beat&&R.wins[t.need.beat]>0)){R.unlocked.push(t.id);fresh.push(t)}});
+  return fresh}
+const needTxt=t=>t.need.stars?`累積 ${t.need.stars} 顆星解鎖`:`打倒${TOPP[t.need.beat].name}解鎖`;
+const oppOpen=k=>{const n=TOPP[k].need;return !n||topRec().wins[n]>0};
+
+/* ---------- 畫陀螺（canvas） ---------- */
+function drawTop(c,x,y,r,t,ang,o={}){
+  const [c1,c2,c3]=t.col;c.save();c.translate(x,y);
+  if(o.alpha!=null)c.globalAlpha=o.alpha;
+  if(o.glow){c.shadowColor=o.glow;c.shadowBlur=r*.9}
+  // 影子
+  c.beginPath();c.ellipse(r*.12,r*.18,r*1.02,r*.98,0,0,7);c.fillStyle='rgba(0,0,0,.25)';c.fill();c.shadowBlur=0;
+  c.rotate(ang);
+  // 外圈（鋸齒護環）
+  c.beginPath();for(let i=0;i<24;i++){const a=i/24*Math.PI*2,rr=i%2?r:r*.93;c.lineTo(Math.cos(a)*rr,Math.sin(a)*rr)}c.closePath();
+  c.fillStyle=c3;c.fill();
+  // 圓盤
+  const g=c.createRadialGradient(-r*.3,-r*.3,r*.1,0,0,r*.9);g.addColorStop(0,c1);g.addColorStop(.6,c2);g.addColorStop(1,c3);
+  c.beginPath();c.arc(0,0,r*.86,0,7);c.fillStyle=g;c.fill();
+  // 花紋
+  c.fillStyle=c1;c.strokeStyle=c3;c.lineWidth=Math.max(1,r*.05);
+  const P=t.pat,rep=(n,f)=>{for(let i=0;i<n;i++){c.save();c.rotate(i/n*Math.PI*2);f();c.restore()}};
+  if(P==='wing')rep(3,()=>{c.beginPath();c.moveTo(r*.18,0);c.quadraticCurveTo(r*.55,-r*.55,r*.84,-r*.12);c.quadraticCurveTo(r*.55,-r*.12,r*.18,r*.12);c.closePath();c.fill();c.stroke()});
+  else if(P==='hex')rep(6,()=>{c.beginPath();for(let k=0;k<6;k++){const a=k/6*Math.PI*2;c.lineTo(r*.6+Math.cos(a)*r*.17,Math.sin(a)*r*.17)}c.closePath();c.fill();c.stroke()});
+  else if(P==='bolt')rep(3,()=>{c.beginPath();c.moveTo(r*.2,-r*.05);c.lineTo(r*.5,-r*.2);c.lineTo(r*.46,-r*.03);c.lineTo(r*.82,-r*.12);c.lineTo(r*.5,r*.14);c.lineTo(r*.54,-r*.01);c.closePath();c.fill();c.stroke()});
+  else if(P==='star'){c.beginPath();for(let k=0;k<10;k++){const a=k/10*Math.PI*2-Math.PI/2,rr=k%2?r*.32:r*.74;c.lineTo(Math.cos(a)*rr,Math.sin(a)*rr)}c.closePath();c.fill();c.stroke();
+    rep(5,()=>{c.beginPath();c.arc(r*.62,r*.36,r*.06,0,7);c.fill()})}
+  else if(P==='flame')rep(4,()=>{c.beginPath();c.moveTo(r*.2,r*.06);c.bezierCurveTo(r*.4,-r*.3,r*.62,-r*.06,r*.84,-r*.32);c.bezierCurveTo(r*.74,r*.02,r*.6,r*.14,r*.2,r*.06);c.fill();c.stroke()});
+  else if(P==='moon')rep(3,()=>{c.beginPath();c.arc(r*.52,0,r*.28,0,7);c.arc(r*.6,-r*.08,r*.22,0,7,true);c.fill('evenodd');c.stroke()});
+  // 中心軸
+  const h=c.createRadialGradient(-r*.08,-r*.08,1,0,0,r*.26);h.addColorStop(0,'#fff');h.addColorStop(.5,'#C9D3DA');h.addColorStop(1,'#6B7A86');
+  c.beginPath();c.arc(0,0,r*.24,0,7);c.fillStyle=h;c.fill();c.strokeStyle='rgba(0,0,0,.35)';c.lineWidth=1;c.stroke();
+  c.restore();
+  // 高速旋轉的殘影圈
+  if(o.blur>0){c.save();c.globalAlpha=Math.min(.5,o.blur*.5);c.strokeStyle=c1;c.lineWidth=r*.08;c.beginPath();c.arc(x,y,r*.98,0,7);c.stroke();c.restore()}
+}
+function fitCanvas(cv){const d=Math.min(2,window.devicePixelRatio||1),w=cv.clientWidth||cv.width;cv.width=Math.round(w*d);cv.height=Math.round((cv.clientHeight||w)*d);return d}
+function paintThumb(cv,t,ang=0){const d=fitCanvas(cv),c=cv.getContext('2d');c.setTransform(d,0,0,d,0,0);c.clearRect(0,0,cv.width,cv.height);const w=cv.width/d;drawTop(c,w/2,w/2,w*.4,t,ang)}
+
+/* ---------- 大廳 ---------- */
+let TOPRUN=null;     // 對戰中的狀態
+let TOPCH=null;      // 充能計時器
+function topStop(){if(TOPCH){clearInterval(TOPCH);TOPCH=null}
+  if(TOPRUN){TOPRUN.dead=true;cancelAnimationFrame(TOPRUN.raf);if(TOPRUN.resizeObs)TOPRUN.resizeObs.disconnect();document.removeEventListener('keydown',TOPRUN.key);document.removeEventListener('visibilitychange',TOPRUN.vis);TOPRUN=null}}
+function viewTop(pre){
+  const R=topRec(),g=S.grade,fresh=topUnlockCheck();if(fresh.length)save();
+  if(pre)R.src=pre;const subs=subjOf(g);if(R.src!=='mix'&&!subs.includes(R.src))R.src='mix';
+  if(!R.unlocked.includes(R.sel))R.sel='hawk';if(!oppOpen(R.opp))R.opp='easy';
+  const t=topById(R.sel),wins=R.wins.easy+R.wins.pro+R.wins.champ;
+  const sb=(lab,v)=>`<div class="sbar"><span>${lab}</span><div class="bar"><i style="width:${v*10}%"></i></div><em>${v}</em></div>`;
+  $('#view').innerHTML=`<a class="back" href="#/">← 回首頁</a>
+  <h2>🌀 陀螺大對戰<small>${GZH[g]}年級</small></h2>
+  <div class="tlobby">
+  <section class="tbox"><p class="hint" style="margin:0">先答題幫陀螺<b>充能</b>（60 秒內最多 10 題），答對越多、連對越多，陀螺就轉得越久、撞得越大力，還能拿到必殺技！</p>
+    <div class="trec"><span class="chip">🏆 勝場 <b>${wins}</b></span><span class="chip">⚔️ 對戰 <b>${R.plays}</b> 場</span><span class="chip">🌀 陀螺 <b>${R.unlocked.length}</b> / ${TOPS.length}</span></div></section>
+  <section class="tbox"><h3>① 選我的陀螺</h3>
+    <div class="tsel"><canvas id="tBig" width="132" height="132" aria-hidden="true"></canvas>
+      <div class="info"><b>${t.ic} ${t.name}</b><span class="hint" style="margin:0">${t.desc}・必殺技「${t.sp}」</span>${sb('攻擊',t.atk)}${sb('防禦',t.def)}${sb('耐力',t.sta)}</div></div>
+    <div class="tlist">${TOPS.map(x=>{const on=R.unlocked.includes(x.id);return`<button class="tpick${on?'':' lock'}" data-t="${x.id}" aria-pressed="${x.id===R.sel}"${on?'':' aria-disabled="true"'} aria-label="${x.name}${on?'':'（'+needTxt(x)+'）'}"><canvas width="56" height="56" aria-hidden="true"></canvas><span>${on?'':'🔒'}${x.name}</span>${on?'':`<small>${needTxt(x)}</small>`}</button>`}).join('')}</div>
+    ${fresh.length?`<b style="color:var(--good)">🎉 解鎖新陀螺：${fresh.map(x=>x.name).join('、')}！</b>`:''}</section>
+  <section class="tbox"><h3>② 選對手</h3>
+    <div class="opps">${Object.entries(TOPP).map(([k,o])=>{const on=oppOpen(k);return`<button class="opp${on?'':' lock'}" data-o="${k}" aria-pressed="${k===R.opp}"${on?'':' aria-disabled="true"'}><span class="ic">${on?o.ic:'🔒'}</span>${o.name}<small>${on?o.who+'・'+topById(o.top).name:'先打倒'+TOPP[o.need].name}</small>${R.wins[k]?`<small>贏過 ${R.wins[k]} 次</small>`:''}</button>`}).join('')}</div></section>
+  <section class="tbox"><h3>③ 用哪一科的題目充能？</h3>
+    <div class="srcs">${subs.map(s=>`<button data-s="${s}" aria-pressed="${R.src===s}">${SUBJ[s].ic} ${s}</button>`).join('')}<button data-s="mix" aria-pressed="${R.src==='mix'}">🎲 各科混合</button></div>
+    <div class="grades" role="group" aria-label="年級" style="gap:6px">${[1,2,3,4,5,6].map(n=>`<button data-g="${n}" aria-pressed="${n===g}" style="padding:4px 10px;font-size:13px;border-radius:10px">${GZH[n]}年級</button>`).join('')}</div></section>
+  <button class="tgo" id="tGo">⚡ 開始充能（60 秒・10 題）</button>
+  </div>`;
+  const big=$('#tBig');let a=0;paintThumb(big,t);
+  document.querySelectorAll('.tpick').forEach(b=>{paintThumb(b.querySelector('canvas'),topById(b.dataset.t),.4);
+    b.onclick=()=>{if(!R.unlocked.includes(b.dataset.t))return;R.sel=b.dataset.t;save();viewTop()}});
+  document.querySelectorAll('.opp').forEach(b=>b.onclick=()=>{if(!oppOpen(b.dataset.o))return;R.opp=b.dataset.o;save();viewTop()});
+  document.querySelectorAll('.srcs button').forEach(b=>b.onclick=()=>{R.src=b.dataset.s;save();viewTop()});
+  document.querySelectorAll('.tlobby .grades button').forEach(b=>b.onclick=()=>{S.grade=+b.dataset.g;save();header();viewTop()});
+  $('#tGo').onclick=topCharge;
+  if(!RM()){const spin=()=>{if(!document.body.contains(big))return;a+=.12;paintThumb(big,t,a);requestAnimationFrame(spin)};requestAnimationFrame(spin)}
+}
+
+/* ---------- 充能：沿用一般作答畫面 ---------- */
+function topSet(src){const g=S.grade,subs=src==='mix'?subjOf(g):[src],items=[],seen=new Set();
+  const pools=subs.map(x=>unitsFor(x,g).filter(u=>u.kind!=='vocab'||x==='英語')).filter(a=>a.length);if(!pools.length)return[];
+  for(let t=0;items.length<10&&t<80;t++){const us=pools[t%pools.length],u=us[Math.random()*us.length|0];let it=null;
+    if(u.kind==='math'){it=fromMath(u.src,1+(Math.random()*3|0));if(it)it.src=u.id}else it=makeSet(u,1)[0];
+    if(!it)continue;const k=it.key||it.q;if(seen.has(k))continue;seen.add(k);items.push(it)}
+  return shuffleArr(items)}
+function topCharge(){const R=topRec(),items=topSet(R.src);
+  if(!items.length){const b=$('#tGo');if(b)b.textContent='這一科題目還在準備中，換一科試試';else location.hash='#/top';return}
+  topStop();startQuiz(items,{back:'#/top',top:{left:60,energy:0,sp:0,src:R.src}});
+  TOPCH=setInterval(()=>{if(document.hidden||!Q||!Q.meta.top)return;const T=Q.meta.top;T.left--;topHudUpd();
+    if(T.left<=0){clearInterval(TOPCH);TOPCH=null;clearTimeout(Q.auto);finish()}},1000)}
+function topHud(){const T=Q.meta.top;
+  return`<div class="tophud"><span class="tleft${T.left<=10?' warn':''}" id="tLeft">⏱ <b>${T.left}</b> 秒</span><div class="bar" title="能量"><i id="tBar" style="width:${Math.min(100,T.energy*4)}%"></i></div><span id="tEn">⚡ <b>${T.energy}</b></span><span id="tSp">💥 必殺 ×<b>${T.sp}</b></span></div>`}
+function topHudUpd(pop){const T=Q.meta.top,l=$('#tLeft');if(!l)return;l.innerHTML=`⏱ <b>${T.left}</b> 秒`;l.classList.toggle('warn',T.left<=10);
+  $('#tBar').style.width=Math.min(100,T.energy*4)+'%';$('#tEn').innerHTML=`⚡ <b>${T.energy}</b>`;$('#tSp').innerHTML=`💥 必殺 ×<b>${T.sp}</b>`;
+  if(pop)replayAnim($(pop),'pop')}
+function topHit(ok){const T=Q.meta.top;if(!ok)return topHudUpd();
+  const gain=1+Math.floor((Q.combo-1)/3);T.energy+=gain;let sp=false;if(Q.combo%3===0&&T.sp<3){T.sp++;sp=true}
+  topHudUpd(sp?'#tSp':'#tEn')}
+function topBonus(T){return{spin:Math.min(.45,T.energy*.018),pow:Math.min(.35,T.energy*.014),sp:T.sp}}
+function topChargeEnd(){
+  if(TOPCH){clearInterval(TOPCH);TOPCH=null}
+  const T=Q.meta.top,B=topBonus(T),R=topRec(),t=topById(R.sel),o=TOPP[R.opp],n=Math.min(Q.items.length,Q.i+(Q.answered?1:0));
+  const msg=T.energy>=18?'能量爆表！陀螺發出耀眼的光芒！':T.energy>=10?'充能成功！陀螺轉得呼呼響！':T.energy>=4?'有充到能量，上場試試看吧！':'能量有點少，但還是可以挑戰喔！';
+  const Zs=s=>zyOn()?Z(s):s,wn=Q.wrongNow;
+  TOPRUN=null;const ctx={right:Q.right,done:n,wrong:wn,B};
+  $('#view').innerHTML=`<a class="back" href="#/top">← 回陀螺大廳</a>
+  <section class="card charge"><h2 style="margin:0">⚡ 充能完成</h2>
+    <canvas id="tBig" width="120" height="120" style="width:120px;height:120px" aria-hidden="true"></canvas>
+    <b class="${zyOn()?'zyon':''}" style="line-height:2">${Zs(msg)}</b>
+    <div class="cmeter" role="progressbar" aria-label="能量" aria-valuenow="${T.energy}"><i id="cm" style="width:0"></i></div>
+    <span class="hint" style="margin:0">答對 ${Q.right} / ${n} 題・能量 ${T.energy}${wn.length?'・答錯的題目已收進錯題本':''}</span>
+    <div class="bonus"><div><span>🌀 轉速</span><b>+${Math.round(B.spin*100)}%</b><span>轉更久</span></div><div><span>💥 衝擊力</span><b>+${Math.round(B.pow*100)}%</b><span>撞更大力</span></div><div><span>🔥 必殺技</span><b>×${B.sp}</b><span>每 3 連對 1 次</span></div></div>
+    <p class="hint" style="margin:0">對手：${o.ic} ${o.name}・${o.who}（${topById(o.top).name}）</p>
+    <div class="btns"><button class="btn primary" id="tFight" style="font-size:18px">⚔️ 開始對戰！</button>${wn.length?`<button class="btn" id="review">看錯題（${wn.length}）</button>`:''}</div>
+  </section>`;
+  paintThumb($('#tBig'),t);setTimeout(()=>{const m=$('#cm');if(m)m.style.width=Math.min(100,T.energy*4)+'%'},50);
+  $('#tFight').onclick=()=>topBattle(ctx);
+  if($('#review'))$('#review').onclick=()=>startQuiz(wn.map(x=>Object.assign({},x)),{back:'#/top',fromWrong:true});
+  $('#tFight').focus({preventScroll:true});
+}
+
+/* ---------- 對戰 ---------- */
+const AR={cx:200,cy:200,R:180,K:4.2,OUTV:345,DASH:220,SP:420,TIME:60,VMAX:460};
+function mkF(t,mul,B,x,y,ai){const sta=t.sta*mul,s0=100*(.85+t.sta*.03)*mul*(1+B.spin);
+  return{t,x,y,vx:0,vy:0,ang:Math.random()*6,spin:s0,s0,sta,atk:t.atk*mul*(1+B.pow),def:t.def*mul,r:19+t.def*.7,m:1+t.def*.09,cd:0,sp:B.sp,spT:0,out:false,outT:0,ai,think:0}}
+function topBattle(ctx){
+  topStop();const R=topRec(),me=topById(R.sel),ok=R.opp,O=TOPP[ok],et=topById(O.top);
+  $('#view').innerHTML=`<a class="back" href="#/top">← 離開對戰</a>
+  <section class="arena">
+    <div class="bhud"><div class="side me"><span>${me.ic} 我的${me.name}</span><div class="hp"><i id="hpMe" style="width:100%"></i></div></div>
+      <div class="clock" id="bClock">${AR.TIME}</div>
+      <div class="side r"><span>${O.ic} ${O.who}的${et.name}</span><div class="hp"><i id="hpEn" style="width:100%"></i></div></div></div>
+    <canvas id="topCv" width="400" height="400" aria-label="陀螺競技場"></canvas>
+    <div class="bmsg" id="bMsg" aria-live="polite">按住競技場往後拉，放開就發射！（或按「發射」）</div>
+    <div class="bctl" id="bCtl"><button class="launch" id="bLaunch">🚀 發射！<small>空白鍵 / Enter 也可以</small><i id="bPow"></i></button></div>
+  </section>`;
+  const cv=$('#topCv'),c=cv.getContext('2d'),rm=RM();
+  const P=mkF(me,1,ctx.B,AR.cx,AR.cy+120,null),E=mkF(et,O.mul,{spin:0,pow:0,sp:O.sp},AR.cx,AR.cy-120,O);
+  const st=TOPRUN={dead:false,phase:'aim',P,E,c,cv,t:0,time:AR.TIME,aim:-Math.PI/2,pow:.6,powT:0,drag:null,parts:[],shake:0,texts:[],hitCD:0,raf:0,last:0,paused:false,ctx,ok,end:null};
+  let scale=1;const resize=()=>{const d=fitCanvas(cv);scale=cv.width/400;c.setTransform(scale,0,0,scale,0,0)};resize();
+  st.resizeObs=new ResizeObserver(()=>{if(!st.dead)resize()});st.resizeObs.observe(cv);
+  const toW=e=>{const r=cv.getBoundingClientRect();return{x:(e.clientX-r.left)/r.width*400,y:(e.clientY-r.top)/r.height*400}};
+  cv.onpointerdown=e=>{e.preventDefault();if(st.phase==='aim'){st.drag={s:toW(e),c:toW(e)};cv.setPointerCapture(e.pointerId)}else if(st.phase==='fight')act('dash')};
+  cv.onpointermove=e=>{if(st.drag){st.drag.c=toW(e);const dx=st.drag.s.x-st.drag.c.x,dy=st.drag.s.y-st.drag.c.y,L=Math.hypot(dx,dy);if(L>8){st.aim=Math.atan2(dy,dx);st.pow=Math.min(1,L/130)}}};
+  cv.onpointerup=cv.onpointercancel=e=>{if(!st.drag)return;const L=Math.hypot(st.drag.s.x-st.drag.c.x,st.drag.s.y-st.drag.c.y);st.drag=null;if(L>14)launch()};
+  $('#bLaunch').onclick=()=>launch();
+  st.key=e=>{if(st.dead)return;const k=e.key;
+    if(st.phase==='aim'){if(k==='ArrowLeft'){st.aim-=.12;e.preventDefault()}else if(k==='ArrowRight'){st.aim+=.12;e.preventDefault()}else if(k===' '||k==='Enter'){e.preventDefault();launch()}}
+    else if(st.phase==='fight'){if(k===' '){e.preventDefault();act('dash')}else if(k==='Enter'){e.preventDefault();act('sp')}}};
+  document.addEventListener('keydown',st.key);
+  st.vis=()=>{st.paused=document.hidden;st.last=0;if(!document.hidden&&!st.dead)msg(st.phase==='fight'?'繼續對戰！':'')};document.addEventListener('visibilitychange',st.vis);
+  function msg(s){const m=$('#bMsg');if(m)m.textContent=s}
+  function say(s,col,x,y){st.texts.push({s,col,x:x??200,y:y??200,t:0})}
+  function burst(x,y,n,col,sp){n=rm?Math.min(4,n):n;for(let i=0;i<n;i++){const a=Math.random()*7,v=(40+Math.random()*160)*(sp||1);st.parts.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,l:.5+Math.random()*.4,c:col})}}
+  function launch(){if(st.phase!=='aim')return;st.phase='fight';const v=150+st.pow*280;P.vx=Math.cos(st.aim)*v;P.vy=Math.sin(st.aim)*v;
+    // 電腦發射：大致朝中間，越強越準
+    const a=Math.PI/2+(Math.random()-.5)*O.noise*1.6,ev=200+Math.random()*120+O.mul*20;E.vx=Math.cos(a)*ev;E.vy=Math.sin(a)*ev;
+    beep(true);say('發射！','#FFB703');msg('撞擊對手！點競技場或按「衝刺」，大絕招用「必殺技」');
+    $('#bCtl').innerHTML=`<button class="dash" id="bDash">💨 衝刺<small>空白鍵・點競技場</small><i id="cdDash"></i></button><button class="sp" id="bSp">🔥 必殺技 ×<span id="spN">${P.sp}</span><small>Enter</small></button>`;
+    $('#bDash').onclick=()=>act('dash');$('#bSp').onclick=()=>act('sp');updCtl()}
+  function dirTo(a,b,lead){const tx=b.x+(lead?b.vx*lead:0),ty=b.y+(lead?b.vy*lead:0),dx=tx-a.x,dy=ty-a.y,L=Math.hypot(dx,dy)||1;return[dx/L,dy/L]}
+  function act(k,f=P){if(st.phase!=='fight'||f.out||f.spin<=0)return;const o=f===P?E:P;
+    if(k==='dash'){if(f.cd>0)return;let [dx,dy]=dirTo(f,o,f.ai&&f.ai.smart?.25:0);
+      if(f.ai){const n=(Math.random()-.5)*f.ai.noise;[dx,dy]=[dx*Math.cos(n)-dy*Math.sin(n),dx*Math.sin(n)+dy*Math.cos(n)]}
+      f.vx+=dx*AR.DASH;f.vy+=dy*AR.DASH;f.cd=2.2;f.spin-=1;burst(f.x,f.y,6,f.t.col[0],.6);if(f===P)beep(true)}
+    else{if(f.sp<=0)return;f.sp--;const [dx,dy]=dirTo(f,o,.2);f.vx=dx*AR.SP;f.vy=dy*AR.SP;f.spT=1.3;f.cd=Math.max(f.cd,1);
+      say((f===P?'':'對手・')+f.t.sp+'！',f===P?'#FFB703':'#FF6F61',200,f===P?250:150);burst(f.x,f.y,24,f.t.col[0],1.3);if(!rm)st.shake=.35;
+      if(!S.mute)try{beep(true);setTimeout(()=>beep(true),120)}catch(e){}}
+    updCtl()}
+  function updCtl(){const d=$('#bDash'),s=$('#bSp');if(!d)return;d.disabled=P.cd>0;$('#cdDash').style.width=(P.cd>0?(1-P.cd/2.2)*100:0)+'%';s.disabled=P.sp<=0;$('#spN').textContent=P.sp}
+  function aiThink(dt){if(E.out||E.spin<=0)return;E.think-=dt;if(E.think>0)return;E.think=.25;
+    const d=Math.hypot(P.x-E.x,P.y-E.y),pr=Math.hypot(P.x-AR.cx,P.y-AR.cy)/AR.R;
+    if(E.sp>0&&st.t>8&&d<170&&((O.smart&&(pr>.65||P.spin<P.s0*.3))||(!O.smart&&Math.random()<.1)))return act('sp',E);
+    if(E.cd<=0&&Math.random()<O.dash*(d<150?1.3:.5)*(O.smart&&pr>.6?1.6:1))act('dash',E)}
+  function phys(dt){
+    [P,E].forEach(f=>{
+      if(f.out){f.outT+=dt;f.x+=f.vx*dt;f.y+=f.vy*dt;f.ang+=dt*6;return}
+      const dx=f.x-AR.cx,dy=f.y-AR.cy,dist=Math.hypot(dx,dy)||1,frac=Math.max(0,f.spin/f.s0);
+      let ax=-AR.K*dx,ay=-AR.K*dy;
+      if(f.spin>0&&dist>6){ax+=-dy/dist*34*frac;ay+=dx/dist*34*frac}           // 轉動帶出繞圈
+      if(frac<.25&&f.spin>0){ax+=(Math.random()-.5)*260;ay+=(Math.random()-.5)*260}  // 快停時搖晃
+      f.vx+=ax*dt;f.vy+=ay*dt;const fr=Math.exp(-(f.spin>0?.42:2.2)*dt);f.vx*=fr;f.vy*=fr;
+      const vv=Math.hypot(f.vx,f.vy);if(vv>AR.VMAX){f.vx*=AR.VMAX/vv;f.vy*=AR.VMAX/vv}
+      f.x+=f.vx*dt;f.y+=f.vy*dt;
+      if(st.phase==='fight'&&f.spin>0){const sp=Math.hypot(f.vx,f.vy);f.spin-=(1.0*(1.3-f.sta*.06)+sp*.001)*dt}
+      f.ang+=dt*(f.spin>0?6+24*frac:0);f.cd=Math.max(0,f.cd-dt);f.spT=Math.max(0,f.spT-dt);
+      // 碗邊：太快衝出去＝場外，不然反彈
+      const d2=Math.hypot(f.x-AR.cx,f.y-AR.cy);if(d2+f.r>AR.R){const nx=(f.x-AR.cx)/d2,ny=(f.y-AR.cy)/d2,vr=f.vx*nx+f.vy*ny;
+        if(vr>(AR.OUTV+f.def*8)*(.75+.5*frac)&&st.phase==='fight'&&st.t>3){/* 轉速越低越容易被撞出場 */f.out=true;f.vx=nx*Math.max(vr,200);f.vy=ny*Math.max(vr,200);burst(f.x,f.y,14,'#fff');if(!rm)st.shake=.3}
+        else{if(vr>0){f.vx-=1.55*vr*nx;f.vy-=1.55*vr*ny;if(vr>60){f.spin-=.4;burst(f.x,f.y,3,'#ddd',.5)}}f.x=AR.cx+nx*(AR.R-f.r);f.y=AR.cy+ny*(AR.R-f.r)}}});
+    // 碰撞
+    st.hitCD=Math.max(0,st.hitCD-dt);if(P.out||E.out)return;
+    const dx=E.x-P.x,dy=E.y-P.y,d=Math.hypot(dx,dy)||1,min=P.r+E.r;
+    if(d<min){const nx=dx/d,ny=dy/d,ov=min-d;P.x-=nx*ov*E.m/(P.m+E.m);P.y-=ny*ov*E.m/(P.m+E.m);E.x+=nx*ov*P.m/(P.m+E.m);E.y+=ny*ov*P.m/(P.m+E.m);
+      const vrel=(P.vx-E.vx)*nx+(P.vy-E.vy)*ny;
+      if(vrel>0||st.hitCD<=0){
+        const aP=Math.max(0,P.vx*nx+P.vy*ny),aE=Math.max(0,-(E.vx*nx+E.vy*ny));
+        const j=(1+.55)*Math.max(vrel,0)/(1/P.m+1/E.m);P.vx-=j/P.m*nx;P.vy-=j/P.m*ny;E.vx+=j/E.m*nx;E.vy+=j/E.m*ny;
+        // 兩顆都在轉，碰到會互相彈開
+        const rep=60+(P.spin>0&&E.spin>0?40:0);P.vx-=nx*rep/P.m;P.vy-=ny*rep/P.m;E.vx+=nx*rep/E.m;E.vy+=ny*rep/E.m;
+        if(st.hitCD<=0){const mP=P.spT>0?2.4:1,mE=E.spT>0?2.4:1;
+          const imp=Math.max(0,vrel),sh=(aP+5)/(aP+aE+10);   // 用「相對撞擊速度」算傷害，誰衝過去誰占比較多
+          const dE=(.5+imp*sh*.55)/100*1.0*P.atk/(E.def+3)*mP,dP=(.5+imp*(1-sh)*.55)/100*1.0*E.atk/(P.def+3)*mE;
+          E.spin-=dE;P.spin-=dP;
+          if(P.spT>0){const k=140+P.atk*9;E.vx+=nx*k/E.m;E.vy+=ny*k/E.m;P.spT=0}if(E.spT>0){const k=140+E.atk*9;P.vx-=nx*k/P.m;P.vy-=ny*k/P.m;E.spT=0}
+          const hx=P.x+nx*P.r,hy=P.y+ny*P.r,big=dE+dP;burst(hx,hy,Math.min(26,6+big*6),big>2.2?'#FFB703':'#fff');
+          if(big>2.2){say(mP>1||mE>1?'💥 超強撞擊！':'撞擊！','#fff',hx,hy-20);if(!rm)st.shake=Math.max(st.shake,.18)}
+          if(!S.mute&&big>.6)try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),gg=AC.createGain(),t0=AC.currentTime;o.type='square';o.frequency.value=120+Math.random()*80;gg.gain.setValueAtTime(.08,t0);gg.gain.exponentialRampToValueAtTime(.0001,t0+.12);o.connect(gg).connect(AC.destination);o.start(t0);o.stop(t0+.13)}catch(e){}
+          st.hitCD=.15}}}}
+  function draw(){const c=st.c;c.save();
+    if(st.shake>0&&!rm)c.translate((Math.random()-.5)*10*st.shake/.35,(Math.random()-.5)*10*st.shake/.35);
+    c.clearRect(-20,-20,440,440);
+    // 碗狀競技場
+    const g=c.createRadialGradient(200,190,20,200,200,200);g.addColorStop(0,'#F5FBFF');g.addColorStop(.75,'#BFD9E6');g.addColorStop(.92,'#6D93A8');g.addColorStop(1,'#2C4A5C');
+    c.beginPath();c.arc(200,200,198,0,7);c.fillStyle=g;c.fill();
+    c.strokeStyle='rgba(22,50,74,.18)';c.lineWidth=2;[60,110,150].forEach(r=>{c.beginPath();c.arc(200,200,r,0,7);c.stroke()});
+    c.beginPath();c.arc(200,200,AR.R,0,7);c.strokeStyle='#FFB703';c.lineWidth=4;c.stroke();
+    c.fillStyle='rgba(22,50,74,.25)';c.font='900 16px "Noto Sans TC",sans-serif';c.textAlign='center';c.fillText('陀螺大對戰',200,205);
+    // 瞄準箭頭
+    if(st.phase==='aim'){const L=30+st.pow*80,ex=P.x+Math.cos(st.aim)*L,ey=P.y+Math.sin(st.aim)*L;c.strokeStyle='#F25C4B';c.lineWidth=6;c.lineCap='round';
+      c.beginPath();c.moveTo(P.x,P.y);c.lineTo(ex,ey);c.stroke();c.save();c.translate(ex,ey);c.rotate(st.aim);c.fillStyle='#F25C4B';c.beginPath();c.moveTo(12,0);c.lineTo(-6,-10);c.lineTo(-6,10);c.fill();c.restore()}
+    // 陀螺
+    [E,P].forEach(f=>{const sc=f.out?Math.max(.2,1-f.outT*1.2):1,fr=Math.max(0,f.spin/f.s0),wob=fr<.3&&f.spin>0?Math.sin(st.t*25)*(.3-fr)*14:0;
+      drawTop(c,f.x+wob,f.y,f.r*sc,f.t,f.ang,{glow:f.spT>0?'#FFB703':null,blur:rm?0:fr,alpha:f.out?Math.max(0,1-f.outT):1});
+      if(f===P&&!f.out){c.fillStyle='#16324A';c.font='700 12px "Noto Sans TC",sans-serif';c.fillText('我',f.x,f.y-f.r-6)}});
+    // 粒子與文字
+    st.parts.forEach(p=>{c.globalAlpha=Math.max(0,p.l*1.6);c.fillStyle=p.c;c.fillRect(p.x-2,p.y-2,4,4)});c.globalAlpha=1;
+    st.texts.forEach(x=>{c.globalAlpha=Math.max(0,1-x.t/1.1);c.font='900 26px "Noto Sans TC",sans-serif';c.lineWidth=5;c.strokeStyle='#16324A';c.strokeText(x.s,x.x,x.y-x.t*30);c.fillStyle=x.col;c.fillText(x.s,x.x,x.y-x.t*30)});c.globalAlpha=1;
+    if(st.paused){c.fillStyle='rgba(0,0,0,.45)';c.fillRect(0,0,400,400);c.fillStyle='#fff';c.font='900 28px "Noto Sans TC",sans-serif';c.fillText('暫停中',200,210)}
+    c.restore()}
+  function hud(){const W=s=>Math.max(0,Math.min(100,s/1.6))+'%';$('#hpMe').style.width=W(P.spin);$('#hpEn').style.width=W(E.spin);
+    $('#bClock').textContent=Math.ceil(st.time);updCtl()}
+  function over(){const pl=P.out||P.spin<=0,el=E.out||E.spin<=0;let win=null;
+    if(pl||el)win=pl&&el?P.spin>=E.spin&&!P.out:!pl;else if(st.time<=0)win=P.spin>=E.spin;
+    if(win===null)return;st.phase='end';st.end={win,how:(win?E:P).out?'out':st.time<=0?'time':'stop'};
+    say(win?'勝利！':'輸了…',win?'#FFB703':'#9FB3BF');msg(win?'🎉 你贏了！':'再充能一次，一定能贏！');
+    setTimeout(()=>{if(!st.dead)topResult(st)},1500)}
+  function loop(ts){if(st.dead)return;st.raf=requestAnimationFrame(loop);
+    if(!document.body.contains(cv))return topStop();
+    const dt=st.last?Math.min(.033,(ts-st.last)/1000):0;st.last=ts;
+    if(!st.paused){
+      if(st.phase==='aim'){st.powT+=dt;if(!st.drag)st.pow=.45+.55*Math.abs(Math.sin(st.powT*2.2));const pb=$('#bPow');if(pb)pb.style.width=st.pow*100+'%';
+        [P,E].forEach(f=>f.ang+=dt*30)}
+      else{for(let k=0;k<2;k++)phys(dt/2);if(st.phase==='fight'){st.t+=dt;st.time=Math.max(0,st.time-dt);aiThink(dt);over()}}
+      st.parts=st.parts.filter(p=>(p.l-=dt)>0);st.parts.forEach(p=>{p.x+=p.vx*dt;p.y+=p.vy*dt;p.vx*=.92;p.vy*=.92});
+      st.texts=st.texts.filter(x=>(x.t+=dt)<1.1);st.shake=Math.max(0,st.shake-dt);hud()}
+    draw()}
+  st.raf=requestAnimationFrame(loop);
+  window.__top=st;   // 測試用
+}
+function topResult(st){
+  const R=topRec(),win=st.end.win,k=st.ok,O=TOPP[k],ctx=st.ctx,first=win&&!R.wins[k];
+  st.dead=true;cancelAnimationFrame(st.raf);document.removeEventListener('keydown',st.key);document.removeEventListener('visibilitychange',st.vis);if(st.resizeObs)st.resizeObs.disconnect();TOPRUN=null;
+  R.plays++;if(win)R.wins[k]++;else R.losses++;
+  const stars=win?{easy:1,pro:2,champ:3}[k]:0,gain=ctx.right*5+(win?20+stars*20:10);S.stars+=stars;S.xp+=gain;
+  if(!S.days.includes(today()))S.days.push(today());S.days=S.days.slice(-60);
+  let got=null;if(win&&k==='champ'){const left=STICKERS.filter(x=>!S.stickers.includes(x.id));if(left.length){got=pick(left);S.stickers.push(got.id)}}
+  const fresh=topUnlockCheck();save();header();
+  const newOpp=first&&k!=='champ'?Object.entries(TOPP).find(([kk,o])=>o.need===k):null;
+  const how={out:'把對手撞出場外！',time:'時間到，你的陀螺轉得比較久！',stop:'對手的陀螺停下來了！'}[st.end.how];
+  const howL={out:'被撞出場外了…',time:'時間到，對手轉得比較久…',stop:'陀螺停下來了…'}[st.end.how];
+  const msg=win?(k==='champ'?'你打倒了冠軍！你就是陀螺大對戰的新冠軍！':pick(['太帥了！答題的能量讓陀螺超有力！','勝利！你的陀螺轉得好穩！','贏了！下一位對手在等你喔！'])):
+    pick(['差一點就贏了！多答對幾題，陀螺會更有力喔！','沒關係！再充能一次，連對越多必殺技越多！','對手很強，但你也很棒！答題充能再來一次吧！']);
+  const Zs=s=>zyOn()?Z(s):s;
+  $('#view').innerHTML=`<a class="back" href="#/top">← 回陀螺大廳</a>
+  <section class="card result">
+    <canvas id="tBig" width="120" height="120" style="width:120px;height:120px${win?'':';filter:grayscale(.7)'}" aria-hidden="true"></canvas>
+    <div class="score">${win?'勝利！':'挑戰失敗'}</div>
+    <span class="hint" style="margin:0">${win?how:howL}</span>
+    <b class="${zyOn()?'zyon':''}" style="line-height:2.1">${Zs(msg)}</b>
+    ${stars?`<div class="bigstars">${[0,1,2].map(i=>`<span style="color:${i<stars?'var(--sun)':'var(--line)'}">★</span>`).join('')}</div>`:''}
+    <span class="hint">充能答對 ${ctx.right} 題・獲得 ${gain} 經驗值${stars?'・'+stars+' 顆星':''}・目前打倒${O.name} ${R.wins[k]} 次</span>
+    ${fresh.map(t=>`<div class="reward"><b>🌀 解鎖新陀螺！</b><canvas class="tnew" data-t="${t.id}" width="90" height="90" style="width:90px;height:90px"></canvas><span>${t.ic} ${t.name}・${t.desc}</span></div>`).join('')}
+    ${newOpp?`<div class="reward"><b>${newOpp[1].ic} 新對手出現：${newOpp[1].name}「${newOpp[1].who}」</b></div>`:''}
+    ${got?`<div class="reward"><b>🎁 打倒冠軍，得到新貼紙！</b><img src="${stkSrc(got.id)}" alt=""><span>${esc(got.name)}・${esc(got.zh)}</span></div>`:''}
+    <div class="btns"><button class="btn primary" id="tAgain">⚡ ${win?'再充能挑戰':'再充能一次'}</button>${ctx.wrong.length?`<button class="btn" id="review">看錯題（${ctx.wrong.length}）</button>`:''}<a class="btn" href="#/top">換陀螺／對手</a></div>
+  </section>`;
+  paintThumb($('#tBig'),topById(R.sel));document.querySelectorAll('.tnew').forEach(cv=>paintThumb(cv,topById(cv.dataset.t)));
+  if(win)confetti();else beep(false);
+  $('#tAgain').onclick=topCharge;
+  if($('#review'))$('#review').onclick=()=>startQuiz(ctx.wrong.map(x=>Object.assign({},x)),{back:'#/top',fromWrong:true});
+}
+
 /* ---------- 路由 ---------- */
 function route(){
-  speechSynthesis&&speechSynthesis.cancel();if(Q)clearTimeout(Q.auto);
+  speechSynthesis&&speechSynthesis.cancel();if(Q)clearTimeout(Q.auto);topStop();
   const h=decodeURIComponent(location.hash.slice(1)||'/'),p=h.split('/').filter(Boolean);header();window.scrollTo(0,0);
   if(p[0]==='s'&&SUBJ[p[1]])return viewSubject(p[1]);
   if(p[0]==='q'){const u=unitById(p.slice(1).join('/'));if(u){const items=makeSet(u);if(items.length)return startQuiz(items,{unit:u.id,back:'#/s/'+encodeURIComponent(u.s)})}}
   if(p[0]==='daily'){const items=dailySet();if(items.length)return startQuiz(items,{back:'#/'})}
+  if(p[0]==='adv'&&SUBJ[p[1]]){if(p[2]!=null&&startAdv(p[1],+p[2]))return;return viewAdv(p[1])}
+  if(p[0]==='top')return viewTop(p[1]&&(subjOf(S.grade).includes(p[1])||p[1]==='mix')?p[1]:null);
   if(p[0]==='wrong')return viewWrong();
   if(p[0]==='stickers')return viewStickers();
   viewHome()}
 window.addEventListener('hashchange',route);
+// 連到「目前同一個網址」的連結（例如陀螺充能/對戰中回大廳）不會觸發 hashchange，直接重畫
+document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a[href^="#"]');if(a&&a.getAttribute('href')===location.hash){e.preventDefault();route()}});
 $('#muteBtn').onclick=()=>{S.mute=!S.mute;save();header()};
 $('#zyBtn').onclick=()=>{S.zy=!zyOn();save();header();if(Q&&Q.i<Q.items.length&&!Q.answered&&document.querySelector('.qtext'))drawQ()};
 route();
