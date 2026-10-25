@@ -454,6 +454,93 @@ footer a{font-weight:700}
 .result.lose .vic{background:linear-gradient(180deg,#B7C6CF,#6B8797);-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 3px 0 #3E5A6B)}
 @keyframes vicin{0%{transform:scale(2.2);opacity:0}100%{transform:none;opacity:1}}
 .tbig{width:128px;height:128px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,color-mix(in srgb,var(--sun) 35%,transparent),transparent 70%)}
+/* ===== 精簡首頁：一打開就能開始練習 ===== */
+:root{--navh:66px}
+body{min-height:100vh;min-height:100dvh}
+.top{padding:2px 0 6px;gap:8px;flex-wrap:nowrap}
+.top .logo{width:40px;height:40px;border-radius:13px;font-size:20px}
+.top .brand{font-size:21px;white-space:nowrap}
+@media (max-width:719px){.top .tagline{display:none}.top .stats .st{display:none}}
+.caps{display:flex;align-items:center;gap:6px}
+.caps .cl{flex:1;min-width:0;display:flex;gap:5px;overflow-x:auto;scrollbar-width:none;padding:2px 2px 4px}
+.caps .cl.more{-webkit-mask:linear-gradient(90deg,#000 calc(100% - 22px),transparent);mask:linear-gradient(90deg,#000 calc(100% - 22px),transparent)}
+.caps .cl::-webkit-scrollbar{display:none}
+.cap{flex:none;display:inline-flex;align-items:center;gap:4px;background:var(--paper);border-radius:999px;padding:4px 10px 4px 5px;min-height:36px;font-weight:900;font-size:13px;box-shadow:var(--sh-1);white-space:nowrap;transition:transform .15s var(--ease)}
+.cap:active{transform:scale(.95)}
+.cap b{font:700 15px var(--f-en);font-variant-numeric:tabular-nums}
+.cap .ci{width:25px;height:25px;border-radius:50%;display:grid;place-items:center;font-size:15px;background:var(--bg)}
+.cap.lv .ci{background:conic-gradient(#F25C4B calc(var(--p)*1%),#F7E3C4 0);position:relative;font:700 9.5px var(--f-en);color:#B4532A}
+.cap.lv .ci::before{content:"";position:absolute;inset:3px;border-radius:50%;background:#fff}
+.cap.lv .ci span{position:relative}
+.gpill{flex:none;display:inline-flex;align-items:center;gap:3px;min-height:40px;padding:4px 10px 4px 12px;border-radius:999px;background:var(--g-sun);color:#16324A;font-weight:900;font-size:15px;box-shadow:0 3px 0 #D99A00;transition:transform .15s var(--ease)}
+.gpill:active{transform:translateY(2px);box-shadow:0 1px 0 #D99A00}
+.gpill i{font-style:normal;font-size:11px;opacity:.8}
+.welcome{margin-top:8px;background:var(--paper);border-radius:var(--r-l);padding:12px 12px 12px;box-shadow:var(--shadow);display:grid;gap:8px;border:2px solid color-mix(in srgb,var(--sun) 55%,transparent)}
+.welcome p{margin:0;font-weight:900;font-size:15px}.welcome p small{display:block;font-size:12px;color:var(--muted);font-weight:700}
+.welcome .seg{box-shadow:none;background:var(--bg);padding:4px}
+.cont{margin-top:10px;width:100%;display:flex;align-items:center;gap:12px;padding:8px 10px 8px 8px;min-height:56px;border-radius:18px;background:var(--g-hot);color:#fff;text-align:left;text-decoration:none;box-shadow:0 4px 0 #B8382A,var(--sh-1);position:relative;overflow:hidden;transition:transform .12s}
+.cont:active{transform:translateY(3px);box-shadow:0 1px 0 #B8382A}
+.cont::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.2),transparent);animation:shine 3.2s ease-in-out infinite}
+.cont .ci{width:40px;height:40px;border-radius:13px;background:rgba(255,255,255,.92);display:grid;place-items:center;font-size:22px;flex:none;box-shadow:0 2px 0 rgba(0,0,0,.15)}
+.cont span.t{flex:1;min-width:0;display:grid;line-height:1.25}
+.cont span.t small{font-size:12px;font-weight:700;opacity:.92}
+.cont span.t b{font-size:16px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 1px 0 rgba(0,0,0,.15)}
+.cont .pl{width:36px;height:36px;border-radius:50%;background:#fff;color:#F25C4B;display:grid;place-items:center;font-size:14px;flex:none;box-shadow:0 2px 0 rgba(0,0,0,.15)}
+h2.h2s{margin:14px 0 8px;font-size:18px}
+h2.h2s small{margin-left:auto}
+.subjects2{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+.stile{grid-column:span 2;position:relative;overflow:hidden;background:var(--tint);border-radius:var(--r-m);padding:10px 6px 9px;display:grid;justify-items:center;align-content:start;gap:3px;text-align:center;box-shadow:var(--shadow);border:2px solid color-mix(in srgb,var(--col) 18%,transparent);min-height:44px}
+.stile::after{content:"";position:absolute;right:-22px;top:-22px;width:64px;height:64px;border-radius:50%;background:color-mix(in srgb,var(--col) 14%,transparent)}
+.stile .ic{width:42px;height:42px;border-radius:14px;background:var(--grad);display:grid;place-items:center;font-size:23px;line-height:1;box-shadow:0 3px 0 color-mix(in srgb,var(--col) 55%,#000);position:relative;z-index:1;transition:transform .3s var(--ease)}
+.stile:hover .ic{transform:rotate(-8deg) scale(1.08)}
+.stile b{font-size:17px;color:var(--col);font-weight:900;line-height:1.25}
+.stile .meta{font-size:11px;color:var(--muted);font-weight:700;line-height:1.2}
+.stile .mini{width:78%;height:6px;border-radius:99px;background:color-mix(in srgb,var(--col) 15%,var(--paper));overflow:hidden}.stile .mini i{display:block;height:100%;background:var(--grad);border-radius:99px}
+.subjects2.n5 .stile:nth-child(n+4),.subjects2.n4 .stile{grid-column:span 3;grid-template-columns:auto 1fr;justify-items:start;text-align:left;align-items:center;column-gap:10px;padding:9px 10px}
+.subjects2.n5 .stile:nth-child(n+4) .ic,.subjects2.n4 .stile .ic{grid-row:1/4}
+.subjects2.n5 .stile:nth-child(n+4) .mini,.subjects2.n4 .stile .mini{width:100%}
+@media (min-width:720px){.subjects2{grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:12px}
+  .subjects2 .stile,.subjects2.n5 .stile:nth-child(n+4),.subjects2.n4 .stile{grid-column:auto;grid-template-columns:none;justify-items:center;text-align:center;padding:14px 8px 12px}
+  .subjects2 .stile .ic,.subjects2.n5 .stile:nth-child(n+4) .ic,.subjects2.n4 .stile .ic{grid-row:auto;width:52px;height:52px;font-size:28px}
+  .subjects2 .stile .mini{width:78%!important}.stile b{font-size:19px}}
+/* 底部彈出視窗（年級、成就） */
+.sheet-bg{position:fixed;inset:0;z-index:60;background:rgba(10,24,34,.45);display:flex;align-items:flex-end;justify-content:center;animation:fadein .2s}
+.sheet{width:min(560px,100%);background:var(--paper);border-radius:26px 26px 0 0;padding:10px 16px calc(18px + env(safe-area-inset-bottom,0px));box-shadow:0 -12px 40px -10px rgba(0,0,0,.4);display:grid;gap:12px;animation:sheetup .3s var(--ease);max-height:88vh;overflow:auto}
+.sheet::before{content:"";justify-self:center;width:44px;height:5px;border-radius:9px;background:var(--line)}
+.sheet .sh{display:flex;align-items:center;gap:8px}.sheet .sh b{font-size:18px;font-weight:900;flex:1}
+.sheet .x{width:44px;height:44px;border-radius:50%;background:var(--bg);font-size:18px;font-weight:900}
+.sheet .seg{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:0;box-shadow:none;background:none}
+.sheet .seg button{min-height:60px;background:var(--bg);border-radius:16px}
+.sheet .seg button b{font-size:22px}
+.sheet .seg button[aria-pressed="true"]{background:var(--g-sun)}
+.statbox{border-radius:var(--r-l);padding:14px;display:grid;gap:10px;background:radial-gradient(circle at 100% 100%,#FFC9A6 0 90px,transparent 91px),linear-gradient(135deg,#FFE7A3 0%,#FFD06B 45%,#FFB49A 100%);color:#16324A;box-shadow:0 4px 0 #E3A73A}
+@media (min-width:720px){.sheet-bg{align-items:center}.sheet{border-radius:26px;padding-bottom:18px}}
+@keyframes fadein{from{opacity:0}}
+@keyframes sheetup{from{transform:translateY(40px);opacity:.4}}
+/* 闖關：選科目 */
+.advpick{display:grid;gap:12px;grid-template-columns:1fr}
+@media (min-width:640px){.advpick{grid-template-columns:1fr 1fr}}
+.advgo .lt{position:absolute;top:8px;right:12px;font-size:11px;font-weight:900;padding:1px 8px;border-radius:99px;background:#fff;color:#F25C4B;z-index:1}
+/* 底部固定導覽列 */
+.bnav{position:fixed;left:0;right:0;bottom:0;z-index:30;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:2px;
+  padding:6px max(8px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(8px,env(safe-area-inset-left,0px));
+  background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:20px 20px 0 0;
+  box-shadow:0 -1px 0 var(--line),0 -10px 24px -16px rgba(22,50,74,.45)}
+.bnav a{position:relative;display:grid;justify-items:center;align-content:center;gap:0;min-height:54px;min-width:44px;border-radius:15px;text-decoration:none;font-size:12px;font-weight:900;color:var(--muted);line-height:1.25;transition:background .15s,color .15s}
+.bnav a .ni{font-size:22px;line-height:1.2;transition:transform .25s var(--ease)}
+.bnav a[aria-current="page"]{color:var(--ink);background:color-mix(in srgb,var(--sun) 30%,var(--paper));box-shadow:inset 0 -3px 0 var(--sun)}
+.bnav a[aria-current="page"] .ni{transform:translateY(-2px) scale(1.12)}
+.bnav a:active .ni{transform:scale(.9)}
+.bnav .nb{position:absolute;top:3px;left:calc(50% + 7px);min-width:18px;height:18px;padding:0 5px;border-radius:99px;background:var(--coral);color:#fff;font:700 11px/18px var(--f-en);text-align:center;box-shadow:0 0 0 2px var(--paper)}
+.bnav .nb:empty{display:none}
+body.inplay .bnav{display:none}
+body:not(.inplay) .wrap{padding-bottom:calc(var(--navh) + env(safe-area-inset-bottom,0px) + 24px)}
+body:not(.inplay) .tgobar{bottom:calc(var(--navh) + env(safe-area-inset-bottom,0px));padding-bottom:10px;border-radius:24px}
+@media (min-width:720px){:root{--navh:84px}
+  .bnav{left:50%;right:auto;bottom:14px;transform:translateX(-50%);width:min(560px,calc(100% - 32px));border-radius:24px;padding:6px;box-shadow:0 0 0 1px var(--line),var(--sh-3)}
+  .bnav a{grid-template-columns:auto auto;justify-content:center;align-items:center;gap:6px;font-size:14px;min-height:50px}
+  .bnav a .ni{font-size:20px}
+  .bnav .nb{left:calc(50% - 22px);top:-2px}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -480,6 +567,13 @@ footer a{font-weight:700}
     <span>學習紀錄只存在這台裝置的瀏覽器裡，不需要註冊。</span>
   </footer>
 </div>
+<nav class="bnav" id="bnav" aria-label="主要選單">
+  <a href="#/" data-n="home"><span class="ni" aria-hidden="true">🏠</span>首頁</a>
+  <a href="#/adv" data-n="adv"><span class="ni" aria-hidden="true">🗺️</span>闖關</a>
+  <a href="#/top" data-n="top"><span class="ni" aria-hidden="true">🌀</span>陀螺</a>
+  <a href="#/wrong" data-n="wrong"><span class="ni" aria-hidden="true">📒</span>錯題本<span class="nb" id="nbWrong"></span></a>
+  <a href="#/stickers" data-n="stk"><span class="ni" aria-hidden="true">🎁</span>貼紙</a>
+</nav>
 
 <script src="data/math_units.js?v=68758f94"></script>
 <script>var BANK=[];</script>
@@ -536,7 +630,11 @@ const today=()=>{const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+
 /* ================= 學習紀錄（只存在這台裝置） ================= */
 const KEY='chifoo.v1';
 let S={grade:3,xp:0,stars:0,best:{},stickers:[],wrong:[],days:[],mute:false};
-try{const v=JSON.parse(localStorage.getItem(KEY)||'null');if(v)S=Object.assign(S,v)}catch(e){}
+try{const v=JSON.parse(localStorage.getItem(KEY)||'null');if(v){S=Object.assign(S,v);
+  // 舊存檔相容：以前沒有 gradeSet 欄位，只要玩過（有經驗值、練習天數或星星紀錄）就當作已選過年級
+  if(S.gradeSet==null&&(S.xp>0||(S.days&&S.days.length)||Object.keys(S.best||{}).length||S.adv||S.top))S.gradeSet=true}}catch(e){}
+/* S.gradeSet＝選過年級（首頁只顯示「三年級 ▾」小按鈕）；S.last＝最後一次的活動 {k:'unit'|'adv'|'top'|'daily',id?,s?,t}（給「繼續上次」用） */
+function setLast(o){S.last=Object.assign(o,{t:Date.now()});save()}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
 function streak(){const set=new Set(S.days);let n=0;const d=new Date();if(!set.has(today()))d.setDate(d.getDate()-1);
   for(;;){const k=d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();if(set.has(k)){n++;d.setDate(d.getDate()-1)}else break}return n}
@@ -681,20 +779,23 @@ function viewHome(){
   const subs=subjOf(g),prog=subs.map(s=>({s,p:advProgress(s,g)}));
   const advS=(prog.filter(x=>x.p.total).sort((a,b)=>b.p.done-a.p.done)[0]||{s:'數學'}).s,advAll=prog.reduce((a,x)=>a+x.p.done,0),advTot=prog.reduce((a,x)=>a+x.p.total,0);
   const R0=S.top||{},topW=R0.wins?(R0.wins.easy||0)+(R0.wins.pro||0)+(R0.wins.champ||0):0;
+  const known=!!S.gradeSet,LI=lastInfo();
   $('#view').innerHTML=`
-  <section class="hero" aria-label="今日進度">
-    <div class="txt"><p class="hello">${greet()}</p><h1>${GZH[g]}年級的小勇士，<br>今天也一起變更厲害！</h1></div>
-    <span class="mascot" aria-hidden="true">🦉</span>
-    <div class="side">
-      <div class="lvcard"><div class="ring" style="--p:${Math.round(into/3)}"><small>Lv</small><b>${lv}</b></div><div class="lvtxt"><b>${LEVELS[lv-1]}</b><div class="bar" role="progressbar" aria-label="經驗值" aria-valuenow="${into}" aria-valuemax="300"><i style="width:${into/3}%"></i></div><span>${into} / 300 經驗值${lv<LEVELS.length?'・下一級：'+LEVELS[lv]:''}</span></div></div>
-      <div class="tiles"><div class="tile"><span class="ti" aria-hidden="true">🔥</span><b>${sk}</b><span>連續天數</span></div><div class="tile"><span class="ti" aria-hidden="true">⭐</span><b>${S.stars}</b><span>星星</span></div><a class="tile" href="#/stickers"><span class="ti" aria-hidden="true">🎁</span><b>${S.stickers.length}</b><span>貼紙 / ${STICKERS.length}</span></a></div>
+  <div class="caps" aria-label="我的進度">
+    <div class="cl">
+      <button class="cap lv" data-stat style="--p:${Math.round(into/3)}" aria-label="等級 ${lv}：${LEVELS[lv-1]}，看詳細"><span class="ci" aria-hidden="true"><span>Lv</span></span><b>${lv}</b></button>
+      <button class="cap" data-stat aria-label="連續練習 ${sk} 天，看詳細"><span class="ci" aria-hidden="true">🔥</span><b>${sk}</b></button>
+      <button class="cap" data-stat aria-label="星星 ${S.stars} 顆，看詳細"><span class="ci" aria-hidden="true">⭐</span><b>${S.stars}</b></button>
+      <button class="cap" data-stat aria-label="貼紙 ${S.stickers.length} 張，看詳細"><span class="ci" aria-hidden="true">🎁</span><b>${S.stickers.length}</b></button>
     </div>
-  </section>
-  <h2><span class="hi" aria-hidden="true">🎒</span>我是幾年級？</h2>
-  <div class="grades seg" role="group" aria-label="年級">${[1,2,3,4,5,6].map(n=>`<button data-g="${n}" aria-pressed="${n===g}" aria-label="${GZH[n]}年級"><b>${GZH[n]}</b><small>年級</small></button>`).join('')}</div>
-  <h2><span class="hi" aria-hidden="true">📚</span>選一科開始練習<small>${GZH[g]}年級</small></h2>
-  <div class="subjects">${prog.map(({s,p})=>{const us=unitsFor(s,g);const got=us.reduce((a,u)=>a+(S.best[u.id]||0),0),mx=Math.max(1,us.length*3);
-    return`<button class="subj tap" style="${tintVars(s)}" data-s="${s}"><span class="ic" aria-hidden="true">${SUBJ[s].ic}</span><b>${s}</b><span class="meta">${us.length} 個單元・⭐ ${got}</span><div class="mini" aria-hidden="true"><i style="width:${Math.min(100,got/mx*100)}%"></i></div>${p.total?`<span class="advp">🗺️ 闖關 ${p.done}/${p.total}</span>`:''}</button>`}).join('')}</div>
+    ${known?`<button class="gpill" id="gPill" aria-haspopup="dialog" aria-label="目前${GZH[g]}年級，按這裡換年級">${GZH[g]}年級 <i aria-hidden="true">▼</i></button>`:''}
+  </div>
+  ${known?'':`<section class="welcome" aria-label="選年級"><p>👋 歡迎！先選你的年級<small>選一次就會記住，之後一打開就能練習（隨時可以改）</small></p>
+    <div class="grades seg" role="group" aria-label="年級">${[1,2,3,4,5,6].map(n=>`<button data-g="${n}" aria-pressed="${n===g}" aria-label="${GZH[n]}年級"><b>${GZH[n]}</b><small>年級</small></button>`).join('')}</div></section>`}
+  ${LI?`<a class="cont" href="${LI.h}" id="goCont"><span class="ci" aria-hidden="true">${LI.ic}</span><span class="t"><small>▶ 繼續上次</small><b>${esc(LI.t)}</b></span><span class="pl" aria-hidden="true">▶</span></a>`:''}
+  <h2 class="h2s">${greet()} 今天練哪一科？<small class="hint">${GZH[g]}年級</small></h2>
+  <div class="subjects2 n${prog.length}" style="--n:${prog.length}">${prog.map(({s})=>{const us=unitsFor(s,g);const got=us.reduce((a,u)=>a+(S.best[u.id]||0),0),mx=Math.max(1,us.length*3);
+    return`<button class="stile tap" style="${tintVars(s)}" data-s="${s}" aria-label="${s}，${us.length} 個單元，已拿 ${got} 顆星"><span class="ic" aria-hidden="true">${SUBJ[s].ic}</span><b>${s}</b><span class="meta" aria-hidden="true">${us.length} 單元・⭐${got}</span><span class="mini" aria-hidden="true"><i style="width:${Math.min(100,got/mx*100)}%"></i></span></button>`}).join('')}</div>
   <h2><span class="hi" aria-hidden="true">🚀</span>今天也來挑戰</h2>
   <div class="row">
     <button class="big daily tap" id="goDaily"><span class="ic" aria-hidden="true">🎯</span><div><b>每日挑戰</b><span class="d">${GZH[g]}年級各科混合 10 題，天天練最有效</span></div><span class="go" aria-hidden="true">▶</span></button>
@@ -707,12 +808,61 @@ function viewHome(){
   <h2><span class="hi" aria-hidden="true">💌</span>覺得好用嗎？</h2>
   <div class="share"><button class="sh1" id="shareBtn">分享給其他爸爸媽媽</button><a class="sh2" href="https://social-plugins.line.me/lineit/share?url=${encodeURIComponent('https://wade-chuang.github.io/chifoo/')}" target="_blank" rel="noopener">LINE 分享</a></div>
   <p class="hint" id="shareMsg" aria-live="polite"></p>`;
-  document.querySelectorAll('.grades button').forEach(b=>b.onclick=()=>{S.grade=+b.dataset.g;save();header();viewHome()});
-  document.querySelectorAll('.subj').forEach(b=>b.onclick=()=>location.hash='#/s/'+encodeURIComponent(b.dataset.s));
+  document.querySelectorAll('.welcome .grades button').forEach(b=>b.onclick=()=>{S.grade=+b.dataset.g;S.gradeSet=true;save();header();viewHome()});
+  if($('#gPill'))$('#gPill').onclick=()=>gradeSheet(viewHome);
+  {const cl=$('.caps .cl'),f=()=>cl.classList.toggle('more',cl.scrollLeft+cl.clientWidth<cl.scrollWidth-2);f();cl.onscroll=f}
+  document.querySelectorAll('[data-stat]').forEach(b=>b.onclick=statSheet);
+  document.querySelectorAll('.stile').forEach(b=>b.onclick=()=>location.hash='#/s/'+encodeURIComponent(b.dataset.s));
   $('#goDaily').onclick=()=>location.hash='#/daily';$('#goWrong').onclick=()=>location.hash='#/wrong';$('#goStk').onclick=()=>location.hash='#/stickers';$('#goTop').onclick=()=>location.hash='#/top';
   $('#shareBtn').onclick=()=>{const u='https://wade-chuang.github.io/chifoo/';if(navigator.share)navigator.share({title:document.title,url:u}).catch(()=>{});
     else if(navigator.clipboard)navigator.clipboard.writeText(u).then(()=>$('#shareMsg').textContent='已複製網址，貼到 LINE 給朋友吧！')};
 }
+
+/* ---------- 繼續上次 ---------- */
+function advCur(s,g){const P=advProgress(s,g);return{P,cur:P.L.levels.findIndex((l,i)=>!(P.b[l.id]>0)&&advUnlocked(P.L,P.b,i))}}
+function lastInfo(){const L=S.last;if(!L||!L.k)return null;
+  if(L.k==='unit'){const u=unitById(L.id);if(!u)return null;return{h:'#/q/'+encodeURIComponent(L.id),ic:SUBJ[u.s]?SUBJ[u.s].ic:'📘',t:u.s+'・'+u.name}}
+  if(L.k==='adv'){if(!subjOf(S.grade).includes(L.s))return null;const {P,cur}=advCur(L.s,S.grade);if(!P.total)return null;
+    return{h:'#/adv/'+encodeURIComponent(L.s)+(cur>=0?'/'+cur:''),ic:ADV[L.s].ic,t:L.s+'闖關・'+(cur<0?'整張地圖都闖完了':P.L.levels[cur].type==='b'?'魔王關':'第 '+(cur+1-Math.floor(cur/5))+' 關')}}
+  if(L.k==='top')return{h:'#/top',ic:'🌀',t:'陀螺大對戰'};
+  if(L.k==='daily')return{h:'#/daily',ic:'🎯',t:'每日挑戰（'+GZH[S.grade]+'年級）'};
+  return null}
+
+/* ---------- 底部彈出視窗 ---------- */
+function closeSheet(){const b=document.querySelector('.sheet-bg');if(!b)return;b.remove();document.removeEventListener('keydown',sheetKey);if(closeSheet.ret&&closeSheet.ret.focus)closeSheet.ret.focus({preventScroll:true})}
+function sheetKey(e){if(e.key==='Escape')closeSheet()}
+function openSheet(title,html){closeSheet();closeSheet.ret=document.activeElement;
+  const bg=document.createElement('div');bg.className='sheet-bg';
+  bg.innerHTML=`<div class="sheet" role="dialog" aria-modal="true" aria-label="${esc(title)}"><div class="sh"><b>${title}</b><button class="x" data-close aria-label="關閉">✕</button></div>${html}</div>`;
+  bg.onclick=e=>{if(e.target===bg||e.target.closest('[data-close]'))closeSheet()};
+  document.body.appendChild(bg);document.addEventListener('keydown',sheetKey);
+  const f=bg.querySelector('[aria-pressed="true"]')||bg.querySelector('.x');if(f)f.focus({preventScroll:true});return bg}
+function gradeSheet(after){const g=S.grade;
+  const bg=openSheet('🎒 我是幾年級？',`<div class="grades seg" role="group" aria-label="年級">${[1,2,3,4,5,6].map(n=>`<button data-g="${n}" aria-pressed="${n===g}" aria-label="${GZH[n]}年級"><b>${GZH[n]}</b><small>年級</small></button>`).join('')}</div><p class="hint" style="margin:0">換年級後，科目、闖關地圖和每日挑戰都會換成那個年級的。進度不會不見。</p>`);
+  bg.querySelectorAll('.seg button').forEach(b=>b.onclick=()=>{S.grade=+b.dataset.g;S.gradeSet=true;save();closeSheet();header();(after||route)()})}
+function statSheet(){const lv=level(),into=S.xp%300,sk=streak();
+  const bg=openSheet('🏅 我的成就',`<div class="statbox">
+    <div class="lvcard"><div class="ring" style="--p:${Math.round(into/3)}"><small>Lv</small><b>${lv}</b></div><div class="lvtxt"><b>${LEVELS[lv-1]}</b><div class="bar" role="progressbar" aria-label="經驗值" aria-valuenow="${into}" aria-valuemax="300"><i style="width:${into/3}%"></i></div><span>${into} / 300 經驗值${lv<LEVELS.length?'・下一級：'+LEVELS[lv]:''}</span></div></div>
+    <div class="tiles"><div class="tile"><span class="ti" aria-hidden="true">🔥</span><b>${sk}</b><span>連續天數</span></div><div class="tile"><span class="ti" aria-hidden="true">⭐</span><b>${S.stars}</b><span>星星</span></div><a class="tile" href="#/stickers" data-close><span class="ti" aria-hidden="true">🎁</span><b>${S.stickers.length}</b><span>貼紙 / ${STICKERS.length}</span></a></div></div>
+    <p class="hint" style="margin:0">答對題目拿經驗值升級；每天練習，連續天數就會增加。拿到 2 顆星以上可以抽 3D 動物貼紙！</p>
+    <div class="btns" style="justify-content:stretch"><a class="btn primary" href="#/stickers" data-close style="flex:1">🎁 看貼紙收集冊</a><button class="btn" data-close style="flex:1">好</button></div>`);
+  return bg}
+
+/* ---------- 闖關：選科目 ---------- */
+function viewAdvPick(){
+  const g=S.grade,subs=subjOf(g),lastS=S.last&&S.last.k==='adv'?S.last.s:null;
+  $('#view').innerHTML=`<div class="caps" style="margin-bottom:4px"><h2 style="margin:6px 0;flex:1">🗺️ 選一科闖關</h2><button class="gpill" id="gPill" aria-haspopup="dialog" aria-label="目前${GZH[g]}年級，按這裡換年級">${GZH[g]}年級 <i aria-hidden="true">▼</i></button></div>
+  <p class="hint" style="margin:0 0 12px">每關 8 題、3 顆愛心，每 4 關會遇到魔王。打倒魔王拿徽章和貼紙！</p>
+  <div class="advpick">${subs.map(s=>{const T=ADV[s],{P,cur}=advCur(s,g);if(!P.total)return'';
+    const nx=cur<0?'整張地圖都闖完了 🏆':P.L.levels[cur].type==='b'?'下一關：魔王關':'下一關：第 '+(cur+1-Math.floor(cur/5))+' 關';
+    return`<a class="advgo tap${T.night?' night':''}" href="#/adv/${encodeURIComponent(s)}" style="--abg:${T.bg};--apc:${T.pc};--deco:'${T.boss}'">${s===lastS?'<span class="lt">上次玩到這裡</span>':''}<span class="ic" aria-hidden="true">${T.ic}</span><span><b>${s}・${T.name}</b><small>已過 ${P.done}/${P.total} 關・★ ${P.stars}・${nx}</small><span class="bar" style="display:block" aria-hidden="true"><i style="width:${P.done/P.total*100}%"></i></span></span><span class="go" aria-hidden="true">▶</span></a>`}).join('')||'<div class="empty">關卡正在準備中！</div>'}</div>`;
+  $('#gPill').onclick=()=>gradeSheet(viewAdvPick);
+}
+
+/* ---------- 底部導覽列 ---------- */
+function updNav(n){document.querySelectorAll('#bnav a').forEach(a=>{if(a.dataset.n===n)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+  $('#nbWrong').textContent=S.wrong.length?(S.wrong.length>99?'99+':S.wrong.length):''}
+const playMode=on=>{document.body.classList.toggle('inplay',!!on);if(!on)updNav(updNav.cur)};
 
 function viewSubject(s){
   const g=S.grade,all=unitsFor(s,g),isExam=u=>/-exam$/.test(u.id);
@@ -741,9 +891,9 @@ function viewSubject(s){
 
 /* ---------- 作答 ---------- */
 let Q=null;
-function startQuiz(items,meta){Q={items,i:0,right:0,combo:0,meta,wrongNow:[],hearts:3,hp:100};drawQ()}
+function startQuiz(items,meta){if(!S.gradeSet){S.gradeSet=true;save()}Q={items,i:0,right:0,combo:0,meta,wrongNow:[],hearts:3,hp:100};drawQ()}
 function typeset(el){if(!el.querySelector||!/\$/.test(el.innerHTML))return;const run=()=>MathJax.typesetPromise([el]).catch(()=>{});if(window.__mj)run();else document.addEventListener('mj-ready',run,{once:true})}
-function drawQ(){
+function drawQ(){playMode(true);
   const it=Q.items[Q.i],n=Q.items.length,zon=zyOn()&&!!it.raw,plan=zon?zyPlan(it):null;
   const qhtml=zon?(it.raw.passage?`<span class="passage">${Z(it.raw.passage)}</span>`:'')+Z(it.raw.qq,{skipQuoted:plan.optsZy}):it.q;
   const ohtml=zon&&it.raw.o&&!plan.noOpt?it.raw.o.map(o=>Z(o)):it.opts;
@@ -784,6 +934,7 @@ function answer(k){
 /* pick() 用 math_units.js 裡的同名函式 */
 function next(){if(!Q)return;clearTimeout(Q.auto);if(Q.meta.adv&&Q.hearts<=0)return finish();Q.i++;if(Q.i<Q.items.length)drawQ();else finish()}
 function finish(){
+  playMode(false);
   if(Q.meta.adv)return advFinish();
   if(Q.meta.top)return topChargeEnd();
   const n=Q.items.length,r=Q.right,ratio=r/n,stars=ratio>=1?3:ratio>=.8?2:ratio>=.6?1:0;
@@ -1367,7 +1518,7 @@ function topDraw(T,right,n){const R=topRec();if(!((T.maxc||0)>=6||(n>=5&&right==
   const pool=WPN.filter(w=>w.get==='draw'&&!R.wpn.includes(w.id));
   if(!pool.length){S.stars+=2;return{none:true}}
   const w=pick(pool);R.wpn.push(w.id);return{w}}
-function topChargeEnd(){
+function topChargeEnd(){playMode(false);
   if(TOPCH){clearInterval(TOPCH);TOPCH=null}
   const T=Q.meta.top,B=topBonus(T),R=topRec(),t=topById(R.sel),o=TOPP[R.opp],n=Math.min(Q.items.length,Q.i+(Q.answered?1:0));
   const msg=T.energy>=18?'能量爆表！陀螺發出耀眼的光芒！':T.energy>=10?'充能成功！陀螺轉得呼呼響！':T.energy>=4?'有充到能量，上場試試看吧！':'能量有點少，但還是可以挑戰喔！';
@@ -1400,7 +1551,7 @@ function topSnd(k){if(S.mute)return;try{AC=AC||new (window.AudioContext||window.
   const f={hit:[140,'square',.12],rock:[90,'triangle',.1],hot:[220,'sawtooth',.15],dash:[520,'triangle',.08],sp:[300,'square',.2],tick:[660,'sine',.1],go:[880,'sine',.25],perfect:[1046,'sine',.3]}[k]||[300,'sine',.1];
   o.type=f[1];o.frequency.value=f[0]+(k==='hit'?Math.random()*80:0);gg.gain.setValueAtTime(.08,t0);gg.gain.exponentialRampToValueAtTime(.0001,t0+f[2]);o.connect(gg).connect(AC.destination);o.start(t0);o.stop(t0+f[2]+.01)}catch(e){}}
 function topBattle(ctx){
-  topStop();const R=topRec(),me=topById(R.sel),mw=wById(R.wsel),ok=R.opp,O=TOPP[ok],et=topById(O.top),ew=wById(O.w),A=arById(R.arena),L=lchById(R.lsel),easy=easyMode(),rm=RM();
+  topStop();playMode(true);const R=topRec(),me=topById(R.sel),mw=wById(R.wsel),ok=R.opp,O=TOPP[ok],et=topById(O.top),ew=wById(O.w),A=arById(R.arena),L=lchById(R.lsel),easy=easyMode(),rm=RM();
   $('#view').innerHTML=`<a class="back" href="#/top">← 離開對戰</a>
   <section class="arena">
     <div class="bhud"><div class="side me"><span>${me.ic} 我的${me.name}</span><div class="hp"><i id="hpMe" style="width:100%"></i></div></div>
@@ -1527,7 +1678,7 @@ function topBattle(ctx){
 }
 function topResult(st){
   const R=topRec(),W=st.W,end=st.end,win=end.win,k=st.ok,O=TOPP[k],ctx=st.ctx,first=win&&!R.wins[k];
-  st.dead=true;cancelAnimationFrame(st.raf);if(st.off)st.off();TOPRUN=null;
+  st.dead=true;cancelAnimationFrame(st.raf);if(st.off)st.off();TOPRUN=null;playMode(false);
   const arBefore=ARENAS.filter(arenaOpen).map(a=>a.id),lBefore=LCH.filter(lchOpen).map(l=>l.id);
   R.plays++;if(win){R.wins[k]++;R.aw[st.A.id]=(R.aw[st.A.id]||0)+1}else R.losses++;
   if(st.lres&&st.lres.perfect)R.ach.perfect++;if(win&&end.hz)R.ach.hazard++;
@@ -1580,11 +1731,13 @@ function topResult(st){
 function route(){
   speechSynthesis&&speechSynthesis.cancel();if(Q)clearTimeout(Q.auto);topStop();
   const h=decodeURIComponent(location.hash.slice(1)||'/'),p=h.split('/').filter(Boolean);document.body.classList.remove('home');header();window.scrollTo(0,0);
+  closeSheet();updNav.cur={adv:'adv',top:'top',wrong:'wrong',stickers:'stk'}[p[0]]||'home';playMode(false);
   if(p[0]==='s'&&SUBJ[p[1]])return viewSubject(p[1]);
-  if(p[0]==='q'){const u=unitById(p.slice(1).join('/'));if(u){const items=makeSet(u);if(items.length)return startQuiz(items,{unit:u.id,back:'#/s/'+encodeURIComponent(u.s)})}}
-  if(p[0]==='daily'){const items=dailySet();if(items.length)return startQuiz(items,{back:'#/'})}
-  if(p[0]==='adv'&&SUBJ[p[1]]){if(p[2]!=null&&startAdv(p[1],+p[2]))return;return viewAdv(p[1])}
-  if(p[0]==='top')return viewTop(p[1]&&(subjOf(S.grade).includes(p[1])||p[1]==='mix')?p[1]:null);
+  if(p[0]==='q'){const u=unitById(p.slice(1).join('/'));if(u){const items=makeSet(u);if(items.length){setLast({k:'unit',id:u.id});return startQuiz(items,{unit:u.id,back:'#/s/'+encodeURIComponent(u.s)})}}}
+  if(p[0]==='daily'){const items=dailySet();if(items.length){setLast({k:'daily'});return startQuiz(items,{back:'#/'})}}
+  if(p[0]==='adv'&&!p[1])return viewAdvPick();
+  if(p[0]==='adv'&&SUBJ[p[1]]){setLast({k:'adv',s:p[1]});if(p[2]!=null&&startAdv(p[1],+p[2]))return;return viewAdv(p[1])}
+  if(p[0]==='top'){setLast({k:'top'});return viewTop(p[1]&&(subjOf(S.grade).includes(p[1])||p[1]==='mix')?p[1]:null)}
   if(p[0]==='wrong')return viewWrong();
   if(p[0]==='stickers')return viewStickers();
   viewHome()}
