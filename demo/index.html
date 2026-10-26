@@ -709,11 +709,17 @@ function ttsSay(parts,onEnd,enRate){if(!TTS.ok)return false;ttsStop();const id=T
   parts=(parts||[]).filter(p=>p&&p.t&&/[^\s，。、,.!?？！：:；;…]/.test(p.t));if(!parts.length)return false;
   TTS.playing=true;ttsBtnUpd();const slow=ttsSlow();
   try{if(speechSynthesis.paused)speechSynthesis.resume()}catch(e){}
-  parts.forEach((p,i)=>{try{const u=new SpeechSynthesisUtterance(p.t.trim());
-    if(p.lang==='en'){u.lang='en-US';if(TTS.en)u.voice=TTS.en;u.rate=enRate||(slow?.7:.9)}
+  const mk=p=>{const u=new SpeechSynthesisUtterance(p.t.trim());
+    if(p.lang==='en'){u.lang='en-US';if(TTS.en)u.voice=TTS.en;u.rate=enRate||(slow?.75:.9)}
     else{const v=TTS.zh||TTS.zhAlt;u.lang=v?v.lang:'zh-TW';if(v)u.voice=v;u.rate=slow?.75:1}
-    if(i===parts.length-1)u.onend=u.onerror=()=>{if(TTS.id!==id)return;TTS.playing=false;ttsBtnUpd();if(onEnd)onEnd()};
-    speechSynthesis.speak(u)}catch(e){}});
+    u.pitch=1;u.volume=1;return u};
+  // 一段唸完再唸下一段；中英切換時停 0.35 秒，聲音不會突然跳換
+  const done=()=>{if(TTS.id!==id)return;TTS.playing=false;ttsBtnUpd();if(onEnd)onEnd()};
+  const run=i=>{if(TTS.id!==id)return;if(i>=parts.length)return done();
+    try{const u=mk(parts[i]);let fired=false;
+      const next=()=>{if(fired)return;fired=true;const gap=(parts[i+1]&&parts[i+1].lang!==parts[i].lang)?350:120;setTimeout(()=>run(i+1),gap)};
+      u.onend=next;u.onerror=next;speechSynthesis.speak(u)}catch(e){run(i+1)}};
+  run(0);
   return true}
 /* 很多瀏覽器（尤其 iPhone/iPad Safari）要使用者先點一下畫面才能發聲：第一次點擊時「解鎖」，之後才自動唸 */
 function ttsUnlock(){if(TTS.unlocked)return;TTS.unlocked=true;
@@ -787,9 +793,13 @@ function speechParts(it){
     const wordOpts=opts.some(o=>/「/.test(o)||(cjkLen(o)>0&&cjkLen(o)<=4));
     if(optsZy)parts.push({t:'選項是注音，請自己看一看。',lang:'zh'});
     else if(askSound&&!toneOpts&&wordOpts)parts.push({t:'選項請自己看喔。',lang:'zh'});
-    else opts.forEach((o,k)=>{const L='ABCD'[k],sg=segs(spk(o,math),enAll);if(!sg.length)return;
-      if(sg.every(p=>p.lang==='en'))parts.push({t:L+'. '+sg.map(p=>p.t).join(' ')+'.',lang:'en'});
-      else{if(sg[0].lang==='zh')sg[0]={t:L+'，'+sg[0].t,lang:'zh'};else sg.unshift({t:L+'，',lang:'zh'});sg[sg.length-1].t+='。';parts.push(...sg)}})}
+    else{const segsAll=opts.map(o=>segs(spk(o,math),enAll));
+      if(segsAll.every(sg=>sg.length&&sg.every(p=>p.lang==='en'))){
+        // 選項全是英文：先用中文說一次「選項依序是」，再用英文聲音一口氣唸完（只切換一次聲音）
+        parts.push({t:'選項依序是',lang:'zh'});parts.push({t:segsAll.map(sg=>sg.map(p=>p.t).join(' ').replace(/[.。]$/,'')).join(', ... ')+'.',lang:'en'})}
+      else segsAll.forEach((sg,k)=>{const L='ABCD'[k];if(!sg.length)return;
+        // 選項代號 A/B/C/D 一律用中文聲音唸，不切換到英文聲音
+        if(sg[0].lang==='zh')sg[0]={t:L+'，'+sg[0].t,lang:'zh'};else sg.unshift({t:L+'，',lang:'zh'});sg[sg.length-1].t+=sg[sg.length-1].lang==='en'?'.':'。';parts.push(...sg)})}}
   // 相鄰同語言合併，減少切換停頓
   return parts.reduce((a,p)=>{const l=a[a.length-1];if(l&&l.lang===p.lang)l.t+=(p.lang==='en'?' ':'')+p.t;else a.push({t:p.t,lang:p.lang});return a},[])}
 function readQ(){if(!Q||!Q.items[Q.i])return;ttsSay(speechParts(Q.items[Q.i]))}
