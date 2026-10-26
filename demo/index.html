@@ -589,6 +589,7 @@ body:not(.inplay) .tgobar{bottom:calc(var(--navh) + env(safe-area-inset-bottom,0
 @media (max-width:400px){#zyBtn .zl{display:none}}
 @media (max-width:420px){body.multi .top .brandbox{display:none}}   /* 手機＋多人：頭像暱稱優先，品牌字先藏（左邊「啟」logo 還在） */
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+.qtext.tapread{cursor:pointer}.qtext.tapread:active{opacity:.75}
 </style>
 </head>
 <body>
@@ -702,7 +703,8 @@ const ttsAuto=()=>S.tts&&S.tts.auto!=null?!!S.tts.auto:S.grade<=2;      // 一�
 const ttsSlow=()=>S.tts&&S.tts.rate?S.tts.rate==='slow':S.grade<=2;     // 一、二年級預設慢速
 function ttsSet(k,v){S.tts=Object.assign({auto:null,rate:null},S.tts,{[k]:v});save()}
 function ttsBtnUpd(){const b=document.getElementById('readBtn');if(!b)return;b.classList.toggle('on',TTS.playing);b.setAttribute('aria-pressed',TTS.playing);
-  b.innerHTML=TTS.playing?(b.dataset.zy?Z('⏹ 停止'):'⏹ 停止'):(b.dataset.zy?Z('🔊 唸題目'):'🔊 唸題目')}
+  const idle=(Q&&Q.readDone)?'🔁 再唸一次':'🔊 唸題目';
+  b.innerHTML=TTS.playing?(b.dataset.zy?Z('⏹ 停止'):'⏹ 停止'):(b.dataset.zy?Z(idle):idle)}
 function ttsStop(){TTS.pending=null;if(!TTS.ok)return;TTS.id++;TTS.playing=false;try{speechSynthesis.cancel()}catch(e){}ttsBtnUpd()}
 /* parts＝[{t,lang:'zh'|'en'}]：依序排進語音佇列 */
 function ttsSay(parts,onEnd,enRate){if(!TTS.ok)return false;ttsStop();const id=TTS.id;
@@ -773,7 +775,7 @@ function segs(s,enAll){const out=[],re=/[A-Za-z][A-Za-z'’\-]*(?:[\s,.!?;:]+[A-
   return out.filter(p=>/[^\s，。、,.!?？！：:；;]/.test(p.t))}
 const ZY_ASK=/注音|讀音|聲調|第幾聲|怎麼念|怎麼讀|念作|讀作|念什麼|讀什麼|發音|拼起來|拼音|破音|同音/;
 /* 「看注音選國字」「問讀音」這類題目：「」裡的字不唸（唸了就等於把讀音說出來）；選項是單字/注音也不唸 */
-function speechParts(it){
+function speechParts(it,onlyQ){
   const uu=it.src?unitById(it.src):null,subj=uu?uu.s:'',enAll=subj==='英語'||/^v:/.test(it.src||''),math=subj==='數學'||!!it.math;
   const r=it.raw||{qq:it.q,o:it.picOpts?null:(it.opts||[]).map(htmlText),passage:null};
   const qq=String(r.qq||''),opts=it.picOpts?null:(r.o||null);
@@ -786,7 +788,7 @@ function speechParts(it){
     .replace(/[ㄅ-ㄩ][ㄅ-ㄩ˙ˊˇˋ]*/g,'這個注音'):qq;
   parts.push(...segs(spk(q,math),false));      // 題目句子裡：2 個字母以上才換英文聲音（「大寫 B」的 B 用中文聲音念比較順）
   if(it.say&&!qq.toLowerCase().includes(String(it.say).toLowerCase()))parts.push({t:it.say,lang:'en'});   // 題目裡已經有這個英文字就不重複
-  if(opts&&opts.length){
+  if(opts&&opts.length&&!onlyQ){
     const last=parts[parts.length-1];if(last&&!/[。？！?!.，,：:]\s*$/.test(last.t))last.t+=last.lang==='en'?'.':'。';
     const cjkLen=o=>(String(o).match(/[一-鿿]/g)||[]).length;
     // 選項是注音、或問讀音而選項是字詞（含「」標記或 4 個字以內）→ 不唸選項，免得把讀音說出來
@@ -802,7 +804,7 @@ function speechParts(it){
         if(sg[0].lang==='zh')sg[0]={t:L+'，'+sg[0].t,lang:'zh'};else sg.unshift({t:L+'，',lang:'zh'});sg[sg.length-1].t+=sg[sg.length-1].lang==='en'?'.':'。';parts.push(...sg)})}}
   // 相鄰同語言合併，減少切換停頓
   return parts.reduce((a,p)=>{const l=a[a.length-1];if(l&&l.lang===p.lang)l.t+=(p.lang==='en'?' ':'')+p.t;else a.push({t:p.t,lang:p.lang});return a},[])}
-function readQ(){if(!Q||!Q.items[Q.i])return;ttsSay(speechParts(Q.items[Q.i]))}
+function readQ(onlyQ){if(!Q||!Q.items[Q.i])return;const it=Q.items[Q.i];ttsSay(speechParts(it,onlyQ),()=>{if(Q&&Q.items[Q.i]===it){Q.readDone=true;ttsBtnUpd()}})}
 
 /* ================= 注音（一年級預設開、二年級可以自己開） ================= */
 const zyOn=()=>S.grade<=2&&(S.zy==null?S.grade===1:!!S.zy);
@@ -1169,11 +1171,12 @@ function drawQ(){playMode(true);
     <div id="fb"></div>
   </section>`;
   if(it.math)typeset($('.card'));
-  Q.answered=false;
+  Q.answered=false;Q.readDone=false;
   ttsStop();clearTimeout(Q.tts);
   const autoRead=TTS.ok&&ttsAuto();
   if(it.say){$('#sayBtn').onclick=()=>speak(it.say);if(!autoRead||!TTS.unlocked)Q.tts=setTimeout(()=>speak(it.say),300)}
   if(TTS.ok){$('#readBtn').onclick=()=>{if(TTS.playing)ttsStop();else readQ()};
+    const qt=$('.qtext');if(qt){qt.classList.add('tapread');qt.title='點題目可以再聽一次題目';qt.onclick=e=>{if(e.target.closest('a,button'))return;readQ(true)}}
     $('#ttsAuto').onclick=()=>{ttsSet('auto',!ttsAuto());const b=$('#ttsAuto');b.setAttribute('aria-pressed',ttsAuto());b.textContent='自動唸：'+(ttsAuto()?'開':'關');if(ttsAuto())readQ();else ttsStop()}}
   if(autoRead){const go=()=>{const h=$('#ttsHint');if(h)h.remove();if(Q&&Q.items[Q.i]===it&&!Q.answered)readQ()};
     if(TTS.unlocked)Q.tts=setTimeout(go,350);else TTS.pending=go}
