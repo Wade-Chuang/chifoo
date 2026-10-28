@@ -587,6 +587,57 @@ body:not(.inplay) .tgobar{bottom:calc(var(--navh) + env(safe-area-inset-bottom,0
 .ttsnote{font-size:12px;color:var(--muted);font-weight:700}
 @media (max-width:400px){#zyBtn .zl{display:none}}
 @media (max-width:420px){body.multi .top .brandbox{display:none}}   /* 手機＋多人：頭像暱稱優先，品牌字先藏（左邊「啟」logo 還在） */
+/* ===== 小工具・遊戲 ===== */
+.tgrid{display:grid;grid-template-columns:1fr;gap:10px;margin-top:12px}
+@media (min-width:600px){.tgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:900px){.tgrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.tcard{position:relative;background:var(--paper);border-radius:var(--r-l);padding:12px 14px;box-shadow:var(--shadow);display:flex;gap:12px;align-items:center;min-height:84px;text-decoration:none;color:inherit;border-left:6px solid var(--col,var(--sea))}
+.tcard .ic{width:54px;height:54px;border-radius:17px;display:grid;place-items:center;font-size:30px;flex:none;background:var(--tint,var(--t-ma))}
+.tcard>div{flex:1;min-width:0}.tcard b{display:block;font-size:var(--fs-l);font-weight:900;line-height:1.3}
+.tcard .d{display:block;font-size:13px;color:var(--muted);font-weight:500;line-height:1.45}
+.tcard .sj{display:inline-block;font-size:11px;font-weight:900;color:var(--col,var(--sea));background:var(--tint,var(--t-ma));border-radius:99px;padding:0 8px;margin-right:4px}
+.tcard .go{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--bg);font-weight:900;flex:none;color:var(--muted)}
+.tcard.other{opacity:.72}
+.toolbox{margin-top:8px;min-height:200px}
+.tfilter{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px}
+.toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:60;max-width:min(460px,calc(100% - 32px));background:var(--ink);color:var(--bg);font-weight:900;font-size:15px;padding:10px 18px;border-radius:16px;box-shadow:var(--sh-3);text-align:center;animation:rise .3s var(--ease)}
+body.inplay .toast{bottom:calc(20px + env(safe-area-inset-bottom,0px))}
+/* ===== 節日限定活動（萬聖節：紫＋橘） ===== */
+.evbar{position:relative;overflow:hidden;display:flex;align-items:center;gap:10px;width:100%;margin:2px 0 8px;padding:8px 12px;min-height:52px;border-radius:18px;text-align:left;color:#fff;
+  background:var(--ev-g,linear-gradient(135deg,#5B2A86,#F2711C));box-shadow:0 4px 0 var(--ev-sh,#33124F),var(--sh-1)}
+.evbar .ei{font-size:30px;line-height:1;flex:none;filter:drop-shadow(0 2px 0 rgba(0,0,0,.25))}
+.evbar .et{flex:1;min-width:0;display:grid;line-height:1.3}
+.evbar .et b{font-size:15.5px;font-weight:900}
+.evbar .et small{font-size:12px;font-weight:700;opacity:.92;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.evbar .ep{flex:none;font:700 13px var(--f-en);background:rgba(255,255,255,.22);border-radius:99px;padding:3px 10px;white-space:nowrap}
+.evbar::after{content:var(--ev-deco,"🦇");position:absolute;right:86px;top:-6px;font-size:22px;opacity:.35;transform:rotate(-14deg);pointer-events:none}
+.evdeco{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.evdeco span{position:absolute;font-size:26px;opacity:.16;animation:evfloat 7s ease-in-out infinite}
+.evdeco span:nth-child(2){animation-delay:-2s;animation-duration:9s}.evdeco span:nth-child(3){animation-delay:-4s}.evdeco span:nth-child(4){animation-delay:-1s;animation-duration:8s}
+body.inplay .evdeco{display:none}
+@keyframes evfloat{50%{transform:translate(12px,-14px) rotate(8deg)}}
+body.ev-on .wrap{position:relative;z-index:1}
+body.ev-halloween{background-image:radial-gradient(circle at 1px 1px,color-mix(in srgb,#7A3FB0 12%,transparent) 1px,transparent 1.5px),linear-gradient(180deg,color-mix(in srgb,#B98AE0 32%,var(--bg)),var(--bg) 360px)}
+body.ev-halloween .bnav a[aria-current="page"]{background:color-mix(in srgb,#F2711C 22%,var(--paper));box-shadow:inset 0 -3px 0 #F2711C}
+body.ev-halloween .logo{background:linear-gradient(135deg,#FFB35C,#F2711C);box-shadow:0 3px 0 #9A3F06,var(--sh-1)}
+.evtasks{display:grid;gap:10px}
+.evtask{display:flex;gap:12px;align-items:center;background:var(--bg);border-radius:16px;padding:10px 12px}
+.evtask>div{flex:1;min-width:0;display:grid;gap:4px}
+.evtask b{font-size:15px}.evtask small{font-size:12px;font-weight:700;color:var(--muted)}
+.evtask .bar{height:10px}.evtask .bar i{background:linear-gradient(90deg,#9B5DE5,#F2711C)}
+.evtask.got{background:color-mix(in srgb,#F2711C 14%,var(--paper))}
+/* 限定貼紙：用 CSS 漸層＋emoji 畫，不用外部圖 */
+.estk{--eb:radial-gradient(circle at 50% 35%,#FFD9A8,#F2711C 70%,#6B2FA0);width:64px;height:64px;flex:none;border-radius:50%;display:grid;place-items:center;font-size:34px;line-height:1;background:var(--eb);border:3px solid #fff;box-shadow:0 0 0 3px var(--ev-c,#7A3FB0),0 6px 12px -4px rgba(0,0,0,.4);position:relative}
+.estk.lock{background:repeating-linear-gradient(45deg,var(--paper2) 0 6px,var(--paper) 6px 12px);box-shadow:0 0 0 2px var(--line);border-style:dashed;border-color:var(--line)}
+.estk.lock span{filter:grayscale(1);opacity:.35}
+.evstk{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px;margin-top:8px}
+.evstk .it{background:var(--paper);border-radius:18px;box-shadow:var(--shadow);padding:10px 6px;display:grid;justify-items:center;gap:6px;text-align:center}
+.evstk .it b{font-size:13px;line-height:1.3}.evstk .it small{font-size:11.5px;font-weight:700;color:var(--muted);line-height:1.3}
+.evstk .it.lock b{color:var(--muted)}
+.evhead{display:flex;align-items:center;gap:8px;margin:18px 0 4px;font-size:16px;font-weight:900}
+.evhead small{font-size:12px;color:var(--muted);font-weight:700}
+.evgot{display:grid;justify-items:center;gap:8px;text-align:center}
+.evgot .estk{width:110px;height:110px;font-size:62px}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 .qtext.tapread{cursor:pointer}.qtext.tapread:active{opacity:.75}
 </style>
@@ -625,7 +676,7 @@ body:not(.inplay) .tgobar{bottom:calc(var(--navh) + env(safe-area-inset-bottom,0
 
 <!-- 首屏只載入小型索引（單元清單、題數）＋英文單字表；題庫、數學出題程式、注音表都在要用時才下載（loadJS） -->
 <script>var BANK=[];</script>
-<script src="data/index.js?v=c63b49c0"></script>
+<script src="data/index.js?v=d7c5fe52"></script>
 <script src="data/english_vocab.js?v=e0a3e917"></script>
 <script>
 /* ================= 基本設定 ================= */
@@ -954,7 +1005,8 @@ function viewHome(){
   const advS=(prog.filter(x=>x.p.total).sort((a,b)=>b.p.done-a.p.done)[0]||{s:'數學'}).s,advAll=prog.reduce((a,x)=>a+x.p.done,0),advTot=prog.reduce((a,x)=>a+x.p.total,0);
   const R0=S.top||{},topW=R0.wins?(R0.wins.easy||0)+(R0.wins.pro||0)+(R0.wins.champ||0):0;
   const known=!!S.gradeSet,LI=lastInfo();
-  $('#view').innerHTML=`
+  const nT=toolList().filter(t=>(t.grades||[]).includes(g)).length;
+  $('#view').innerHTML=`${evBar()}
   <div class="caps" aria-label="我的進度">
     <div class="cl">
       <button class="cap lv" data-stat style="--p:${Math.round(into/3)}" aria-label="等級 ${lv}：${LEVELS[lv-1]}，看詳細"><span class="ci" aria-hidden="true"><span>Lv</span></span><b>${lv}</b></button>
@@ -975,6 +1027,7 @@ function viewHome(){
     <button class="big daily tap" id="goDaily"><span class="ic" aria-hidden="true">🎯</span><div><b>每日挑戰</b><span class="d">${GZH[g]}年級各科混合 10 題，天天練最有效</span></div><span class="go" aria-hidden="true">▶</span></button>
     <a class="big tap" href="#/adv/${encodeURIComponent(advS)}" style="--g:linear-gradient(135deg,#9BE38A,#3E8B3A)"><span class="ic" aria-hidden="true">🗺️</span><div><b>闖關冒險</b><span class="d">${advTot?`已過 ${advAll} / ${advTot} 關・打魔王拿徽章`:'一關一關打倒魔王'}</span></div><span class="go" aria-hidden="true">▶</span></a>
     <button class="big tap" id="goTop" style="--g:var(--g-cool)"><span class="ic" aria-hidden="true">🌀</span><div><b>陀螺大對戰</b><span class="d">答題幫陀螺充能${topW?`・已贏 ${topW} 場`:'，挑戰電腦對手'}</span></div><span class="go" aria-hidden="true">▶</span></button>
+    ${toolList().length?`<a class="big tap" href="#/tools" style="--g:linear-gradient(135deg,#FFD873,#F2994A)"><span class="ic" aria-hidden="true">🧰</span><div><b>小工具・遊戲</b><span class="d">${nT?nT+' 個適合'+GZH[g]+'年級的小工具・邊玩邊學':'邊玩邊學的小工具'}</span></div><span class="go" aria-hidden="true">▶</span></a>`:''}
     <button class="big tap" id="goWrong" style="--g:linear-gradient(135deg,#FF9F8F,#D9483B)"><span class="ic" aria-hidden="true">📒</span><div><b>錯題本</b><span class="d">${S.wrong.length?S.wrong.length+' 題等你再挑戰':'目前沒有錯題，太厲害了！'}</span></div><span class="go" aria-hidden="true">▶</span></button>
     <button class="big tap" id="goStk" style="--g:linear-gradient(135deg,#FFB5D5,#CF3F86)"><span class="ic" aria-hidden="true">🎁</span><div><b>貼紙收集冊</b><span class="d">已收集 ${S.stickers.length} / ${STICKERS.length} 張 3D 動物貼紙</span></div><span class="go" aria-hidden="true">▶</span></button>
     <a class="big tap" href="english/" style="--g:var(--g-en)"><span class="ic" aria-hidden="true">🔤</span><div><b>英文小學堂</b><span class="d">點圖聽發音・慢速故事・聽音找圖</span></div><span class="go" aria-hidden="true">▶</span></a>
@@ -990,6 +1043,8 @@ function viewHome(){
   $('#goDaily').onclick=()=>location.hash='#/daily';$('#goWrong').onclick=()=>location.hash='#/wrong';$('#goStk').onclick=()=>location.hash='#/stickers';$('#goTop').onclick=()=>location.hash='#/top';
   $('#shareBtn').onclick=()=>{const u='https://wade-chuang.github.io/chifoo/';if(navigator.share)navigator.share({title:document.title,url:u}).catch(()=>{});
     else if(navigator.clipboard)navigator.clipboard.writeText(u).then(()=>$('#shareMsg').textContent='已複製網址，貼到 LINE 給朋友吧！')};
+  if($('#evBar'))$('#evBar').onclick=evSheet;
+  if(!(PR.shared&&gatePending))evGotSheet();
   maybeGate();
 }
 
@@ -1000,6 +1055,7 @@ function lastInfo(){const L=S.last;if(!L||!L.k)return null;
   if(L.k==='adv'){if(!subjOf(S.grade).includes(L.s))return null;const {P,cur}=advCur(L.s,S.grade);if(!P.total)return null;
     return{h:'#/adv/'+encodeURIComponent(L.s)+(cur>=0?'/'+cur:''),ic:ADV[L.s].ic,t:L.s+'闖關・'+(cur<0?'整張地圖都闖完了':P.L.levels[cur].type==='b'?'魔王關':'第 '+(cur+1-Math.floor(cur/5))+' 關')}}
   if(L.k==='top')return{h:'#/top',ic:'🌀',t:'陀螺大對戰'};
+  if(L.k==='tool'){const t=toolList().find(x=>x.id===L.id);return t?{h:'#/tools/'+encodeURIComponent(t.id),ic:t.icon||'🧰',t:'小工具・'+t.title}:null}
   if(L.k==='daily')return{h:'#/daily',ic:'🎯',t:'每日挑戰（'+GZH[S.grade]+'年級）'};
   return null}
 
@@ -1027,7 +1083,7 @@ function statSheet(){const lv=level(),into=S.xp%300,sk=streak();
 function ensureZy(){if(!zyOn()||typeof ZY_TEXT!=='undefined'||ensureZy.p)return;
   ensureZy.p=loadJS('zhuyin.js').then(()=>{
     if(Q&&!Q.answered&&document.querySelector('.qtext'))return drawQ();          // 題目畫面：重畫這一題（加上注音）
-    if(!/^#\/(q\/|daily)|^#\/adv\/[^/]+\/\d/.test(location.hash)&&!document.body.classList.contains('inplay')&&!document.querySelector('.result'))route()
+    if(!/^#\/(q\/|daily|tools\/)|^#\/adv\/[^/]+\/\d/.test(location.hash)&&!document.body.classList.contains('inplay')&&!document.querySelector('.result'))route()
   },()=>{ensureZy.p=null})}
 
 /* ---------- 切換小朋友 ---------- */
@@ -1102,7 +1158,7 @@ function viewAdvPick(){
   const g=S.grade,subs=subjOf(g),lastS=S.last&&S.last.k==='adv'?S.last.s:null;
   $('#view').innerHTML=`<div class="caps" style="margin-bottom:4px"><h2 style="margin:6px 0;flex:1">🗺️ 選一科闖關 ${whoTag()}</h2><button class="gpill" id="gPill" aria-haspopup="dialog" aria-label="目前${GZH[g]}年級，按這裡換年級">${GZH[g]}年級 <i aria-hidden="true">▼</i></button></div>
   <p class="hint" style="margin:0 0 12px">每關 8 題、3 顆愛心，每 4 關會遇到魔王。打倒魔王拿徽章和貼紙！</p>
-  <div class="advpick">${subs.map(s=>{const T=ADV[s],{P,cur}=advCur(s,g);if(!P.total)return'';
+  <div class="advpick">${subs.map(s=>{const T=advT(s),{P,cur}=advCur(s,g);if(!P.total)return'';
     const nx=cur<0?'整張地圖都闖完了 🏆':P.L.levels[cur].type==='b'?'下一關：魔王關':'下一關：第 '+(cur+1-Math.floor(cur/5))+' 關';
     return`<a class="advgo tap${T.night?' night':''}" href="#/adv/${encodeURIComponent(s)}" style="--abg:${T.bg};--apc:${T.pc};--deco:'${T.boss}'">${s===lastS?'<span class="lt">上次玩到這裡</span>':''}<span class="ic" aria-hidden="true">${T.ic}</span><span><b>${s}・${T.name}</b><small>已過 ${P.done}/${P.total} 關・★ ${P.stars}・${nx}</small><span class="bar" style="display:block" aria-hidden="true"><i style="width:${P.done/P.total*100}%"></i></span></span><span class="go" aria-hidden="true">▶</span></a>`}).join('')||'<div class="empty">關卡正在準備中！</div>'}</div>`;
   $('#gPill').onclick=()=>gradeSheet(viewAdvPick);
@@ -1184,7 +1240,7 @@ function answer(k){
   const it=Q.items[Q.i],ok=k===it.ans,bs=document.querySelectorAll('.opt');ttsStop();clearTimeout(Q.tts);
   bs.forEach(b=>b.disabled=true);bs[it.ans].classList.add('ok');if(!ok)bs[k].classList.add('no');
   beep(ok);
-  if(ok){Q.right++;Q.combo++;if(Q.meta.fromWrong)S.wrong=S.wrong.filter(w=>w.q!==it.q)}
+  if(ok){Q.right++;Q.combo++;if(Q.meta.fromWrong)S.wrong=S.wrong.filter(w=>w.q!==it.q);evProgress('r',1)}
   else{Q.combo=0;Q.wrongNow.push(it);if(!S.wrong.some(w=>w.q===it.q))S.wrong.unshift(it);S.wrong=S.wrong.slice(0,120)}
   save();
   $('#combo').textContent=Q.combo>=2?'🔥 連對 '+Q.combo:'';
@@ -1239,7 +1295,8 @@ function viewWrong(){
 function viewStickers(){
   $('#view').innerHTML=`<a class="back" href="#/">← 回首頁</a>
   <section class="phead" style="--g:linear-gradient(135deg,#FFB5D5,#CF3F86)"><span class="ic" aria-hidden="true">🎁</span><div><h1>貼紙收集冊 ${whoTag()}</h1><span class="meta">練習拿到 2 顆星以上就能抽一張・點貼紙聽英文</span></div><div class="num"><b>${S.stickers.length}</b><span>/ ${STICKERS.length} 張</span></div><div class="bar" aria-hidden="true"><i style="width:${S.stickers.length/STICKERS.length*100}%"></i></div></section>
-  <div class="stickers" style="margin-top:12px">${STICKERS.map(s=>{const has=S.stickers.includes(s.id);return`<button class="stk${has?'':' lock'}" data-w="${has?esc(s.name):''}" aria-label="${has?esc(s.name+' '+s.zh):'還沒收集到'}"><img src="${stkSrc(s.id)}" alt="" loading="lazy"></button>`}).join('')}</div>`;
+  ${evStkSection()}<h3 class="evhead">🐾 3D 動物貼紙 <small>${S.stickers.length} / ${STICKERS.length} 張</small></h3>
+  <div class="stickers" style="margin-top:8px">${STICKERS.map(s=>{const has=S.stickers.includes(s.id);return`<button class="stk${has?'':' lock'}" data-w="${has?esc(s.name):''}" aria-label="${has?esc(s.name+' '+s.zh):'還沒收集到'}"><img src="${stkSrc(s.id)}" alt="" loading="lazy"></button>`}).join('')}</div>`;
   document.querySelectorAll('.stk').forEach(b=>b.onclick=()=>{if(b.dataset.w)speak(b.dataset.w)});
 }
 
@@ -1272,7 +1329,7 @@ function bossSet(pool){const per=Math.ceil(10/pool.length)+1,sets=pool.map(u=>ma
   for(let k=0;out.length<10&&sets.some(x=>x.length);k=(k+1)%sets.length){const it=sets[k].shift();if(it)out.push(it)}
   return shuffleArr(out)}
 function viewAdv(s){
-  const g=S.grade,T=ADV[s],P=advProgress(s,g),L=P.L,b=P.b;
+  const g=S.grade,T=advT(s),P=advProgress(s,g),L=P.L,b=P.b;
   if(!L.levels.length){$('#view').innerHTML=`<a class="back" href="#/s/${encodeURIComponent(s)}">← 回${s}</a><div class="empty">這一科的關卡正在準備中，先去別科闖關吧！</div>`;return}
   // 位置：蜿蜒小路（x 用百分比、y 用 px）
   const pts=[];let y=86;L.levels.forEach((l,i)=>{const x=50+27*Math.sin(i*Math.PI/3);if(l.type==='b')y+=14;pts.push({x,y});y+=l.type==='b'?132:112});
@@ -1316,7 +1373,7 @@ function startAdv(s,i){
     const items=l.type==='b'?bossSet(l.pool.filter(unitReady)):(l.unit.src?makeSet(l.unit,8):[]);if(!items.length)return false;
     startQuiz(items,{back:'#/adv/'+encodeURIComponent(s),adv:{s,i,key:L.key,id:l.id,boss:l.type==='b',name:l.name,num:i+1-Math.floor(i/5),last:i===L.levels.length-1,total:L.levels.length}});
     return true},()=>{if(tok===route.tok)showLoadErr();return true})}
-function advHud(){const A=Q.meta.adv,T=ADV[A.s];
+function advHud(){const A=Q.meta.adv,T=advT(A.s);
   const hearts=[0,1,2].map(k=>`<span${k<Q.hearts?'':' class="lost"'}>❤️</span>`).join('');
   return`<div class="advhud"><span class="hearts" id="hearts" aria-label="剩下 ${Q.hearts} 顆愛心">${hearts}</span><span>${A.boss?'👑 魔王關':'第 '+A.num+' 關'}・${esc(A.boss?T.name:A.name)}</span></div>`+
     (A.boss?`<div class="bossbox"><span class="bossic" id="bossIc" aria-hidden="true">${T.boss}</span><div><b>${T.bossName}</b><div class="hp" role="progressbar" aria-label="魔王血量" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Q.hp}"><i id="hpBar" style="width:${Q.hp}%"></i></div><small id="hpTxt">HP ${Q.hp} / 100</small></div></div>`:'')}
@@ -1327,11 +1384,12 @@ function advHit(ok){const A=Q.meta.adv;
     $('#hearts').setAttribute('aria-label','剩下 '+Q.hearts+' 顆愛心');if(A.boss)replayAnim($('#bossIc'),'atk')}
   if(Q.hearts<=0){clearTimeout(Q.auto);const nb=$('#nextBtn');if(nb)nb.innerHTML=(zyOn()?Z('愛心用完了，看結果'):'愛心用完了，看結果')+' →'}}
 function advFinish(){
-  const A=Q.meta.adv,T=ADV[A.s],n=Q.items.length,r=Q.right,win=Q.hearts>0&&(!A.boss||Q.hp<=20),stars=win?Q.hearts:0;
+  const A=Q.meta.adv,T=advT(A.s),n=Q.items.length,r=Q.right,win=Q.hearts>0&&(!A.boss||Q.hp<=20),stars=win?Q.hearts:0;
   const rec=advRec(A.key),old=rec.b[A.id]||0;if(stars>old)rec.b[A.id]=stars;
   const gain=r*10+stars*20+(win&&A.boss?50:0);S.xp+=gain;S.stars+=stars;
   if(!S.days.includes(today()))S.days.push(today());S.days=S.days.slice(-60);
   let got=null;if(win&&A.boss){const left=STICKERS.filter(x=>!S.stickers.includes(x.id));if(left.length){got=pickR(left);S.stickers.push(got.id)}}
+  if(win&&A.boss&&T.evBoss)evProgress('boss',1);
   save();header();
   const allDone=win&&A.last;
   const msg=allDone?`恭喜你闖完整張地圖！你是${T.name}的大英雄！`:
@@ -2001,9 +2059,163 @@ function topResult(st){
   if($('#review'))$('#review').onclick=()=>startQuiz(ctx.wrong.map(x=>Object.assign({},x)),{back:'#/top',fromWrong:true});
 }
 
+/* ================= 小提示（toast，依序顯示） ================= */
+function toast(msg,ms){toast.q=toast.q||[];toast.q.push([String(msg),ms||3200]);if(!toast.busy)toastNext()}
+function toastNext(){const it=toast.q.shift();let el=document.getElementById('toast');
+  if(!it){toast.busy=false;if(el)el.hidden=true;return}
+  if(!el){el=document.createElement('div');el.id='toast';el.className='toast';el.setAttribute('role','status');el.setAttribute('aria-live','polite');document.body.appendChild(el)}
+  toast.busy=true;el.hidden=false;el.textContent=it[0];el.style.animation='none';void el.offsetWidth;el.style.animation='';setTimeout(toastNext,it[1])}
+
+/* ================= 節日限定活動 ================= */
+/* 活動表：span＝每年固定的「月-日」起訖（含頭尾）；dates＝每年日期不同的活動 {年:[起,訖]}（例如春節、段考加油週）；沒有日期＝不開。
+   活動期間：首頁頂部活動橫幅＋主題裝飾、闖關魔王換成活動限定外觀、完成任務得限定貼紙。
+   紀錄：S.ev["活動id-年"]={r:活動期間答對題數,boss:打倒活動魔王次數,days:[有練習的日子]}；S.evStk＝[已得到的限定貼紙 id]（活動結束也保留）
+   測試：在本機（127.0.0.1／localhost）或 demo/ 網址後面加 ?evdate=2026-10-31 可以假裝是那一天（只影響活動判斷） */
+const EVENTS=[
+  {id:'halloween',name:'萬聖節',ic:'🎃',span:['10-24','11-02'],g:'linear-gradient(135deg,#3E1A63,#7E3BB8 48%,#F2711C)',sh:'#24093D',c:'#7A3FB0',deco:['🦇','🕸️','👻','🍬'],
+   msg:'收集限定貼紙・魔王變南瓜了！',boss:{ic:'🎃',name:'南瓜大魔王'},
+   tasks:[{k:'r',n:30,t:'活動期間答對 30 題',stk:{id:'hw-pumpkin',ic:'🎃',name:'笑笑南瓜燈'}},
+          {k:'boss',n:1,t:'闖關打倒 1 隻南瓜大魔王',stk:{id:'hw-bat',ic:'🦇',name:'夜空小蝙蝠',eb:'radial-gradient(circle at 50% 35%,#D9C9FF,#5B2A86 75%)'}},
+          {k:'days',n:3,t:'活動期間有 3 天來練習',stk:{id:'hw-ghost',ic:'👻',name:'害羞小幽靈',eb:'radial-gradient(circle at 50% 35%,#FFFFFF,#B9A6E8 75%)'}}]},
+  {id:'xmas',name:'聖誕節',ic:'🎄',span:['12-18','12-26'],g:'linear-gradient(135deg,#0D5A32,#1E9E5B 50%,#D9483B)',sh:'#083A20',c:'#1E9E5B',deco:['❄️','⭐','🔔','🎁'],
+   msg:'收集限定貼紙・魔王變雪人了！',boss:{ic:'⛄',name:'暴風雪人'},
+   tasks:[{k:'r',n:30,t:'活動期間答對 30 題',stk:{id:'xm-tree',ic:'🎄',name:'閃亮聖誕樹',eb:'radial-gradient(circle at 50% 35%,#D6F5DF,#1E9E5B 75%)'}},
+          {k:'boss',n:1,t:'闖關打倒 1 隻暴風雪人',stk:{id:'xm-gift',ic:'🎁',name:'驚喜禮物盒',eb:'radial-gradient(circle at 50% 35%,#FFE1DD,#D9483B 75%)'}}]},
+  {id:'cny',name:'過年',ic:'🧧',dates:{2027:['01-30','02-13'],2028:['01-19','02-02']},g:'linear-gradient(135deg,#9E0F1B,#E2483A 55%,#FFB703)',sh:'#5E0810',c:'#D9483B',deco:['🧧','🏮','🎆','🍊'],
+   msg:'新年快樂！收集限定貼紙',boss:{ic:'🦁',name:'新春大舞獅'},
+   tasks:[{k:'r',n:30,t:'活動期間答對 30 題',stk:{id:'ny-red',ic:'🧧',name:'大紅包',eb:'radial-gradient(circle at 50% 35%,#FFE3A3,#D9483B 75%)'}},
+          {k:'days',n:3,t:'活動期間有 3 天來練習',stk:{id:'ny-lantern',ic:'🏮',name:'好運燈籠',eb:'radial-gradient(circle at 50% 35%,#FFF0B8,#E08A00 75%)'}}]},
+  {id:'children',name:'兒童節',ic:'🎈',span:['04-01','04-05'],g:'linear-gradient(135deg,#1A86A8,#7A5CF0 50%,#FF8FC1)',sh:'#0F4F63',c:'#7A5CF0',deco:['🎈','🪁','🧸','🌈'],
+   msg:'兒童節快樂！收集限定貼紙',boss:null,
+   tasks:[{k:'r',n:20,t:'活動期間答對 20 題',stk:{id:'cd-balloon',ic:'🎈',name:'彩色氣球',eb:'radial-gradient(circle at 50% 35%,#FFE1EF,#CF3F86 75%)'}},
+          {k:'days',n:2,t:'活動期間有 2 天來練習',stk:{id:'cd-kite',ic:'🪁',name:'飛高高風箏',eb:'radial-gradient(circle at 50% 35%,#D8EFF8,#1A86A8 75%)'}}]},
+  // 段考加油週：日期每學期不同，要開的時候填進 dates，例如 2027:['03-29','04-02']
+  {id:'exam',name:'段考加油週',ic:'💪',dates:{},g:'linear-gradient(135deg,#14799A,#2E9E5B 55%,#FFB703)',sh:'#0B4A5E',c:'#14799A',deco:['📚','✏️','💯','⭐'],
+   msg:'段考加油！收集限定貼紙',boss:null,
+   tasks:[{k:'r',n:50,t:'加油週答對 50 題',stk:{id:'ex-medal',ic:'🏅',name:'段考加油獎牌',eb:'radial-gradient(circle at 50% 35%,#FFF3C4,#FFB703 75%)'}}]}];
+const EV_DATE=(()=>{try{const m=/[?&]evdate=(\d{4})-(\d{1,2})-(\d{1,2})/.exec(location.search);
+  if(m&&(/^(127\.0\.0\.1|localhost|\[::1\])$/.test(location.hostname)||/\/demo\//.test(location.pathname)))return new Date(+m[1],m[2]-1,+m[3],12)}catch(e){}return null})();
+const evToday=()=>EV_DATE?new Date(EV_DATE.getTime()):new Date();
+const evDay=()=>{const d=evToday();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()};
+const md=d=>(d.getMonth()+1)+'/'+d.getDate();
+function evRange(E,y){const p=E.dates?E.dates[y]:E.span;if(!p)return null;const d=s=>{const [m,dd]=s.split('-').map(Number);return new Date(y,m-1,dd)};
+  const a=d(p[0]);let b=d(p[1]);if(b<a)b=new Date(y+1,b.getMonth(),b.getDate());return{a,b:new Date(b.getFullYear(),b.getMonth(),b.getDate(),23,59,59),y}}
+function evNow(){const t=evToday(),Y=t.getFullYear();
+  for(const E of EVENTS)for(const y of [Y,Y-1]){const r=evRange(E,y);if(r&&t>=r.a&&t<=r.b)return Object.assign({},E,{key:E.id+'-'+y,a:r.a,b:r.b})}
+  return null}
+const evHas=id=>Array.isArray(S.evStk)&&S.evStk.includes(id);
+function evVal(E,k){const R=(S.ev||{})[E.key]||{};return k==='days'?(R.days||[]).length:(R[k]||0)}
+/* 記一筆活動進度（k:'r' 答對、'boss' 打倒活動魔王；n＝0 只記「今天有來」），達成任務就發限定貼紙 */
+function evProgress(k,n){const E=evNow();if(!E)return[];S.ev=S.ev||{};const R=S.ev[E.key]||(S.ev[E.key]={r:0,boss:0,days:[]});
+  R[k]=(R[k]||0)+(n||0);const d=evDay();if(!R.days.includes(d))R.days.push(d);
+  const fresh=E.tasks.filter(tk=>!evHas(tk.stk.id)&&evVal(E,tk.k)>=tk.n).map(tk=>tk.stk);
+  if(fresh.length){S.evStk=(S.evStk||[]).concat(fresh.map(x=>x.id));S.evNew=(S.evNew||[]).concat(fresh.map(x=>x.id));
+    fresh.forEach(x=>toast(`${E.ic} 得到${E.name}限定貼紙「${x.name}」！`,3600))}
+  save();return fresh}
+const evStkById=id=>{for(const E of EVENTS)for(const tk of E.tasks)if(tk.stk.id===id)return{E,tk,st:tk.stk};return null};
+const evStkHTML=(st,E,lock)=>`<span class="estk${lock?' lock':''}" style="${st.eb?'--eb:'+st.eb+';':''}--ev-c:${E.c}" aria-hidden="true"><span>${st.ic}</span></span>`;
+const Zt=s=>zyOn()?Z(s):esc(s);
+/* 每次換畫面套用活動主題（body.ev-on.ev-<id>＋背景飄浮裝飾） */
+function evApply(){const E=evNow(),b=document.body;b.classList.toggle('ev-on',!!E);EVENTS.forEach(x=>b.classList.toggle('ev-'+x.id,!!E&&E.id===x.id));
+  let dk=document.getElementById('evdeco');
+  if(!E){if(dk)dk.remove();return}
+  if(!dk||dk.dataset.id!==E.id){if(dk)dk.remove();dk=document.createElement('div');dk.id='evdeco';dk.className='evdeco';dk.dataset.id=E.id;dk.setAttribute('aria-hidden','true');
+    const pos=[[4,14],[88,9],[8,62],[90,48],[50,84],[70,28]];dk.innerHTML=pos.map((p,i)=>`<span style="left:${p[0]}%;top:${p[1]}%">${E.deco[i%E.deco.length]}</span>`).join('');b.insertBefore(dk,b.firstChild)}}
+function evBar(){const E=evNow();if(!E)return'';const done=E.tasks.filter(t=>evHas(t.stk.id)).length;
+  return`<button class="evbar tap" id="evBar" style="--ev-g:${E.g};--ev-sh:${E.sh};--ev-deco:'${E.deco[0]}'" aria-haspopup="dialog" aria-label="${E.name}限定活動，到 ${md(E.b)}，已得到 ${done} / ${E.tasks.length} 張限定貼紙，看任務"><span class="ei" aria-hidden="true">${E.ic}</span><span class="et"><b>${E.name}限定活動・到 ${md(E.b)}</b><small>${esc(E.msg)}</small></span><span class="ep" aria-hidden="true">🎁 ${done}/${E.tasks.length}</span></button>`}
+function evSheet(){const E=evNow();if(!E)return;
+  const rows=E.tasks.map(tk=>{const v=Math.min(tk.n,evVal(E,tk.k)),got=evHas(tk.stk.id);
+    return`<div class="evtask${got?' got':''}">${evStkHTML(tk.stk,E,!got)}<div><b class="${zyOn()?'zyon':''}">${Zt(tk.t)}</b><div class="bar" role="progressbar" aria-label="${esc(tk.t)}" aria-valuemin="0" aria-valuemax="${tk.n}" aria-valuenow="${v}"><i style="width:${v/tk.n*100}%"></i></div><small>${got?`✅ 已得到「${esc(tk.stk.name)}」`:`${v} / ${tk.n}・完成就得到「${esc(tk.stk.name)}」`}</small></div></div>`}).join('');
+  openSheet(`${E.ic} ${E.name}限定活動`,`<p class="hint" style="margin:0">活動期間：${md(E.a)}～${md(E.b)}。完成任務就能得到<b>限定貼紙</b>，活動結束後也會一直留在貼紙冊裡！${E.boss?`<br>闖關的魔王也變成「${E.boss.ic} ${esc(E.boss.name)}」了！`:''}</p>
+    <div class="evtasks">${rows}</div>
+    <div class="btns" style="justify-content:stretch">${E.boss?`<a class="btn primary" href="#/adv" data-close style="flex:1">🗺️ 去闖關</a>`:`<button class="btn primary" data-close id="evDaily" style="flex:1">🎯 去每日挑戰</button>`}<a class="btn" href="#/stickers" data-close style="flex:1">🎁 貼紙冊</a></div>`);
+  const dd=document.getElementById('evDaily');if(dd)dd.onclick=()=>{location.hash='#/daily'}}
+/* 剛得到的限定貼紙：回首頁時用大圖再恭喜一次 */
+function evGotSheet(){const ids=(S.evNew||[]).filter(id=>evStkById(id));if(!ids.length){if(S.evNew&&S.evNew.length){S.evNew=[];save()}return false}
+  S.evNew=[];save();
+  openSheet('🎉 得到限定貼紙！',`<div class="evgot">${ids.map(id=>{const x=evStkById(id);return`${evStkHTML(x.st,x.E,false)}<b>${x.E.name}限定・${esc(x.st.name)}</b>`}).join('')}<span class="hint" style="margin:0">已經貼到貼紙冊裡，活動結束也會一直保留喔！</span></div>
+    <div class="btns" style="justify-content:stretch"><a class="btn primary" href="#/stickers" data-close style="flex:1">🎁 看貼紙冊</a><button class="btn" data-close style="flex:1">好</button></div>`);
+  confetti();return true}
+/* 貼紙冊裡的「節日限定貼紙」區：已得到的彩色；活動中顯示進度；沒拿到的灰色（已經過了＝明年再來） */
+function evStkSection(){const t=evToday(),Y=t.getFullYear(),cur=evNow();
+  const list=EVENTS.filter(E=>E.span||Object.keys(E.dates||{}).length||E.tasks.some(tk=>evHas(tk.stk.id)));
+  list.sort((a,b)=>(cur&&b.id===cur.id)-(cur&&a.id===cur.id));
+  const total=list.reduce((a,E)=>a+E.tasks.length,0),got=list.reduce((a,E)=>a+E.tasks.filter(tk=>evHas(tk.stk.id)).length,0);
+  const items=list.map(E=>{const on=cur&&cur.id===E.id,r=evRange(E,Y),past=r&&r.b<t;let nx=null;for(const y of [Y,Y+1]){const q=evRange(E,y);if(q&&q.a>t){nx=q.a;break}}
+    return E.tasks.map(tk=>{const h=evHas(tk.stk.id);
+      const note=h?`${E.name}限定`:on?`${Math.min(tk.n,evVal(cur,tk.k))}/${tk.n}・${tk.t}`:past?'明年再來':nx?`${md(nx)} 開始`:'活動期間限定';
+      return`<div class="it${h?'':' lock'}">${evStkHTML(tk.stk,E,!h)}<b>${h||on?esc(tk.stk.name):E.ic+' '+E.name}</b><small>${esc(note)}</small></div>`}).join('')}).join('');
+  return`<h3 class="evhead">🎉 節日限定貼紙 <small>${got} / ${total} 張・只有活動期間拿得到</small></h3><div class="evstk">${items}</div>`}
+/* 闖關主題：活動期間魔王換成活動限定外觀 */
+function advT(s){const T=ADV[s],E=evNow();return E&&E.boss?Object.assign({},T,{boss:E.boss.ic,bossName:E.boss.name,evBoss:E.id}):T}
+
+/* ================= 小工具・遊戲（modules/<id>.js，打開時才下載；規格見 modules/MODULE_SPEC.md） ================= */
+/* 工具清單由 build.py 讀各模組的 push 物件寫進索引 IDX.tools=[{id,title,icon,grades,subject,desc,v}]
+   模組自己的存檔放在 S.tools[id].data；當天獎勵上限記在 S.tools[id]={day,ds,dx,dk,n} */
+const MOD_BASE='modules/',TOOL_MAX={stars:3,xp:100,dayStars:15,dayXp:300,dayStk:3,store:20000};
+const toolList=()=>(window.IDX&&Array.isArray(IDX.tools)?IDX.tools:[]);
+const cfxGet=id=>(Array.isArray(window.CFX)?window.CFX:[]).find(m=>m&&m.id===id);
+let TOOLRUN=null;
+function toolStop(){if(!TOOLRUN)return;const R=TOOLRUN;TOOLRUN=null;R.dead=true;ttsStop();if(typeof R.cleanup==='function')try{R.cleanup()}catch(e){console.error(e)}}
+function loadTool(t){const m=cfxGet(t.id);if(m)return Promise.resolve(m);
+  return loadJS(MOD_BASE+t.id+'.js'+(t.v?'?v='+t.v:''),true).then(()=>cfxGet(t.id)||Promise.reject(new Error('模組沒有註冊：'+t.id)))}
+const gradesTxt=gs=>{gs=(gs||[]).slice().sort();if(!gs.length)return'';const a=gs[0],b=gs[gs.length-1];return a===b?GZH[a]+'年級':GZH[a]+'～'+GZH[b]+'年級'};
+function toolRec(id){S.tools=S.tools||{};const R=S.tools[id]||(S.tools[id]={});const d=today();if(R.day!==d){R.day=d;R.ds=0;R.dx=0;R.dk=0}return R}
+function toolApi(t,run){
+  const api={
+    id:t.id,
+    get grade(){return S.grade},get zy(){return zyOn()},get reducedMotion(){return RM()},
+    Z:s=>zyOn()?Z(String(s==null?'':s)):esc(s==null?'':s),
+    speak(text,lang){if(run.dead)return false;text=String(text==null?'':text);
+      const parts=(lang==='en'||lang==='zh')?[{t:text,lang}]:segs(text,!/[一-鿿]/.test(text));
+      return ttsSay(parts.map(p=>({t:p.lang==='zh'?spk(p.t):p.t,lang:p.lang})),null)},
+    stopSpeak:()=>ttsStop(),
+    beep:ok=>beep(!!ok),confetti:()=>confetti(),
+    reward(o){o=o||{};if(run.dead)return{stars:0,xp:0};const R=toolRec(t.id);
+      const want=Math.max(0,Math.min(TOOL_MAX.stars,Math.floor(+o.stars||0))),wantX=Math.max(0,Math.min(TOOL_MAX.xp,Math.floor(+o.xp||0)));
+      const st=Math.max(0,Math.min(want,TOOL_MAX.dayStars-R.ds)),xp=Math.max(0,Math.min(wantX,TOOL_MAX.dayXp-R.dx));
+      R.ds+=st;R.dx+=xp;R.n=(R.n||0)+1;S.stars+=st;S.xp+=xp;
+      if(st||xp){if(!S.days.includes(today()))S.days.push(today());S.days=S.days.slice(-60)}
+      save();header();if(st||xp)evProgress('t',0);
+      if(st||xp)toast([st?'⭐ +'+st:'',xp?'✨ +'+xp+' 經驗值':'',o.reason?String(o.reason).slice(0,30):''].filter(Boolean).join('・'));
+      else if(want||wantX)toast('今天這個小工具的獎勵拿滿了，明天再來喔！');
+      return{stars:st,xp,capped:st<want||xp<wantX}},
+    drawSticker(){if(run.dead)return null;const R=toolRec(t.id);
+      if(R.dk>=TOOL_MAX.dayStk){toast('今天這個小工具的貼紙抽完了，明天再來喔！');return null}
+      const left=STICKERS.filter(s=>!S.stickers.includes(s.id));if(!left.length)return null;
+      const got=pickR(left);S.stickers.push(got.id);R.dk++;save();header();toast('🎁 得到新貼紙：'+got.name+'・'+got.zh);
+      return{id:got.id,name:got.name,zh:got.zh,img:stkSrc(got.id)}},
+    store(key){const d=(toolRec(t.id).data)||{};return d[key]===undefined?null:JSON.parse(JSON.stringify(d[key]))},
+    storeSet(key,value){const R=toolRec(t.id),d=Object.assign({},R.data||{});
+      if(value===undefined||value===null)delete d[key];else d[key]=JSON.parse(JSON.stringify(value));
+      if(JSON.stringify(d).length>TOOL_MAX.store){console.warn('小工具存檔太大：'+t.id);return false}
+      R.data=d;save();return true},
+    back:()=>{location.hash='#/tools'},
+    toast:m=>toast(m)};
+  return api}
+function viewTools(){const g=S.grade,all=toolList(),mine=all.filter(t=>(t.grades||[]).includes(g)),other=all.filter(t=>!(t.grades||[]).includes(g)),showAll=!!viewTools.all;
+  const card=(t,o)=>`<a class="tcard tap${o?' other':''}" href="#/tools/${encodeURIComponent(t.id)}" style="${tintVars(t.subject)}"><span class="ic" aria-hidden="true">${esc(t.icon||'🧩')}</span><div><b>${esc(t.title)}</b><span class="d"><span class="sj">${esc(t.subject||'綜合')}</span>${esc(t.desc||'')}</span>${o?`<span class="d">適合${gradesTxt(t.grades)}</span>`:''}</div><span class="go" aria-hidden="true">▶</span></a>`;
+  $('#view').innerHTML=`<a class="back" href="#/">← 回首頁</a>
+  <section class="phead" style="--g:linear-gradient(135deg,#FFD873,#F2994A)"><span class="ic" aria-hidden="true">🧰</span><div><h1>小工具・遊戲 ${whoTag()}</h1><span class="meta">邊玩邊學，玩得好也能拿星星和貼紙</span></div><div class="num"><b>${mine.length}</b><span>個適合${GZH[g]}年級</span></div></section>
+  <div class="tfilter"><button class="gpill" id="gPill" aria-haspopup="dialog" aria-label="目前${GZH[g]}年級，按這裡換年級">${GZH[g]}年級 <i aria-hidden="true">▼</i></button>${other.length?`<button class="btn" id="tAll" aria-pressed="${showAll}">${showAll?'只看我的年級':'也看其他年級的（'+other.length+'）'}</button>`:''}</div>
+  ${mine.length?`<div class="tgrid">${mine.map(t=>card(t)).join('')}</div>`:`<div class="empty" style="margin-top:12px"><span class="big-ic" aria-hidden="true">🧰</span><b>${GZH[g]}年級的小工具準備中</b><span>可以先看看其他年級的，或去闖關、玩陀螺！</span></div>`}
+  ${showAll&&other.length?`<h3 class="sub">其他年級</h3><div class="tgrid">${other.map(t=>card(t,1)).join('')}</div>`:''}`;
+  $('#gPill').onclick=()=>gradeSheet(viewTools);
+  if($('#tAll'))$('#tAll').onclick=()=>{viewTools.all=!showAll;viewTools()}}
+function viewTool(id){const t=toolList().find(x=>x.id===id);if(!t)return viewTools();const tok=route.tok;
+  const back=`<a class="back" href="#/tools">← 小工具・遊戲</a>`;
+  $('#view').innerHTML=back+`<div class="empty loading" role="status"><span class="big-ic" aria-hidden="true">⏳</span><b>小工具準備中…</b><span>第一次打開要下載一下，請稍等</span></div>`;
+  if(zyOn())ensureZy();const zp=(zyOn()&&typeof ZY_TEXT==='undefined'&&ensureZy.p)?ensureZy.p.catch(()=>{}):Promise.resolve();
+  Promise.all([loadTool(t),zp]).then(([m])=>{if(tok!==route.tok)return;
+    $('#view').innerHTML=back+`<h2 class="h2s" style="margin-top:4px"><span class="hi" aria-hidden="true">${esc(m.icon||t.icon||'🧩')}</span>${esc(m.title||t.title)} ${whoTag()}</h2><div class="toolbox" id="toolEl"></div>`;
+    const el=$('#toolEl'),run={id};TOOLRUN=run;setLast({k:'tool',id});
+    try{const c=m.render(el,toolApi(t,run));if(typeof c==='function')run.cleanup=c}
+    catch(e){console.error(e);el.innerHTML=`<div class="empty" role="alert"><span class="big-ic" aria-hidden="true">🛠️</span><b>這個小工具出了點問題</b><span>先玩別的，我們會盡快修好！</span><a class="btn primary" href="#/tools">回小工具</a></div>`}
+  },()=>{if(tok!==route.tok)return;$('#view').innerHTML=back+`<div class="empty loading" role="alert"><span class="big-ic" aria-hidden="true">📶</span><b>小工具下載失敗</b><span>可能是網路不穩，檢查網路後再試一次。</span><button class="btn primary" id="retry">🔄 再試一次</button></div>`;$('#retry').onclick=()=>route()})}
+
 /* ---------- 路由 ---------- */
 function route(){
-  route.tok=(route.tok||0)+1;const tok=route.tok;ttsStop();if(Q){clearTimeout(Q.auto);clearTimeout(Q.tts)}topStop();
+  route.tok=(route.tok||0)+1;const tok=route.tok;ttsStop();if(Q){clearTimeout(Q.auto);clearTimeout(Q.tts)}topStop();toolStop();evApply();
   const h=decodeURIComponent(location.hash.slice(1)||'/'),p=h.split('/').filter(Boolean);document.body.classList.remove('home');header();window.scrollTo(0,0);
   closeSheet();updNav.cur={adv:'adv',top:'top',wrong:'wrong',stickers:'stk'}[p[0]]||'home';playMode(false);
   if(p[0]==='s'&&SUBJ[p[1]])return viewSubject(p[1]);
@@ -2013,6 +2225,7 @@ function route(){
   if(p[0]==='adv'&&!p[1])return viewAdvPick();
   if(p[0]==='adv'&&SUBJ[p[1]]){setLast({k:'adv',s:p[1]});if(p[2]!=null){startAdv(p[1],+p[2]).then(ok=>{if(!ok&&tok===route.tok)viewAdv(p[1])});return}return viewAdv(p[1])}
   if(p[0]==='top'){setLast({k:'top'});return viewTop(p[1]&&(subjOf(S.grade).includes(p[1])||p[1]==='mix')?p[1]:null)}
+  if(p[0]==='tools')return p[1]?viewTool(p.slice(1).join('/')):viewTools();
   if(p[0]==='wrong')return viewWrong();
   if(p[0]==='stickers')return viewStickers();
   viewHome()}
