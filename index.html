@@ -641,6 +641,45 @@ body.ev-halloween .logo{background:linear-gradient(135deg,#FFB35C,#F2711C);box-s
 .evhead small{font-size:12px;color:var(--muted);font-weight:700}
 .evgot{display:grid;justify-items:center;gap:8px;text-align:center}
 .evgot .estk{width:110px;height:110px;font-size:62px}
+/* ===== 班級作業碼 ===== */
+.hwjoin{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;margin-top:10px;min-height:44px;padding:8px 14px;border-radius:14px;border:2px dashed var(--line);background:var(--paper);color:var(--muted);font-weight:900;font-size:14px}
+.hwadd{min-height:36px;padding:4px 12px;border-radius:999px;background:var(--paper);box-shadow:var(--sh-1);font-weight:900;font-size:13px;color:var(--ink)}
+.hwcards{display:grid;gap:8px}
+@media (min-width:600px){.hwcards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.hwcard{display:flex;align-items:center;gap:12px;background:var(--paper);border-radius:var(--r-m);padding:10px 14px;box-shadow:var(--shadow);text-decoration:none;color:inherit;border-left:6px solid var(--sea);min-height:68px}
+.hwcard.done{border-left-color:var(--good)}.hwcard.late{border-left-color:var(--bad)}
+.hwcard .ic{font-size:28px;line-height:1;flex:none}
+.hwcard>div{flex:1;min-width:0;display:grid;gap:3px}
+.hwcard b{font-size:15.5px;line-height:1.35;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hwcard small{font-size:12.5px;font-weight:700;color:var(--muted)}.hwcard small.bad{color:var(--bad)}
+.hwcard .bar{height:8px}.hwcard.done .bar i{background:linear-gradient(90deg,#7FD69B,var(--good))}
+.hwlist{display:grid;gap:8px;margin-top:12px}
+.hwit{display:flex;align-items:center;gap:12px;background:var(--paper);border-radius:var(--r-m);padding:10px 12px;box-shadow:var(--sh-1);min-height:64px}
+.hwit .ic{width:44px;height:44px;border-radius:14px;background:var(--bg);display:grid;place-items:center;font-size:24px;flex:none}
+.hwit>div{flex:1;min-width:0}.hwit b{display:block;line-height:1.35}.hwit small{font-size:12.5px;color:var(--muted);font-weight:700}
+.hwit .ok{font-weight:900;color:var(--good);font-size:14px;white-space:nowrap}
+.hwit .btn{min-height:44px;padding:8px 14px;flex:none}
+.ccbox{background:linear-gradient(180deg,color-mix(in srgb,var(--good) 14%,var(--paper)),var(--paper));border:2px solid color-mix(in srgb,var(--good) 40%,transparent);border-radius:var(--r-l);padding:16px;display:grid;gap:8px;justify-items:center;text-align:center;margin-top:14px}
+.code{font:700 clamp(24px,7vw,32px)/1.2 var(--f-en);letter-spacing:.06em;background:var(--paper);border:2px dashed var(--line);border-radius:14px;padding:8px 14px;user-select:all;overflow-wrap:anywhere}
+.tsec{background:var(--paper);border-radius:var(--r-l);padding:14px 16px;box-shadow:var(--shadow);display:grid;gap:10px;margin-top:12px;min-width:0}
+.tsec h3{margin:0;font-size:17px;font-weight:900}
+.tsec .grades button{min-height:44px;padding:6px 12px;font-size:14px}
+.ulist{display:grid;gap:6px;max-height:min(52vh,420px);overflow:auto;padding:2px}
+@media (min-width:760px){.ulist{grid-template-columns:1fr 1fr}}
+.ulist button{display:flex;align-items:center;gap:8px;text-align:left;min-height:44px;padding:6px 10px;border-radius:12px;border:2px solid var(--line);background:var(--paper2);font-weight:700;font-size:14px;line-height:1.35}
+.ulist button::before{content:"";width:20px;height:20px;border-radius:6px;border:2px solid var(--line);flex:none;background:var(--paper)}
+.ulist button[aria-pressed="true"]{border-color:var(--sea);background:color-mix(in srgb,var(--sea) 12%,var(--paper))}
+.ulist button[aria-pressed="true"]::before{background:var(--sea);border-color:var(--sea);box-shadow:inset 0 0 0 3px var(--paper)}
+.ulist button small{color:var(--muted);font-size:11.5px;margin-left:auto;white-space:nowrap}
+.trow{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.trow input,.trow select,.tsec textarea,.tsec input.in{font:inherit;font-size:16px;font-weight:700;min-height:44px;padding:6px 10px;border-radius:12px;border:2px solid var(--line);background:var(--paper);color:var(--ink)}
+.tsec textarea{width:100%;min-height:96px;font-family:var(--f-en);letter-spacing:.04em}
+.tsec input.in{width:100%;font-family:var(--f-en);letter-spacing:.04em;text-transform:uppercase}
+.selchips{display:flex;flex-wrap:wrap;gap:6px}
+.selchips button{display:inline-flex;align-items:center;gap:4px;min-height:36px;padding:4px 10px;border-radius:999px;background:var(--bg);font-weight:700;font-size:13px}
+.qr{width:min(220px,62vw);height:auto;border-radius:12px;box-shadow:var(--sh-1);background:#fff}
+.vtab{width:100%;border-collapse:collapse;font-size:14px}.vtab th,.vtab td{border-bottom:1px solid var(--line);padding:6px 4px;text-align:left}.vtab .y{color:var(--good);font-weight:900}.vtab .n{color:var(--bad);font-weight:900}
+footer a.tch{font-weight:700;color:var(--muted)}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 .qtext.tapread{cursor:pointer}.qtext.tapread:active{opacity:.75}
 </style>
@@ -667,6 +706,7 @@ body.ev-halloween .logo{background:linear-gradient(135deg,#FFB35C,#F2711C);box-s
     <span id="visits" hidden>累計使用 <b id="busuanzi_value_page_pv"></b> 人次</span>
     <span id="brandTotal" hidden>啟賦全站累計 <b></b> 人次</span><script src="total.js" defer></script>
     <span>學習紀錄只存在這台裝置的瀏覽器裡，不需要註冊。</span>
+    <span><a class="tch" href="#/teacher">👩‍🏫 老師出作業</a></span>
   </footer>
 </div>
 <nav class="bnav" id="bnav" aria-label="主要選單">
@@ -679,7 +719,7 @@ body.ev-halloween .logo{background:linear-gradient(135deg,#FFB35C,#F2711C);box-s
 
 <!-- 首屏只載入小型索引（單元清單、題數）＋英文單字表；題庫、數學出題程式、注音表都在要用時才下載（loadJS） -->
 <script>var BANK=[];</script>
-<script src="data/index.js?v=d7c5fe52"></script>
+<script src="data/index.js?v=3f137bfa"></script>
 <script src="data/english_vocab.js?v=e0a3e917"></script>
 <script>
 /* ================= 基本設定 ================= */
@@ -1021,6 +1061,7 @@ function viewHome(){
   </div>
   ${known?'':`<section class="welcome" aria-label="選年級"><p>👋 歡迎！先選你的年級<small>選一次就會記住，之後一打開就能練習（隨時可以改）</small></p>
     <div class="grades seg" role="group" aria-label="年級">${[1,2,3,4,5,6].map(n=>`<button data-g="${n}" aria-pressed="${n===g}" aria-label="${GZH[n]}年級"><b>${GZH[n]}</b><small>年級</small></button>`).join('')}</div></section>`}
+  ${hwHome()}
   ${LI?`<a class="cont" href="${LI.h}" id="goCont"><span class="ci" aria-hidden="true">${LI.ic}</span><span class="t"><small>▶ 繼續上次</small><b>${esc(LI.t)}</b></span><span class="pl" aria-hidden="true">▶</span></a>`:''}
   <h2 class="h2s">${greet()} 今天練哪一科？<small class="hint">${GZH[g]}年級</small></h2>
   <div class="subjects2 n${prog.length}" style="--n:${prog.length}">${prog.map(({s})=>{const us=unitsFor(s,g);const got=us.reduce((a,u)=>a+(S.best[u.id]||0),0),mx=Math.max(1,us.length*3);
@@ -1030,7 +1071,7 @@ function viewHome(){
     <button class="big daily tap" id="goDaily"><span class="ic" aria-hidden="true">🎯</span><div><b>每日挑戰</b><span class="d">${GZH[g]}年級各科混合 10 題，天天練最有效</span></div><span class="go" aria-hidden="true">▶</span></button>
     <a class="big tap" href="#/adv/${encodeURIComponent(advS)}" style="--g:linear-gradient(135deg,#9BE38A,#3E8B3A)"><span class="ic" aria-hidden="true">🗺️</span><div><b>闖關冒險</b><span class="d">${advTot?`已過 ${advAll} / ${advTot} 關・打魔王拿徽章`:'一關一關打倒魔王'}</span></div><span class="go" aria-hidden="true">▶</span></a>
     <button class="big tap" id="goTop" style="--g:var(--g-cool)"><span class="ic" aria-hidden="true">🌀</span><div><b>陀螺大對戰</b><span class="d">答題幫陀螺充能${topW?`・已贏 ${topW} 場`:'，挑戰電腦對手'}</span></div><span class="go" aria-hidden="true">▶</span></button>
-    ${toolList().length?`<a class="big tap" href="#/tools" style="--g:linear-gradient(135deg,#FFD873,#F2994A)"><span class="ic" aria-hidden="true">🧰</span><div><b>小工具・遊戲</b><span class="d">${nT?nT+' 個適合'+GZH[g]+'年級的小工具・邊玩邊學':'邊玩邊學的小工具'}</span></div><span class="go" aria-hidden="true">▶</span></a>`:''}
+    ${toolList().length?`<a class="big tap" href="#/tools" style="--g:linear-gradient(135deg,#FFD873,#F2994A)"><span class="ic" aria-hidden="true">🧰</span><div><b>小工具・遊戲</b><span class="d">${toolList().filter(t=>(t.grades||[]).includes(g)).slice(0,6).map(t=>esc(t.icon||'')).join('')} ${nT?nT+' 個適合'+GZH[g]+'年級':'邊玩邊學'}</span></div><span class="go" aria-hidden="true">▶</span></a>`:''}
     <button class="big tap" id="goWrong" style="--g:linear-gradient(135deg,#FF9F8F,#D9483B)"><span class="ic" aria-hidden="true">📒</span><div><b>錯題本</b><span class="d">${S.wrong.length?S.wrong.length+' 題等你再挑戰':'目前沒有錯題，太厲害了！'}</span></div><span class="go" aria-hidden="true">▶</span></button>
     <button class="big tap" id="goStk" style="--g:linear-gradient(135deg,#FFB5D5,#CF3F86)"><span class="ic" aria-hidden="true">🎁</span><div><b>貼紙收集冊</b><span class="d">已收集 ${S.stickers.length} / ${STICKERS.length} 張 3D 動物貼紙</span></div><span class="go" aria-hidden="true">▶</span></button>
     <a class="big tap" href="english/" style="--g:var(--g-en)"><span class="ic" aria-hidden="true">🔤</span><div><b>英文小學堂</b><span class="d">點圖聽發音・慢速故事・聽音找圖</span></div><span class="go" aria-hidden="true">▶</span></a>
@@ -1047,7 +1088,9 @@ function viewHome(){
   $('#shareBtn').onclick=()=>{const u='https://wade-chuang.github.io/chifoo/';if(navigator.share)navigator.share({title:document.title,url:u}).catch(()=>{});
     else if(navigator.clipboard)navigator.clipboard.writeText(u).then(()=>$('#shareMsg').textContent='已複製網址，貼到 LINE 給朋友吧！')};
   if($('#evBar'))$('#evBar').onclick=evSheet;
-  if(!(PR.shared&&gatePending))evGotSheet();
+  if($('#hwJoin'))$('#hwJoin').onclick=()=>hwJoinSheet('');
+  let hwOpened=false;if(HW_PENDING&&(!PR.shared||HW_GATE_OK)){const c=HW_PENDING;HW_PENDING=null;hwOpened=true;const P=hwParse(c);if(P&&hwFind(P.code))setTimeout(()=>{location.hash='#/hw/'+encodeURIComponent(P.code)},0);else hwJoinSheet(c)}
+  if(!hwOpened&&!(PR.shared&&gatePending))evGotSheet();
   maybeGate();
 }
 
@@ -1086,7 +1129,7 @@ function statSheet(){const lv=level(),into=S.xp%300,sk=streak();
 function ensureZy(){if(!zyOn()||typeof ZY_TEXT!=='undefined'||ensureZy.p)return;
   ensureZy.p=loadJS('zhuyin.js').then(()=>{
     if(Q&&!Q.answered&&document.querySelector('.qtext'))return drawQ();          // 題目畫面：重畫這一題（加上注音）
-    if(!/^#\/(q\/|daily|tools\/)|^#\/adv\/[^/]+\/\d/.test(location.hash)&&!document.body.classList.contains('inplay')&&!document.querySelector('.result'))route()
+    if(!/^#\/(q\/|daily|tools\/|hwq\/|hwt\/)|^#\/adv\/[^/]+\/\d/.test(location.hash)&&!document.body.classList.contains('inplay')&&!document.querySelector('.result'))route()
   },()=>{ensureZy.p=null})}
 
 /* ---------- 切換小朋友 ---------- */
@@ -1094,7 +1137,7 @@ const avImg=(a,cls)=>`<img class="${cls||''}" src="english/img/${esc(a||AVATARS[
 const whoTag=()=>{const K=kid();return`<span class="whotag" title="目前的小朋友">${avImg(K.avatar)}${esc(K.name)}</span>`};
 function useKid(id){if(!PR.list.some(k=>k.id===id))return;if(id!==PR.current){save();PR.current=id;saveP();S=loadS(pkeyOf(id))}
   if(typeof Q!=='undefined'&&Q)clearTimeout(Q.auto);Q=null;TOPTAB='top';ttsStop();topStop();closeSheet(true);
-  if(location.hash&&location.hash!=='#/')location.hash='#/';else route()}
+  HW_GATE_OK=true;if(location.hash&&location.hash!=='#/')location.hash='#/';else route()}
 function newKidId(){return'k'+Date.now().toString(36)+Math.random().toString(36).slice(2,5)}
 /* 「誰在練習？」：gate＝共用平板模式的選人畫面（一定要點一位才能繼續） */
 function whoSheet(o={}){const gate=!!o.gate,manage=!gate&&!!o.manage,L=PR.list;
@@ -1266,19 +1309,21 @@ function finish(){
   if(!S.days.includes(today()))S.days.push(today());S.days=S.days.slice(-60);
   let newBest=false;if(Q.meta.unit&&stars>(S.best[Q.meta.unit]||0)){S.best[Q.meta.unit]=stars;newBest=true}
   let got=null;if(stars>=2){const left=STICKERS.filter(s=>!S.stickers.includes(s.id));if(left.length){got=pickR(left);S.stickers.push(got.id)}}
+  const hwR=Q.meta.hw?hwRecord(Q.meta.hw.c,Q.meta.hw.i,Math.round(r/n*100)):null;
   save();header();
-  $('#view').innerHTML=`<a class="back" href="${Q.meta.back}">← 回單元</a>
+  $('#view').innerHTML=`<a class="back" href="${Q.meta.back}">← ${hwR?'回作業':'回單元'}</a>
   <section class="card result${stars?'':' lose'}">
     <div class="bigstars">${[0,1,2].map(i=>`<span style="color:${i<stars?'var(--sun)':'var(--line)'}">★</span>`).join('')}</div>
     <div class="score">${r} <small style="font-size:.5em;color:var(--muted)">/ ${n}</small></div>
     <b class="${zyOn()?'zyon':''}" style="line-height:2.1;font-size:19px">${(s=>zyOn()?Z(s):s)(stars===3?'全對！你是今天的小學霸！':stars===2?'很棒！差一點就全對了！':stars===1?'不錯喔，再練一次會更好！':'沒關係，看看錯題再挑戰一次！')}</b>
     <span class="xp">✨ +${gain} 經驗值${newBest?'・🏅 新紀錄':''}</span><span class="hint" style="margin:0">記在 ${whoTag()} 的紀錄裡</span>
+    ${hwR?`<a class="btn primary" href="${Q.meta.back}">📝 作業進度 ${hwR.st.done} / ${hwR.st.tot}${hwR.st.all?'・看完成碼':'・做下一項'} →</a>`:''}
     ${got?`<div class="reward"><b>🎁 得到新貼紙！</b><img src="${stkSrc(got.id)}" alt=""><span>${esc(got.name)}・${esc(got.zh)}</span></div>`:stars<2?'<span class="hint">拿到 2 顆星以上就能抽一張新貼紙喔！</span>':''}
     <div class="btns"><button class="btn primary" id="again">再練一次</button>${Q.wrongNow.length?`<button class="btn" id="review">看這次的錯題（${Q.wrongNow.length}）</button>`:''}<a class="btn" href="#/stickers">貼紙收集冊</a></div>
   </section>`;
   if(stars===3)confetti();
   const meta=Q.meta,wn=Q.wrongNow;
-  $('#again').onclick=()=>{if(meta.unit){const u=unitById(meta.unit);startQuiz(makeSet(u),meta)}else route()};
+  $('#again').onclick=()=>{if(meta.unit&&!meta.hw){const u=unitById(meta.unit);startQuiz(makeSet(u),meta)}else route()};
   if($('#review'))$('#review').onclick=()=>startQuiz(wn.map(x=>Object.assign({},x)),{back:meta.back,fromWrong:true});
 }
 
@@ -2164,9 +2209,9 @@ function loadTool(t){const m=cfxGet(t.id);if(m)return Promise.resolve(m);
   return loadJS(MOD_BASE+t.id+'.js'+(t.v?'?v='+t.v:''),true).then(()=>cfxGet(t.id)||Promise.reject(new Error('模組沒有註冊：'+t.id)))}
 const gradesTxt=gs=>{gs=(gs||[]).slice().sort();if(!gs.length)return'';const a=gs[0],b=gs[gs.length-1];return a===b?GZH[a]+'年級':GZH[a]+'～'+GZH[b]+'年級'};
 function toolRec(id){S.tools=S.tools||{};const R=S.tools[id]||(S.tools[id]={});const d=today();if(R.day!==d){R.day=d;R.ds=0;R.dx=0;R.dk=0}return R}
-function toolApi(t,run){
+function toolApi(t,run,hw){
   const api={
-    id:t.id,
+    id:t.id,hw:hw?{level:hw.lv|0}:null,
     get grade(){return S.grade},get zy(){return zyOn()},get reducedMotion(){return RM()},
     Z:s=>zyOn()?Z(String(s==null?'':s)):esc(s==null?'':s),
     speak(text,lang){if(run.dead)return false;text=String(text==null?'':text);
@@ -2180,6 +2225,7 @@ function toolApi(t,run){
       R.ds+=st;R.dx+=xp;R.n=(R.n||0)+1;S.stars+=st;S.xp+=xp;
       if(st||xp){if(!S.days.includes(today()))S.days.push(today());S.days=S.days.slice(-60)}
       save();header();if(st||xp)evProgress('t',0);
+      if(hw&&!run.hwDone){run.hwDone=true;const hr=hwRecord(hw.c,hw.i,100);if(hr)toast('📝 作業這一項完成了！（'+hr.st.done+' / '+hr.st.tot+'）')}
       if(st||xp)toast([st?'⭐ +'+st:'',xp?'✨ +'+xp+' 經驗值':'',o.reason?String(o.reason).slice(0,30):''].filter(Boolean).join('・'));
       else if(want||wantX)toast('今天這個小工具的獎勵拿滿了，明天再來喔！');
       return{stars:st,xp,capped:st<want||xp<wantX}},
@@ -2205,16 +2251,242 @@ function viewTools(){const g=S.grade,all=toolList(),mine=all.filter(t=>(t.grades
   ${showAll&&other.length?`<h3 class="sub">其他年級</h3><div class="tgrid">${other.map(t=>card(t,1)).join('')}</div>`:''}`;
   $('#gPill').onclick=()=>gradeSheet(viewTools);
   if($('#tAll'))$('#tAll').onclick=()=>{viewTools.all=!showAll;viewTools()}}
-function viewTool(id){const t=toolList().find(x=>x.id===id);if(!t)return viewTools();const tok=route.tok;
-  const back=`<a class="back" href="#/tools">← 小工具・遊戲</a>`;
+function viewTool(id,hw){const t=toolList().find(x=>x.id===id);if(!t)return hw?viewHw(hw.c):viewTools();const tok=route.tok;
+  const back=hw?`<a class="back" href="#/hw/${encodeURIComponent(hw.c)}">← 回作業</a>`:`<a class="back" href="#/tools">← 小工具・遊戲</a>`;
   $('#view').innerHTML=back+`<div class="empty loading" role="status"><span class="big-ic" aria-hidden="true">⏳</span><b>小工具準備中…</b><span>第一次打開要下載一下，請稍等</span></div>`;
   if(zyOn())ensureZy();const zp=(zyOn()&&typeof ZY_TEXT==='undefined'&&ensureZy.p)?ensureZy.p.catch(()=>{}):Promise.resolve();
   Promise.all([loadTool(t),zp]).then(([m])=>{if(tok!==route.tok)return;
     $('#view').innerHTML=back+`<h2 class="h2s" style="margin-top:4px"><span class="hi" aria-hidden="true">${esc(m.icon||t.icon||'🧩')}</span>${esc(m.title||t.title)} ${whoTag()}</h2><div class="toolbox" id="toolEl"></div>`;
-    const el=$('#toolEl'),run={id};TOOLRUN=run;setLast({k:'tool',id});
-    try{const c=m.render(el,toolApi(t,run));if(typeof c==='function')run.cleanup=c}
+    const el=$('#toolEl'),run={id};TOOLRUN=run;if(!hw)setLast({k:'tool',id});
+    if(hw)el.insertAdjacentHTML('beforebegin',`<p class="hint" style="margin:0 0 6px">📝 作業${hw.lv?'：第 '+hw.lv+' 關':''}・玩到拿獎勵就算完成這一項</p>`);
+    try{const c=m.render(el,toolApi(t,run,hw));if(typeof c==='function')run.cleanup=c}
     catch(e){console.error(e);el.innerHTML=`<div class="empty" role="alert"><span class="big-ic" aria-hidden="true">🛠️</span><b>這個小工具出了點問題</b><span>先玩別的，我們會盡快修好！</span><a class="btn primary" href="#/tools">回小工具</a></div>`}
   },()=>{if(tok!==route.tok)return;$('#view').innerHTML=back+`<div class="empty loading" role="alert"><span class="big-ic" aria-hidden="true">📶</span><b>小工具下載失敗</b><span>可能是網路不穩，檢查網路後再試一次。</span><button class="btn primary" id="retry">🔄 再試一次</button></div>`;$('#retry').onclick=()=>route()})}
+
+/* ================= 班級作業碼（沒有伺服器：作業碼本身就寫著作業內容＋檢查碼） ================= */
+/* 作業碼 v1 位元：版本3｜截止日12（2026-01-01 起第幾天，0＝不限）｜每單元題數3｜項目數3（1～8）
+     ｜每項：類型1＋（單元：單元 id 的雜湊20｜小工具：HW_TOOLS 編號5＋關卡6，0＝不指定）｜檢查碼12
+   完成碼 v1 位元：版本2｜分數7｜座號7（0＝沒填）｜完成日12｜驗證碼22（作業碼＋分數＋座號＋日期算出）
+   學生紀錄（存在目前小朋友的 S，換小朋友分開）：S.hw=[{c:作業碼,at,seat,it:{項目序號:{done,best,last,t}},fin:{score,day,cc}}] */
+const HW_AB='23456789ABCDEFGHJKLMNPQRSTUVWXYZ',HW_NS=[5,8,10,15,20,25,30,40],HW_SALT='chifoo-hw-v1',HW_MAX=8;
+const HW_TOOLS=['stroke','times','phonics','englevel','engtest','hello'];   // 只能往後加、不能改順序（舊作業碼靠這個編號）
+const HW_TOOL_NAME={stroke:'國字筆順',times:'九九乘法速算',phonics:'自然發音',englevel:'英語分級闖關',engtest:'英語小測驗',hello:'點星星暖身'};
+const HW_LV={phonics:{w:'課',max:32},englevel:{w:'關',max:42},engtest:{none:1}};   // 關卡的叫法／上限；none＝沒有關卡
+/* 從模組取關卡名稱表（標準：m.levels＝[名稱]；也認 phonics 的 _lessons、englevel 的 _t.STAGES） */
+function toolLevelNames(id){const m=cfxGet(id);if(!m)return null;
+  if(Array.isArray(m.levels))return m.levels.map(String);
+  if(Array.isArray(m._lessons))return m._lessons.map(l=>l.title||l.id);
+  if(m._t&&Array.isArray(m._t.STAGES))return m._t.STAGES.map(x=>x.id+' '+x.name);
+  return null}
+const hwLvTxt=(id,lv)=>{if(!lv)return'';const L=HW_LV[id]||{},nm=toolLevelNames(id);return`第 ${lv} ${L.w||'關'}`+(nm&&nm[lv-1]?`（${nm[lv-1]}）`:'')};
+/* 需要關卡名稱時才下載模組，下載完重畫目前畫面 */
+function hwNeedNames(ids,redraw){const need=ids.filter(id=>HW_LV[id]&&!HW_LV[id].none&&!cfxGet(id)).map(id=>toolList().find(t=>t.id===id)).filter(Boolean);
+  if(!need.length)return;const tok=route.tok;Promise.all(need.map(t=>loadTool(t).catch(()=>null))).then(()=>{if(tok===route.tok)redraw()})}
+const HW_D0=Date.UTC(2026,0,1);
+const hwDayNum=d=>Math.round((Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())-HW_D0)/864e5);
+const hwDayDate=n=>{const t=new Date(HW_D0+n*864e5);return new Date(t.getUTCFullYear(),t.getUTCMonth(),t.getUTCDate())};
+function fnv(s){let h=0x811c9dc5;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,0x01000193)>>>0}return h>>>0}
+const bitsOf=(v,n)=>{let s='';for(let i=n-1;i>=0;i--)s+=Math.floor(v/2**i)%2;return s};
+function hwEnc(bits){while(bits.length%5)bits+='0';let s='';for(let i=0;i<bits.length;i+=5)s+=HW_AB[parseInt(bits.substr(i,5),2)];return s.match(/.{1,4}/g).join('-')}
+function hwDec(code){const c=String(code||'').toUpperCase().replace(/[\s\-_.]/g,'');if(!c)return null;let b='';
+  for(const ch of c){const k=HW_AB.indexOf(ch);if(k<0)return null;b+=bitsOf(k,5)}return b}
+const hwRd=(st,n)=>{if(st.p+n>st.b.length)throw new Error('short');const v=parseInt(st.b.substr(st.p,n),2);st.p+=n;return v};
+/* 單元 id → 20 位元雜湊（同一個雜湊撞到兩個單元的就不能出，產生時會擋） */
+function hwCatalog(){if(hwCatalog.m)return hwCatalog.m;const m=new Map(),dup=new Set();
+  const add=id=>{const h=fnv(id)&0xFFFFF;if(m.has(h)&&m.get(h)!==id)dup.add(h);else m.set(h,id)};
+  IDX.math.forEach(x=>add('m:'+x.id));IDX.bank.forEach(x=>add('b:'+x.id));EN_THEMES.forEach(t=>add('v:'+t.id));
+  dup.forEach(h=>m.delete(h));return hwCatalog.m=m}
+const hwUnitOk=id=>hwCatalog().get(fnv(id)&0xFFFFF)===id;
+/* o={items:[{u:'b:xxx'}|{t:'times',lv:0}],n,due:Date|null} → 作業碼 */
+function hwMake(o){let b=bitsOf(1,3)+bitsOf(o.due?Math.max(1,Math.min(4095,hwDayNum(o.due))):0,12)+bitsOf(Math.max(0,HW_NS.indexOf(o.n)),3)+bitsOf(o.items.length-1,3);
+  o.items.forEach(it=>{b+=it.t!=null?'1'+bitsOf(HW_TOOLS.indexOf(it.t),5)+bitsOf(Math.max(0,Math.min(63,it.lv|0)),6):'0'+bitsOf(fnv(it.u)&0xFFFFF,20)});
+  return hwEnc(b+bitsOf(fnv(HW_SALT+b)&0xFFF,12))}
+/* 作業碼 → {code(標準寫法),due,dueN,n,items}；檢查碼不對回傳 null */
+function hwParse(code){const b=hwDec(code);if(!b)return null;const st={b,p:0};
+  try{if(hwRd(st,3)!==1)return null;const dueN=hwRd(st,12),n=HW_NS[hwRd(st,3)],k=hwRd(st,3)+1,items=[];
+    for(let i=0;i<k;i++){if(hwRd(st,1)){const ti=hwRd(st,5),lv=hwRd(st,6);items.push({t:HW_TOOLS[ti]||null,lv})}else{const h=hwRd(st,20);items.push({u:hwCatalog().get(h)||null,h})}}
+    const body=b.slice(0,st.p),ck=hwRd(st,12);if(ck!==(fnv(HW_SALT+body)&0xFFF)||/1/.test(b.slice(st.p)))return null;
+    return{code:hwEnc(body+bitsOf(ck,12)),dueN,due:dueN?hwDayDate(dueN):null,n,items}}catch(e){return null}}
+const hwMac=(code,score,seat,day)=>fnv(HW_SALT+'|cc|'+code+'|'+score+'|'+seat+'|'+day)&0x3FFFFF;
+const hwDone=(code,score,seat,day)=>hwEnc(bitsOf(1,2)+bitsOf(score,7)+bitsOf(seat,7)+bitsOf(day,12)+bitsOf(hwMac(code,score,seat,day),22));
+/* 老師端驗證完成碼：回傳 {ok,score,seat,day} 或 null（格式錯） */
+function hwCheck(code,cc){const b=hwDec(cc);if(!b||b.length<50)return null;const st={b,p:0};
+  try{if(hwRd(st,2)!==1)return null;const score=hwRd(st,7),seat=hwRd(st,7),dayN=hwRd(st,12),mac=hwRd(st,22);if(/1/.test(b.slice(st.p)))return null;
+    return{ok:score<=100&&seat<=99&&mac===hwMac(code,score,seat,dayN),score,seat,dayN,day:hwDayDate(dayN)}}catch(e){return null}}
+function hwItemInfo(it,n){
+  if('t' in it){const tl=it.t&&toolList().find(x=>x.id===it.t),nm=tl?tl.title:(HW_TOOL_NAME[it.t]||'小工具');
+    return{kind:'tool',ok:!!tl,ic:tl?tl.icon:'🧩',name:nm+(it.lv?'・'+hwLvTxt(it.t,it.lv):''),sub:tl?'小工具':'小工具・準備中'}}
+  const u=it.u&&unitById(it.u);if(!u)return{kind:'unit',ok:false,ic:'❓',name:'找不到這個單元',sub:'網站可能更新了，請問老師'};
+  return{kind:'unit',ok:true,u,ic:SUBJ[u.s]?SUBJ[u.s].ic:'📘',name:u.name,sub:u.s+(u.g?'・'+GZH[u.g]+'年級':'')+(u.book?'・'+u.book:'')+`・${n} 題`}}
+const hwDueTxt=P=>{if(!P.due)return'沒有截止日';const d=P.dueN-hwDayNum(new Date());return`截止 ${md(P.due)}`+(d<0?'（已過截止日）':d===0?'（今天截止）':`（還有 ${d} 天）`)};
+const hwList=()=>Array.isArray(S.hw)?S.hw:(S.hw=[]);
+const hwFind=c=>hwList().find(h=>h.c===c);
+function hwStat(H,P){P=P||hwParse(H.c);const tot=P?P.items.length:0;let done=0,sum=0;
+  if(P)P.items.forEach((it,i)=>{const r=H.it&&H.it[i];if(r&&r.done){done++;sum+=r.best!=null?r.best:100}});
+  return{P,tot,done,score:tot?Math.round(sum/tot):0,all:tot>0&&done===tot}}
+function hwJoin(code,seat){const P=hwParse(code);if(!P)return null;let H=hwFind(P.code);
+  if(!H){H={c:P.code,at:Date.now(),seat:seat|0,it:{}};hwList().unshift(H);S.hw=S.hw.slice(0,20)}
+  save();return H}
+/* 記一項的成績（pct 0～100）；全部做完就算出完成碼（成績進步會更新） */
+function hwRecord(c,i,pct){const H=hwFind(c);if(!H)return null;H.it=H.it||{};const r=H.it[i]||(H.it[i]={});
+  r.done=true;r.best=Math.max(r.best||0,pct);r.last=pct;r.t=Date.now();
+  const st=hwStat(H);if(st.all&&(!H.fin||st.score>H.fin.score)){const day=hwDayNum(new Date());H.fin={score:st.score,day,cc:hwDone(H.c,st.score,H.seat|0,day)}}
+  save();return{H,st}}
+function hwSummary(P){return`<div class="hwlist" style="margin:0">${P.items.map(it=>{const I=hwItemInfo(it,P.n);return`<div class="hwit"><span class="ic" aria-hidden="true">${esc(I.ic)}</span><div><b>${esc(I.name)}</b><small>${esc(I.sub)}</small></div></div>`}).join('')}</div><p class="hint" style="margin:6px 0 0">📅 ${esc(hwDueTxt(P))}</p>`}
+function hwHome(){const L=hwList().filter(H=>hwParse(H.c));
+  if(!L.length)return`<button class="hwjoin" id="hwJoin" aria-haspopup="dialog">📝 有老師給的作業碼？點這裡輸入</button>`;
+  return`<h2 class="h2s">📝 我的作業<small><button class="hwadd" id="hwJoin" aria-haspopup="dialog">＋ 輸入作業碼</button></small></h2><div class="hwcards">${L.map(H=>{const st=hwStat(H),P=st.P,late=!st.all&&P.due&&hwDayNum(new Date())>P.dueN;
+    const I=hwItemInfo(P.items[0],P.n),ttl=I.name+(P.items.length>1?` 等 ${P.items.length} 項`:'');
+    return`<a class="hwcard tap${st.all?' done':late?' late':''}" href="#/hw/${encodeURIComponent(H.c)}" aria-label="作業：${esc(ttl)}，進度 ${st.done} / ${st.tot}，${esc(hwDueTxt(P))}"><span class="ic" aria-hidden="true">${st.all?'✅':'📝'}</span><div><b>${esc(ttl)}</b><small class="${late?'bad':''}">進度 ${st.done} / ${st.tot}・${st.all?'完成！看完成碼':esc(hwDueTxt(P))}</small><span class="bar" style="display:block" aria-hidden="true"><i style="width:${st.done/st.tot*100}%"></i></span></div><span class="go" aria-hidden="true">▶</span></a>`}).join('')}</div>`}
+function hwJoinSheet(pre){const bg=openSheet('📝 輸入作業碼',`<div class="fld"><label for="hwCode"><b>作業碼</b>（老師給的，例如 K7Q2-M9XA-3B）</label><input id="hwCode" autocomplete="off" autocapitalize="characters" spellcheck="false" value="${esc(pre||'')}" style="font-family:var(--f-en);letter-spacing:.06em;text-transform:uppercase"></div>
+    <div id="hwPrev" aria-live="polite"></div>
+    <div class="fld"><label for="hwSeat"><b>座號</b>（老師要求才填，可以不填）</label><input id="hwSeat" inputmode="numeric" maxlength="2" autocomplete="off"></div>
+    <p class="privacy">作業只記在這台裝置裡，不會上傳任何資料。</p>
+    <div class="btns" style="justify-content:stretch"><button class="btn primary" id="hwOk" style="flex:1" disabled>加入作業</button><button class="btn" data-close style="flex:1">取消</button></div>`);
+  const inp=bg.querySelector('#hwCode'),prev=bg.querySelector('#hwPrev'),ok=bg.querySelector('#hwOk'),seat=bg.querySelector('#hwSeat');
+  const upd=()=>{const v=inp.value.trim(),P=v?hwParse(v):null,H=P&&hwFind(P.code);ok.disabled=!P;
+    if(H){ok.textContent='打開這份作業';seat.value=H.seat||'';seat.disabled=true}else{ok.textContent='加入作業';seat.disabled=false}
+    prev.innerHTML=!v?'':P?hwSummary(P):'<p class="hint" style="color:var(--bad);margin:0">作業碼不正確，請再檢查一次（作業碼裡沒有 0、1、I、O）</p>'};
+  inp.oninput=upd;upd();if(!pre)inp.focus();
+  ok.onclick=()=>{const s=parseInt(seat.value,10),H=hwJoin(inp.value,s>=1&&s<=99?s:0);if(!H)return;closeSheet(true);location.hash='#/hw/'+encodeURIComponent(H.c)}}
+function viewHw(code){const P=hwParse(code),H=P&&hwFind(P.code);
+  if(!H){$('#view').innerHTML=`<a class="back" href="#/">← 回首頁</a><div class="empty" style="margin-top:14px"><span class="big-ic" aria-hidden="true">📝</span><b>${P?'還沒加入這份作業':'找不到這份作業'}</b><button class="btn primary" id="hwJ">輸入作業碼</button></div>`;$('#hwJ').onclick=()=>hwJoinSheet(P?P.code:'');return}
+  const st=hwStat(H,P),late=!st.all&&P.due&&hwDayNum(new Date())>P.dueN;
+  const rows=P.items.map((it,i)=>{const I=hwItemInfo(it,P.n),r=H.it&&H.it[i];
+    return`<div class="hwit"><span class="ic" aria-hidden="true">${esc(I.ic)}</span><div><b>${esc(I.name)}</b><small>${esc(I.sub)}</small></div>${r&&r.done?`<span class="ok">✅ ${I.kind==='unit'?r.best+' 分':'完成'}</span>`:''}${I.ok?`<a class="btn${r&&r.done?'':' primary'}" href="#/${I.kind==='unit'?'hwq':'hwt'}/${encodeURIComponent(H.c)}/${i}">${r&&r.done?'再做':'開始'}</a>`:''}</div>`}).join('');
+  $('#view').innerHTML=`<a class="back" href="#/">← 回首頁</a>
+  <section class="phead" style="--g:linear-gradient(135deg,#8FD3F4,#1A86A8)"><span class="ic" aria-hidden="true">📝</span><div><h1>班級作業 ${whoTag()}</h1><span class="meta" style="${late?'color:var(--bad)':''}">${esc(hwDueTxt(P))}${H.seat?'・座號 '+H.seat:''}</span></div><div class="num"><b>${st.done}/${st.tot}</b><span>完成</span></div><div class="bar" aria-hidden="true"><i style="width:${st.done/st.tot*100}%"></i></div></section>
+  <div class="hwlist">${rows}</div>
+  ${H.fin?`<section class="ccbox" aria-label="完成碼"><b style="font-size:18px">🎉 作業完成！把「完成碼」傳給老師</b><div class="code" id="ccCode">${H.fin.cc}</div><span class="hint" style="margin:0">成績 ${H.fin.score} 分・${md(hwDayDate(H.fin.day))} 完成${H.seat?'・座號 '+H.seat:''}（老師可以用完成碼核對）</span><button class="btn primary" id="ccCopy">📋 複製完成碼</button>${st.score>H.fin.score?'':'<span class="hint" style="margin:0">想要更高分可以再做，成績進步完成碼會更新</span>'}</section>`:`<p class="hint">每一項都做完，就會出現給老師的「完成碼」。</p>`}
+  <div class="btns" style="justify-content:flex-start;margin-top:18px"><button class="btn del" id="hwDel">🗑️ 刪除這份作業</button></div>`;
+  if($('#ccCopy'))$('#ccCopy').onclick=()=>{const t=H.fin.cc;(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>toast('已複製完成碼：'+t),()=>toast('請長按完成碼複製'))};
+  hwNeedNames(P.items.filter(it=>'t' in it&&it.lv).map(it=>it.t),()=>viewHw(code));
+  $('#hwDel').onclick=()=>{const b=$('#hwDel');if(b.dataset.c){S.hw=hwList().filter(x=>x!==H);save();location.hash='#/'}else{b.dataset.c=1;b.classList.add('sure');b.textContent='再按一次確定刪除'}}}
+function startHwUnit(c,i){const P=hwParse(c),H=P&&hwFind(P.code),it=P&&P.items[i];if(!H||!it||!it.u)return viewHw(c);
+  const u=unitById(it.u),tok=route.tok;if(!u)return viewHw(c);if(!u.src)showLoading();
+  ensureUnits([u]).then(()=>{if(tok!==route.tok)return;const items=u.src?makeSet(u,P.n):[];if(!items.length)return viewHw(c);
+    startQuiz(items,{unit:u.id,back:'#/hw/'+encodeURIComponent(P.code),hw:{c:P.code,i}})},()=>{if(tok===route.tok)showLoadErr()})}
+
+/* ---------- 老師出作業（#/teacher）：產生作業碼／連結／QR code，驗證完成碼 ---------- */
+const TCH={g:null,s:null,book:'*',sel:[],n:10,due:null,noDue:false,code:null,tlv:{}};
+const TKEY='chifoo.teacher';   // 這台裝置最近出的作業碼（只有代碼，沒有學生資料）
+function tchRecent(){try{return JSON.parse(lsGet(TKEY)||'[]').filter(x=>typeof x==='string').slice(0,10)}catch(e){return[]}}
+function tchLink(code){return location.origin+location.pathname+'?hw='+encodeURIComponent(code)}
+function viewTeacher(){const T=TCH;if(T.g==null)T.g=S.grade;const subs=subjOf(T.g);if(!subs.includes(T.s))T.s=subs[0];
+  if(!T.due){const d=new Date();d.setDate(d.getDate()+7);T.due=d}
+  const all=unitsFor(T.s,T.g),books=[...new Set(all.map(u=>u.book).filter(Boolean))];if(T.book!=='*'&&T.book!==''&&!books.includes(T.book))T.book='*';
+  const shown=all.filter(u=>T.book==='*'||(T.book===''?!u.book:u.book===T.book));
+  const isSel=x=>T.sel.some(y=>x.t?y.t===x.t:y.u===x.u);
+  const tools=HW_TOOLS.filter(id=>id!=='hello'||toolList().some(t=>t.id==='hello'));
+  const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  const selName=x=>{if(x.t){const tl=toolList().find(t=>t.id===x.t);return(tl?tl.title:HW_TOOL_NAME[x.t]||x.t)+((T.tlv[x.t]|0)?'・'+hwLvTxt(x.t,T.tlv[x.t]|0):'')}const u=unitById(x.u);return u?u.s+'・'+u.name:x.u};
+  const recent=tchRecent();
+  $('#view').innerHTML=`<a class="back" href="#/">← 回首頁</a>
+  <section class="phead" style="--g:linear-gradient(135deg,#B3E5C8,#268A4F)"><span class="ic" aria-hidden="true">👩‍🏫</span><div><h1>老師出作業</h1><span class="meta">選內容→產生作業碼→傳給學生。不用帳號，也不收集任何學生資料。</span></div></section>
+  <section class="tsec"><h3>① 選作業內容 <small class="hint">（最多 ${HW_MAX} 項，已選 ${T.sel.length} 項）</small></h3>
+    <div class="trow"><b style="font-size:14px">年級</b><div class="grades" id="tG">${[1,2,3,4,5,6].map(n=>`<button data-g="${n}" aria-pressed="${n===T.g}">${GZH[n]}年級</button>`).join('')}</div></div>
+    <div class="trow"><b style="font-size:14px">科目</b><div class="grades" id="tS">${subs.map(s=>`<button data-s="${s}" aria-pressed="${s===T.s}">${SUBJ[s].ic} ${s}</button>`).join('')}</div></div>
+    ${books.length?`<div class="trow"><b style="font-size:14px">課本</b><div class="grades" id="tB"><button data-b="*" aria-pressed="${T.book==='*'}">全部</button>${books.map(b=>`<button data-b="${esc(b)}" aria-pressed="${T.book===b}">${esc(b)}</button>`).join('')}<button data-b="" aria-pressed="${T.book===''}">主題練習</button></div></div>`:''}
+    <div class="ulist" id="tU">${shown.map(u=>{const ok=hwUnitOk(u.id);return`<button data-u="${esc(u.id)}" aria-pressed="${isSel({u:u.id})}"${ok?'':' disabled title="這個單元暫時不能出作業"'}>${esc(u.name)}<small>${u.book?esc(u.book):''}${u.n==='∞'?'':' '+u.n+' 題'}</small></button>`}).join('')||'<p class="hint">這一科還沒有單元</p>'}</div>
+    <h3 style="font-size:15px;margin-top:4px">🧰 小工具</h3>
+    <div class="ulist" id="tT" style="max-height:none">${tools.map(id=>{const tl=toolList().find(t=>t.id===id);return`<div class="trow" style="gap:6px"><button data-t="${id}" aria-pressed="${isSel({t:id})}" style="flex:1">${esc(tl?tl.icon+' '+tl.title:HW_TOOL_NAME[id])}<small>${tl?'':'準備中'}</small></button>${tchLvField(id)}</div>`}).join('')}</div>
+    <p class="hint" style="margin:0">小工具的關卡（課）可以不選＝學生自由練習；學生玩到拿獎勵就算完成這一項。「準備中」的小工具上線後學生就能做。</p>
+    ${T.sel.length?`<div class="selchips" id="tSel">${T.sel.map((x,i)=>`<button data-i="${i}" aria-label="移除 ${esc(selName(x))}">${esc(selName(x))} ✕</button>`).join('')}</div>`:''}
+  </section>
+  <section class="tsec"><h3>② 題數和截止日</h3>
+    <div class="trow"><label for="tN"><b style="font-size:14px">每個單元</b></label><select id="tN">${HW_NS.map(n=>`<option value="${n}"${n===T.n?' selected':''}>${n} 題</option>`).join('')}</select></div>
+    <div class="trow"><label for="tD"><b style="font-size:14px">截止日</b></label><input type="date" id="tD" value="${iso(T.due)}"${T.noDue?' disabled':''}><label class="trow" style="gap:4px;font-size:14px;font-weight:700"><input type="checkbox" id="tND"${T.noDue?' checked':''} style="width:22px;height:22px;min-height:0">不限</label></div>
+    <button class="btn primary" id="tGo"${T.sel.length?'':' disabled'}>✨ 產生作業碼</button>
+  </section>
+  ${T.code?tchResult(T.code):''}
+  <section class="tsec" id="tVer"><h3>③ 核對完成碼</h3>
+    <p class="hint" style="margin:0">學生做完作業會拿到「完成碼」。貼上作業碼和完成碼（可以一次貼很多個，一行一個），就能看到成績和完成日期；亂填的會顯示無效。</p>
+    <label for="vC"><b style="font-size:14px">作業碼</b></label><input class="in" id="vC" value="${esc(T.code||recent[0]||'')}" autocomplete="off" spellcheck="false">
+    ${recent.length?`<div class="selchips">${recent.map(c=>`<button data-rc="${esc(c)}">${esc(c)}</button>`).join('')}</div>`:''}
+    <label for="vL"><b style="font-size:14px">完成碼</b></label><textarea id="vL" spellcheck="false" placeholder="一行一個"></textarea>
+    <button class="btn primary" id="vGo">🔍 核對</button><div id="vOut" aria-live="polite"></div>
+  </section>`;
+  const re=()=>{const y=scrollY;viewTeacher();scrollTo(0,y)};
+  document.querySelectorAll('#tG button').forEach(b=>b.onclick=()=>{T.g=+b.dataset.g;re()});
+  document.querySelectorAll('#tS button').forEach(b=>b.onclick=()=>{T.s=b.dataset.s;T.book='*';re()});
+  document.querySelectorAll('#tB button').forEach(b=>b.onclick=()=>{T.book=b.dataset.b;re()});
+  const tog=x=>{const k=T.sel.findIndex(y=>x.t?y.t===x.t:y.u===x.u);if(k>=0)T.sel.splice(k,1);else if(T.sel.length<HW_MAX)T.sel.push(x);else toast(`一份作業最多 ${HW_MAX} 項`);T.code=null;re()};
+  document.querySelectorAll('#tU button').forEach(b=>b.onclick=()=>tog({u:b.dataset.u}));
+  document.querySelectorAll('#tT button').forEach(b=>b.onclick=()=>tog({t:b.dataset.t}));
+  hwNeedNames(tools,re);
+  document.querySelectorAll('#tT [data-lv]').forEach(inp=>inp.onchange=()=>{const L=HW_LV[inp.dataset.lv]||{},v=Math.max(0,Math.min(L.max||63,parseInt(inp.value,10)||0));T.tlv[inp.dataset.lv]=v;T.code=null;re()});
+  document.querySelectorAll('#tSel button').forEach(b=>b.onclick=()=>{T.sel.splice(+b.dataset.i,1);T.code=null;re()});
+  $('#tN').onchange=e=>{T.n=+e.target.value;T.code=null};
+  $('#tD').onchange=e=>{const v=e.target.value.split('-').map(Number);if(v.length===3&&v[0])T.due=new Date(v[0],v[1]-1,v[2]);T.code=null};
+  $('#tND').onchange=e=>{T.noDue=e.target.checked;T.code=null;re()};
+  $('#tGo').onclick=()=>{if(!T.sel.length)return;if(!T.noDue&&hwDayNum(T.due)<hwDayNum(new Date()))return toast('截止日不能早於今天');
+    T.code=hwMake({items:T.sel.map(x=>x.t?{t:x.t,lv:T.tlv[x.t]|0}:{u:x.u}),n:T.n,due:T.noDue?null:T.due});
+    lsSet(TKEY,JSON.stringify([T.code].concat(tchRecent().filter(c=>c!==T.code)).slice(0,10)));viewTeacher();
+    const r=$('#tRes');if(r)r.scrollIntoView({block:'start',behavior:RM()?'auto':'smooth'})};
+  if($('#tRes')){const code=T.code,link=tchLink(code);
+    $('#tCopyC').onclick=()=>navigator.clipboard&&navigator.clipboard.writeText(code).then(()=>toast('已複製作業碼'));
+    $('#tCopyL').onclick=()=>navigator.clipboard&&navigator.clipboard.writeText(link).then(()=>toast('已複製連結'));
+    $('#tTry').onclick=()=>hwJoinSheet(code)}
+  document.querySelectorAll('[data-rc]').forEach(b=>b.onclick=()=>{$('#vC').value=b.dataset.rc});
+  $('#vGo').onclick=()=>{const P=hwParse($('#vC').value),out=$('#vOut');if(!P){out.innerHTML='<p class="hint" style="color:var(--bad)">作業碼不正確</p>';return}
+    const lines=$('#vL').value.split(/[\n,，;；]+/).map(s=>s.trim()).filter(Boolean);if(!lines.length){out.innerHTML='<p class="hint">請貼上完成碼</p>';return}
+    const rows=lines.map(l=>{const R=hwCheck(P.code,l);if(!R||!R.ok)return`<tr><td>${esc(l)}</td><td colspan="3" class="n">❌ 無效（不是這份作業的完成碼，或打錯了）</td></tr>`;
+      const late=P.dueN&&R.dayN>P.dueN;return`<tr><td>${R.seat?R.seat+' 號':'—'}</td><td class="y">${R.score} 分</td><td>${md(R.day)}${late?' <b class="n">逾期</b>':''}</td><td class="y">✅ 有效</td></tr>`}).join('');
+    out.innerHTML=`<div style="overflow-x:auto"><table class="vtab"><thead><tr><th>座號</th><th>成績</th><th>完成日</th><th>結果</th></tr></thead><tbody>${rows}</tbody></table></div>`}}
+function tchLvField(id){const L=HW_LV[id]||{},nm=toolLevelNames(id),v=TCH.tlv[id]|0,w=L.w||'關';
+  if(L.none)return`<span class="hint" style="margin:0;font-size:12.5px">直接開始</span>`;
+  if(nm&&nm.length)return`<select data-lv="${id}" aria-label="${esc(HW_TOOL_NAME[id]||id)}的${w}" style="max-width:min(220px,48vw)"><option value="0">不指定${w}</option>${nm.slice(0,63).map((x,i)=>`<option value="${i+1}"${v===i+1?' selected':''}>第 ${i+1} ${w}・${esc(x)}</option>`).join('')}</select>`;
+  return`<label class="trow" style="gap:4px;font-size:13px;font-weight:700">第<input type="number" min="0" max="${L.max||63}" data-lv="${id}" value="${v||''}" placeholder="—" style="width:64px">${w}${L.max?`<small class="hint">（1～${L.max}）</small>`:''}</label>`}
+function tchResult(code){const P=hwParse(code),link=tchLink(code);
+  return`<section class="tsec" id="tRes" style="justify-items:center;text-align:center"><h3>✅ 作業碼產生好了</h3>
+    <div class="code">${esc(code)}</div>
+    ${qrSvg(link)}
+    <input class="in" readonly value="${esc(link)}" aria-label="作業連結" onclick="this.select()" style="text-transform:none;font-size:13px">
+    <div class="btns"><button class="btn primary" id="tCopyC">📋 複製作業碼</button><button class="btn" id="tCopyL">🔗 複製連結</button><a class="btn" href="https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(link)}" target="_blank" rel="noopener">LINE 傳送</a><button class="btn" id="tTry">👀 預覽學生畫面</button></div>
+    <p class="hint" style="margin:0">學生可以掃 QR code、點連結，或在首頁按「輸入作業碼」。</p>
+    <div style="width:100%;text-align:left">${P?hwSummary(P):''}</div></section>`}
+
+/* ---------- 內建 QR code 產生器（Byte 模式、容錯 M、版本 1～6；不連外部服務） ---------- */
+const QR_V=[null,{raw:26,ecc:10,blk:1,al:[]},{raw:44,ecc:16,blk:1,al:[6,18]},{raw:70,ecc:26,blk:1,al:[6,22]},{raw:100,ecc:18,blk:2,al:[6,26]},{raw:134,ecc:24,blk:2,al:[6,30]},{raw:172,ecc:16,blk:4,al:[6,34]}];
+function qrMul(x,y){let z=0;for(let i=7;i>=0;i--){z=(z<<1)^((z>>>7)*0x11D);z^=((y>>>i)&1)*x}return z&255}
+function qrDiv(deg){const r=new Array(deg).fill(0);r[deg-1]=1;let root=1;for(let i=0;i<deg;i++){for(let j=0;j<deg;j++){r[j]=qrMul(r[j],root);if(j+1<deg)r[j]^=r[j+1]}root=qrMul(root,2)}return r}
+function qrRem(data,div){const r=div.map(()=>0);for(const b of data){const f=b^r.shift();r.push(0);div.forEach((c,i)=>r[i]^=qrMul(c,f))}return r}
+function qrMatrix(text,forceMask){
+  const bytes=Array.from(new TextEncoder().encode(text));let ver=0;
+  for(let v=1;v<=6;v++){const dc=QR_V[v].raw-QR_V[v].ecc*QR_V[v].blk;if(12+bytes.length*8<=dc*8){ver=v;break}}
+  if(!ver)return null;
+  const V=QR_V[ver],dc=V.raw-V.ecc*V.blk,cap=dc*8;
+  let bits='0100'+bitsOf(bytes.length,8)+bytes.map(b=>bitsOf(b,8)).join('');
+  bits+='0'.repeat(Math.min(4,cap-bits.length));bits+='0'.repeat((8-bits.length%8)%8);
+  const data=[];for(let i=0;i<bits.length;i+=8)data.push(parseInt(bits.substr(i,8),2));
+  for(let p=0;data.length<dc;p^=1)data.push(p?0x11:0xEC);
+  const nb=V.blk,ns=nb-V.raw%nb,sl=Math.floor(V.raw/nb),div=qrDiv(V.ecc),blocks=[];
+  for(let i=0,k=0;i<nb;i++){const dat=data.slice(k,k+sl-V.ecc+(i<ns?0:1));k+=dat.length;const ecc=qrRem(dat,div);if(i<ns)dat.push(0);blocks.push(dat.concat(ecc))}
+  const cw=[];for(let i=0;i<blocks[0].length;i++)blocks.forEach((b,j)=>{if(i!==sl-V.ecc||j>=ns)cw.push(b[i])});
+  const N=ver*4+17,M=[...Array(N)].map(()=>new Array(N).fill(false)),F=[...Array(N)].map(()=>new Array(N).fill(false));
+  const set=(x,y,d)=>{M[y][x]=d;F[y][x]=true};
+  for(let i=0;i<N;i++){set(6,i,i%2===0);set(i,6,i%2===0)}
+  [[3,3],[N-4,3],[3,N-4]].forEach(([cx,cy])=>{for(let dy=-4;dy<=4;dy++)for(let dx=-4;dx<=4;dx++){const x=cx+dx,y=cy+dy,d=Math.max(Math.abs(dx),Math.abs(dy));if(x>=0&&x<N&&y>=0&&y<N)set(x,y,d!==2&&d!==4)}});
+  const al=V.al,na=al.length;
+  for(let i=0;i<na;i++)for(let j=0;j<na;j++){if((i===0&&j===0)||(i===0&&j===na-1)||(i===na-1&&j===0))continue;
+    for(let dy=-2;dy<=2;dy++)for(let dx=-2;dx<=2;dx++)set(al[i]+dx,al[j]+dy,Math.max(Math.abs(dx),Math.abs(dy))!==1)}
+  const fmt=mask=>{const d=mask;let r=d;for(let i=0;i<10;i++)r=(r<<1)^((r>>>9)*0x537);const b=((d<<10)|r)^0x5412,g=i=>((b>>>i)&1)===1;   // 容錯 M 的格式碼＝00
+    for(let i=0;i<=5;i++)set(8,i,g(i));set(8,7,g(6));set(8,8,g(7));set(7,8,g(8));for(let i=9;i<15;i++)set(14-i,8,g(i));
+    for(let i=0;i<8;i++)set(N-1-i,8,g(i));for(let i=8;i<15;i++)set(8,N-15+i,g(i));set(8,N-8,true)};
+  fmt(0);
+  let k=0;for(let right=N-1;right>=1;right-=2){if(right===6)right=5;
+    for(let v=0;v<N;v++)for(let j=0;j<2;j++){const x=right-j,up=((right+1)&2)===0,y=up?N-1-v:v;if(!F[y][x]&&k<cw.length*8){M[y][x]=((cw[k>>>3]>>>(7-(k&7)))&1)===1;k++}}}
+  const MF=[(x,y)=>(x+y)%2===0,(x,y)=>y%2===0,(x,y)=>x%3===0,(x,y)=>(x+y)%3===0,(x,y)=>(Math.floor(x/3)+Math.floor(y/2))%2===0,(x,y)=>x*y%2+x*y%3===0,(x,y)=>(x*y%2+x*y%3)%2===0,(x,y)=>((x+y)%2+x*y%3)%2===0];
+  const apply=m=>{for(let y=0;y<N;y++)for(let x=0;x<N;x++)if(!F[y][x]&&MF[m](x,y))M[y][x]=!M[y][x]};
+  const pen=()=>{let p=0;for(let a=0;a<2;a++)for(let i=0;i<N;i++){let run=1;for(let j=1;j<N;j++){const c=a?M[j][i]:M[i][j],pc=a?M[j-1][i]:M[i][j-1];if(c===pc){run++;if(run===5)p+=3;else if(run>5)p++}else run=1}}
+    for(let y=0;y<N-1;y++)for(let x=0;x<N-1;x++){const c=M[y][x];if(c===M[y][x+1]&&c===M[y+1][x]&&c===M[y+1][x+1])p+=3}
+    let dark=0;M.forEach(r=>r.forEach(c=>{if(c)dark++}));return p+Math.floor(Math.abs(dark*20-N*N*10)/(N*N))*10};
+  let best=forceMask!=null?forceMask:0;
+  if(forceMask==null){let bp=Infinity;for(let m=0;m<8;m++){apply(m);fmt(m);const p=pen();if(p<bp){bp=p;best=m}apply(m)}}
+  apply(best);fmt(best);return M}
+function qrSvg(text){const M=qrMatrix(text);if(!M)return'';const N=M.length,q=4;let d='';
+  M.forEach((r,y)=>r.forEach((c,x)=>{if(c)d+=`M${x+q} ${y+q}h1v1h-1z`}));
+  return`<svg class="qr" viewBox="0 0 ${N+2*q} ${N+2*q}" role="img" aria-label="作業連結的 QR code" shape-rendering="crispEdges"><rect width="100%" height="100%" fill="#fff"/><path d="${d}" fill="#000"/></svg>`}
 
 /* ---------- 路由 ---------- */
 function route(){
@@ -2229,6 +2501,10 @@ function route(){
   if(p[0]==='adv'&&SUBJ[p[1]]){setLast({k:'adv',s:p[1]});if(p[2]!=null){startAdv(p[1],+p[2]).then(ok=>{if(!ok&&tok===route.tok)viewAdv(p[1])});return}return viewAdv(p[1])}
   if(p[0]==='top'){setLast({k:'top'});return viewTop(p[1]&&(subjOf(S.grade).includes(p[1])||p[1]==='mix')?p[1]:null)}
   if(p[0]==='tools')return p[1]?viewTool(p.slice(1).join('/')):viewTools();
+  if(p[0]==='teacher')return viewTeacher();
+  if(p[0]==='hw'&&p[1])return viewHw(p[1]);
+  if(p[0]==='hwq'&&p[1])return startHwUnit(p[1],+p[2]||0);
+  if(p[0]==='hwt'&&p[1]){const P=hwParse(p[1]),i=+p[2]||0,it=P&&P.items[i];if(!P||!hwFind(P.code)||!it||!('t' in it))return viewHw(p[1]);return viewTool(it.t,{c:P.code,i,lv:it.lv})}
   if(p[0]==='wrong')return viewWrong();
   if(p[0]==='stickers')return viewStickers();
   viewHome()}
@@ -2238,6 +2514,9 @@ document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest
 $('#muteBtn').onclick=()=>{S.mute=!S.mute;save();header()};
 $('#zyBtn').onclick=()=>{S.zy=!zyOn();save();header();if(Q&&Q.i<Q.items.length&&!Q.answered&&document.querySelector('.qtext'))drawQ()};
 $('#whoBtn').onclick=()=>whoSheet();
+/* 作業連結 ?hw=作業碼：記下來（首頁會跳出加入作業視窗），網址上的參數拿掉 */
+let HW_PENDING=null,HW_GATE_OK=false;
+try{const m=/[?&]hw=([^&#]+)/.exec(location.search);if(m){HW_PENDING=decodeURIComponent(m[1]);const u=new URL(location.href);u.searchParams.delete('hw');history.replaceState(null,'',u.pathname+u.search+(u.hash&&u.hash!=='#'?u.hash:''));if(location.hash&&location.hash!=='#/')location.hash='#/'}}catch(e){}
 route();
 if(PR.shared)whoSheet({gate:true});   // 共用平板模式：重新打開網站先選人
 
