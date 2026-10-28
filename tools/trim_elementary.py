@@ -148,6 +148,96 @@ def drop_clone_maps(s):
     return s, n
 
 
+STAGE_WORDS = re.compile(r"七上|七下|八上|八下|九上|九下|高一|高二|高三|高中|國中|技高|數A|數B|數C|統測|學測|會考")
+ELEM_WORDS = re.compile(r"國小|小一|小二|小三|小四|小五|小六")
+
+
+def comment_spans(s):
+    """回傳所有註解的 (起點, 終點)；字串、樣板、正規式裡的 // 與 /* 不算。"""
+    spans, i = [], 0
+    while i < len(s):
+        c = s[i]
+        nxt = s[i + 1] if i + 1 < len(s) else ""
+        if c == "/" and nxt == "/":
+            j = s.find("\n", i)
+            j = len(s) if j < 0 else j
+            spans.append((i, j))
+            i = j
+            continue
+        if c == "/" and nxt == "*":
+            j = s.find("*/", i + 2)
+            j = len(s) if j < 0 else j + 2
+            spans.append((i, j))
+            i = j
+            continue
+        if c in "'\"`" or (c == "/" and _regex_allowed(s, i)):
+            i = walk(s, i, 0) if False else _skip_literal(s, i)
+            continue
+        i += 1
+    return spans
+
+
+def _skip_literal(s, i):
+    """跳過一段字串／樣板／正規式，回傳其後的位置。"""
+    c = s[i]
+    if c in "'\"":
+        i += 1
+        while i < len(s):
+            if s[i] == "\\":
+                i += 2
+                continue
+            if s[i] == c:
+                return i + 1
+            i += 1
+        return i
+    if c == "`":
+        i += 1
+        while i < len(s):
+            if s[i] == "\\":
+                i += 2
+                continue
+            if s[i] == "`":
+                return i + 1
+            if s[i] == "$" and i + 1 < len(s) and s[i + 1] == "{":
+                i = walk(s, i + 2)
+                continue
+            i += 1
+        return i
+    i += 1                                   # 正規式
+    in_class = False
+    while i < len(s):
+        if s[i] == "\\":
+            i += 2
+            continue
+        if s[i] == "[":
+            in_class = True
+        elif s[i] == "]":
+            in_class = False
+        elif s[i] == "\n":
+            return i
+        elif s[i] == "/" and not in_class:
+            i += 1
+            break
+        i += 1
+    while i < len(s) and s[i].isalpha():
+        i += 1
+    return i
+
+
+def drop_dead_comments(s):
+    """刪掉只在講國中／高中／技高的註解（那些段落的題目已經移除了）。"""
+    spans = [(a, b) for a, b in comment_spans(s)
+             if STAGE_WORDS.search(s[a:b]) and not ELEM_WORDS.search(s[a:b])]
+    for a, b in reversed(spans):
+        end = b
+        while end < len(s) and s[end] in " \t":
+            end += 1
+        if s[end:end + 1] == "\n" and s[:a].rstrip(" \t").endswith("\n"):
+            end += 1                          # 整行註解連同換行一起刪
+        s = s[:a].rstrip(" \t") + s[end:]
+    return s, len(spans)
+
+
 def drop_reorder_iifes(s):
     """刪掉把國中／技高單元重新排序的 IIFE（單元都移除後它們會出錯）。"""
     n = 0
@@ -185,11 +275,12 @@ def main():
         last = b
     out.append(s[last:])
     trimmed = "".join(out)
+    trimmed, cmts = drop_dead_comments(trimmed)
     if "MATH_UNITS" not in trimmed:
         trimmed = trimmed.rstrip() + "\n" + EXPORT
 
     open(DST, "w", encoding="utf-8", newline="\n").write(trimmed)
-    print("保留國小 %d 個單元，刪掉其他學段 %d 個單元、%d 段複製敘述、%d 段排序程式" % (len(keep), len(drop), maps, iifes))
+    print("保留國小 %d 個單元，刪掉其他學段 %d 個單元、%d 段複製敘述、%d 段排序程式、%d 則過時註解" % (len(keep), len(drop), maps, iifes, cmts))
     print("主檔 %d KB → 啟賦版 %d KB" % (len(s) // 1024, len(trimmed) // 1024))
 
 
