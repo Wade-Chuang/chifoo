@@ -493,6 +493,13 @@ body{min-height:100vh;min-height:100dvh}
 .cont .pl{width:36px;height:36px;border-radius:50%;background:#fff;color:#F25C4B;display:grid;place-items:center;font-size:14px;flex:none;box-shadow:0 2px 0 rgba(0,0,0,.15)}
 h2.h2s{margin:14px 0 8px;font-size:18px}
 h2.h2s small{margin-left:auto}
+.enrow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:12px 0 4px;padding:10px 12px;border-radius:18px;background:linear-gradient(135deg,#E8F1FF,#F1EAFF);border:1.5px solid #CFDDF7}
+.enlab{font-weight:800;color:#3B4C8A;font-size:15px;flex:0 0 100%}
+.enchip{flex:1 1 0;min-width:0;min-height:52px;display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:14px;background:var(--paper,#fff);color:var(--ink,inherit);text-decoration:none;box-shadow:0 2px 6px rgba(40,60,120,.10)}
+.enchip .ic{font-size:24px;flex:none}.enchip .t{display:flex;flex-direction:column;min-width:0}.enchip b{font-size:14.5px;line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.enchip small{font-size:12px;color:var(--muted,#6A7590);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:420px){.enchip{flex-direction:column;justify-content:center;text-align:center;gap:2px;padding:8px 4px}.enchip .t{align-items:center}.enchip b{font-size:13px;white-space:normal}}
+@media (min-width:720px){.enlab{flex:0 0 auto;margin-right:4px}}
+:root[data-theme="dark"] .enrow{background:var(--paper2);border-color:var(--line)}:root[data-theme="dark"] .enlab{color:#B9C8FF}
 .subjects2{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
 .stile{grid-column:span 2;position:relative;overflow:hidden;background:var(--tint);border-radius:var(--r-m);padding:10px 6px 9px;display:grid;justify-items:center;align-content:start;gap:3px;text-align:center;box-shadow:var(--shadow);border:2px solid color-mix(in srgb,var(--col) 18%,transparent);min-height:44px}
 .stile::after{content:"";position:absolute;right:-22px;top:-22px;width:64px;height:64px;border-radius:50%;background:color-mix(in srgb,var(--col) 14%,transparent)}
@@ -1066,6 +1073,9 @@ function viewHome(){
   <h2 class="h2s">${greet()} 今天練哪一科？<small class="hint">${GZH[g]}年級</small></h2>
   <div class="subjects2 n${prog.length}" style="--n:${prog.length}">${prog.map(({s})=>{const us=unitsFor(s,g);const got=us.reduce((a,u)=>a+(S.best[u.id]||0),0),mx=Math.max(1,us.length*3);
     return`<button class="stile tap" style="${tintVars(s)}" data-s="${s}" aria-label="${s}，${us.length} 個單元，已拿 ${got} 顆星"><span class="ic" aria-hidden="true">${SUBJ[s].ic}</span><b>${s}</b><span class="meta" aria-hidden="true">${us.length} 單元・⭐${got}</span><span class="mini" aria-hidden="true"><i style="width:${Math.min(100,got/mx*100)}%"></i></span></button>`}).join('')}</div>
+  ${(()=>{const ids=['phonics','englevel','engtest'],tl=toolList(),en=ids.map(i=>tl.find(t=>t.id===i)).filter(Boolean);if(!en.length)return'';
+    const sub={phonics:'看字就會念',englevel:'Level 1～6',engtest:'10 分鐘測程度'},nm={phonics:'自然發音',englevel:'分級闖關',engtest:'程度檢測'};
+    return`<div class="enrow" role="group" aria-label="英文練習"><span class="enlab" aria-hidden="true">🔤 英文練習</span>${en.map(t=>`<a class="enchip tap" href="#/tools/${t.id}"><span class="ic" aria-hidden="true">${esc(t.icon||'')}</span><span class="t"><b>${nm[t.id]||esc(t.title)}</b><small>${sub[t.id]||''}</small></span></a>`).join('')}</div>`})()}
   <h2><span class="hi" aria-hidden="true">🚀</span>今天也來挑戰</h2>
   <div class="row">
     <button class="big daily tap" id="goDaily"><span class="ic" aria-hidden="true">🎯</span><div><b>每日挑戰</b><span class="d">${GZH[g]}年級各科混合 10 題，天天練最有效</span></div><span class="go" aria-hidden="true">▶</span></button>
