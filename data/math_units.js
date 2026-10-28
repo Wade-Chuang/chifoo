@@ -1,4 +1,5 @@
-/* 由 數學快速出題/index.html 抽出的出題程式，不要手改：重跑 正賦線上練習/build.py 會重新抽。 */
+/* 由 數學快速出題/index.html 抽出的出題程式（只保留國小單元），不要手改：
+   重跑 啟賦小學堂/build.py 會重新抽並重新裁切（見 trim_elem.py）。 */
 /* ================= 亂數與數學小工具 ================= */
 function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
 let R=Math.random;
