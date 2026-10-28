@@ -16,7 +16,7 @@ import sys
 # 啟賦小學堂是國小學生自己在操作的網站，決定不裝 Google Analytics（不放 cookie、不收未成年行為資料），
 # 只裝 Cloudflare Web Analytics。正賦官網（國高中生與家長）仍使用 GA。
 GA_ID = ""             # 啟賦不裝 GA；要裝回去才填 G- 開頭的編號
-CF_TOKEN = ""          # Cloudflare Web Analytics 的 token，拿到再填
+CF_TOKEN = "e53525a365a34a9a92cfc170cd720315"          # Cloudflare Web Analytics 的 token，拿到再填
 
 GA = """<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=%s"></script>
