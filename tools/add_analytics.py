@@ -5,9 +5,7 @@
     python tools/add_analytics.py            # 裝到這個資料夾底下所有 .html
     python tools/add_analytics.py <資料夾>    # 裝到指定資料夾
 
-裝的是：
-  1. Google Analytics（GA4，編號 G-NSNBQNLSDN，資源「正賦＋啟賦」）
-  2. Cloudflare Web Analytics（TOKEN 填好才會裝；沒填就只裝 GA）
+啟賦只裝 Cloudflare Web Analytics（不裝 GA，見下方說明）。
 
 重新產生網頁之後（跑過 build.py 之類的）要再跑一次這支，新頁面才會有追蹤碼。
 """
@@ -15,7 +13,9 @@ import os
 import re
 import sys
 
-GA_ID = "G-NSNBQNLSDN"
+# 啟賦小學堂是國小學生自己在操作的網站，決定不裝 Google Analytics（不放 cookie、不收未成年行為資料），
+# 只裝 Cloudflare Web Analytics。正賦官網（國高中生與家長）仍使用 GA。
+GA_ID = ""             # 啟賦不裝 GA；要裝回去才填 G- 開頭的編號
 CF_TOKEN = ""          # Cloudflare Web Analytics 的 token，拿到再填
 
 GA = """<!-- Google tag (gtag.js) -->
@@ -34,7 +34,7 @@ CF = """<!-- Cloudflare Web Analytics -->
 
 
 def snippet():
-    s = GA
+    s = GA if GA_ID else ""
     if CF_TOKEN:
         s += CF % CF_TOKEN
     return s
@@ -50,10 +50,13 @@ def main(root):
                 continue
             p = os.path.join(dirpath, fn)
             html = open(p, encoding="utf-8", errors="ignore").read()
-            if GA_ID in html and (not CF_TOKEN or CF_TOKEN in html):
+            if not add:
                 skip += 1
                 continue
-            if GA_ID in html and CF_TOKEN and CF_TOKEN not in html:   # 只補 Cloudflare
+            if (not GA_ID or GA_ID in html) and (not CF_TOKEN or CF_TOKEN in html):
+                skip += 1
+                continue
+            if GA_ID and GA_ID in html and CF_TOKEN and CF_TOKEN not in html:   # 只補 Cloudflare
                 html = html.replace(GA, GA + CF % CF_TOKEN, 1)
             else:
                 m = re.search(r"<head[^>]*>", html, re.I)
@@ -65,7 +68,7 @@ def main(root):
             open(p, "w", encoding="utf-8", newline="").write(html)
             done += 1
     print("裝好 %d 頁，原本就有的 %d 頁" % (done, skip))
-    print("GA：%s　Cloudflare：%s" % (GA_ID, CF_TOKEN or "（尚未設定）"))
+    print("GA：%s　Cloudflare：%s" % (GA_ID or "（不裝）", CF_TOKEN or "（尚未設定）"))
 
 
 if __name__ == "__main__":
