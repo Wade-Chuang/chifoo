@@ -1,7 +1,7 @@
 /* 啟賦小學堂 小工具：自然發音 Phonics（phonics）
  * 五段課程：字母音 → 短母音 → 子音組合 → Magic e → 母音組合
- * 每課：認識（示範）→ 拼讀動畫 → 練習 10 題（聽音選字／聽字選音／拼字／讀讀看假字）
- * 內容全部原創。瀏覽器語音只念「字母名」與「整個單字」，不假裝能念單獨音素。
+ * 每課：認識（示範）→ 拼讀示範（逐音→連快→合字）→ 練習 10 題（聽音選字／聽字選音／拼字／讀讀看假字）
+ * 內容全部原創。單音與單字用 make_phonics_audio.py 預先做好的音檔（phonics_audio/），字母名、假字用瀏覽器語音。
  * 依 modules/MODULE_SPEC.md：只用 api，不連外部服務、不用外部圖片。
  */
 (function () {
@@ -197,6 +197,8 @@
   }
   var EMOJI = {};
   LESSONS.forEach(function (l) { l.words.forEach(function (w) { if (w[1] && !EMOJI[w[0]]) EMOJI[w[0]] = w[1]; }); });
+  var WORDSET = {}; // 有錄音檔的字（make_phonics_audio.py 會產生同一份）
+  LESSONS.forEach(function (l) { l.words.forEach(function (w) { WORDSET[w[0].replace(/-/g, '')] = 1; }); });
   function vowelOf(w) { var m = w.match(/[aeiou]/); return m ? m[0] : ''; }
   function isMagic(w) { return MAGIC_RE.test(w); }
   function s3pat(w, l) {
@@ -246,6 +248,34 @@
       return on ? '<b class="ph-hl' + (u.silent ? ' sil' : '') + '">' + esc(u.t) + '</b>' : esc(u.t);
     }).join('');
   }
+
+  /* ================= 單音音檔（make_phonics_audio.py 產生，key 要和那邊的 PH_IPA 一致） ================= */
+  var AUDIO_BASE = ((document.currentScript && document.currentScript.src) || '').replace(/[?#].*$/, '').replace(/[^\/]*$/, '') + 'phonics_audio/';
+  var PH_ONE = { a: 'ae', e: 'eh', i: 'ih', o: 'ah', u: 'uh', c: 'k', q: 'kw', x: 'ks' };
+  var PH_CHUNK = { sh: 'sh', ch: 'ch', th: 'th', wh: 'w', ck: 'k', ng: 'ng', ee: 'ee', ea: 'ee', ai: 'ay', ay: 'ay', oa: 'oh', ow: 'oh',
+    oo: 'oo', ar: 'ar', or: 'or', er: 'er', ir: 'er', ur: 'er', ll: 'l', ss: 's', ff: 'f', qu: 'kw' };
+  var PH_LONG = { a: 'ay', i: 'ie', o: 'oh', u: 'oo' };
+  // 不照規則念的字（和 units() 一塊對一塊）
+  var PH_OVR = {
+    tiger: ['t', 'ie', 'g', 'er'], turtle: ['t', 'er', 't', 'el', ''], this: ['dh', 'ih', 's'], that: ['dh', 'ae', 't'],
+    book: ['b', 'uu', 'k'], look: ['l', 'uu', 'k'], cook: ['k', 'uu', 'k'], foot: ['f', 'uu', 't'],
+    cube: ['k', 'yoo', 'b', ''], cute: ['k', 'yoo', 't', ''], mule: ['m', 'yoo', 'l', ''], use: ['yoo', 'z', ''],
+    rose: ['r', 'oh', 'z', ''], nose: ['n', 'oh', 'z', ''], long: ['l', 'aw', 'ng'], song: ['s', 'aw', 'ng']
+  };
+  var PH_KEYS = 'b k d f g h j l m n p kw r s t v w ks y z ae eh ih ah uh aw sh ch th dh ng ee ay ie oh yoo oo uu ar or er el'.split(' ');
+  // 每一塊念什麼音：'' ＝不發音
+  function phones(w) {
+    var u = units(w);
+    if (PH_OVR[w]) return PH_OVR[w];
+    return u.map(function (x, i) {
+      if (x.silent) return '';
+      if (x.magic) return PH_LONG[x.t] || '';
+      if (x.t === 'e' && i === u.length - 1 && i > 0 && u.slice(0, i).some(function (y) { return /[aeiou]/.test(y.t); })) return '';
+      if (x.t.length > 1) return PH_CHUNK[x.t] || '';
+      return PH_ONE[x.t] || x.t;
+    });
+  }
+  function letterPhone(c) { return PH_ONE[c] || c; }
 
   /* ================= 出題 ================= */
   // 題目：{type, prompt, say, show, opts:[{v,label}], ans, word, ...}
@@ -397,6 +427,12 @@
       var seen = {};
       ws.forEach(function (w) {
         if (seen[w]) err.push(l.id + ' 重複字 ' + w); seen[w] = 1;
+        if (l.kind !== 'letter') {
+          var ph = phones(w);
+          if (ph.length !== units(w).length) err.push(l.id + ' 單音數和字母塊對不上：' + w);
+          ph.forEach(function (k) { if (k && PH_KEYS.indexOf(k) < 0) err.push(l.id + ' 沒有這個單音檔：' + w + ' / ' + k); });
+          if (!ph.some(function (k) { return k; })) err.push(l.id + ' 整個字都不發音：' + w);
+        }
         if (BADSUB.indexOf(w) >= 0) err.push(l.id + ' 不適合字 ' + w);
         var ok = true;
         if (l.kind === 'letter') {
@@ -527,8 +563,12 @@
     '.cfx-ph .ph-lt .L{font-size:46px;font-weight:900;line-height:1.1}' +
     '.cfx-ph .ph-lt .wd{font-size:20px;font-weight:800;margin:2px 0}' +
     '.cfx-ph .ph-lt .tip{font-size:13px;color:var(--muted);font-weight:700;min-height:38px}' +
-    '.cfx-ph .ph-lt .bt{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px}' +
-    '.cfx-ph .ph-lt .bt .btn{padding:6px 4px;font-size:14px;min-height:46px}' +
+    '.cfx-ph .ph-lt .bt{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-top:6px}' +
+    '.cfx-ph .ph-lt .bt .btn{padding:6px 2px;font-size:13.5px;min-height:46px}' +
+    '.cfx-ph .ph-lt .bt .btn.hot{border-color:var(--ph-hot);color:var(--ph-hot);font-weight:900}' +
+    '.cfx-ph .ph-chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin:0 0 12px}' +
+    '.cfx-ph .ph-chips>span{font-size:14px;font-weight:800;color:var(--muted)}' +
+    '.cfx-ph .ph-chip{min-height:44px;padding:4px 12px;border-radius:999px;border:2px solid var(--ph-hot);background:var(--paper,#fff);color:var(--ph-hot);font:inherit;font-weight:900;font-size:17px;cursor:pointer;touch-action:manipulation}' +
     '.cfx-ph .ph-note{font-size:13px;color:var(--muted);font-weight:700;margin:10px 0 0;line-height:1.5}' +
     /* 拼讀動畫 */
     '.cfx-ph .ph-pick{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}' +
@@ -536,7 +576,10 @@
     '.cfx-ph .ph-pick button[aria-pressed="true"]{border-color:var(--ph-sea);background:color-mix(in srgb,var(--ph-sea) 14%,var(--paper,#fff))}' +
     '.cfx-ph .ph-stage{min-height:210px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;border:3px dashed var(--line);border-radius:22px;padding:14px 6px;background:var(--paper2,#f6fbf9)}' +
     '.cfx-ph .ph-tiles{display:flex;gap:8px;justify-content:center;flex-wrap:nowrap;transition:gap .5s ease;max-width:100%}' +
+    '.cfx-ph .ph-tiles.close{gap:3px}' +
     '.cfx-ph .ph-tiles.merge{gap:0}' +
+    '.cfx-ph .ph-cap{min-height:26px;font-weight:900;font-size:17px;color:var(--ph-sea);text-align:center}' +
+    '.cfx-ph .ph-tile[data-k]{cursor:pointer}' +
     '.cfx-ph .ph-tile{position:relative;min-width:44px;height:70px;padding:0 8px;border-radius:14px;border:3px solid var(--line);background:var(--paper,#fff);display:flex;align-items:center;justify-content:center;font-size:clamp(28px,9vw,46px);font-weight:900;color:var(--muted);transition:transform .25s,background .25s,color .25s,border-color .25s,border-radius .5s}' +
     '.cfx-ph .ph-tiles.merge .ph-tile{border-radius:0;border-left-width:0;border-right-width:0}' +
     '.cfx-ph .ph-tile.on{color:#fff;transform:translateY(-6px)}' +
@@ -607,12 +650,57 @@
     el.appendChild(style);
     el.appendChild(root);
 
-    var timers = [];
+    var timers = [], runId = 0;
     function later(fn, ms) { var t = setTimeout(fn, ms); timers.push(t); return t; }
     function stopAll() {
+      runId++;
       timers.forEach(clearTimeout); timers = [];
+      stopClip();
       try { if (api.stopSpeak) api.stopSpeak(); } catch (e) {}
     }
+
+    /* 音檔：單音 p_<key>、單字 w_<字>；播完 resolve true，被打斷 'stop'，播不出來 'err' */
+    var CLIPS = {}, playing = null;
+    function clip(name) {
+      if (!CLIPS[name]) { var a = new Audio(AUDIO_BASE + name + '.mp3'); a.preload = 'auto'; CLIPS[name] = a; }
+      return CLIPS[name];
+    }
+    function stopClip() { if (playing) playing.end('stop'); }
+    function playClip(name) {
+      return new Promise(function (ok) {
+        if (!root.isConnected) return ok('stop');
+        stopClip();
+        var a = clip(name), done = false, t;
+        function end(r) {
+          if (done) return; done = true; clearTimeout(t); a.onended = a.onerror = null;
+          if (playing && playing.a === a) playing = null;
+          if (r === 'stop') { try { a.pause(); } catch (e) {} }
+          ok(r);
+        }
+        playing = { a: a, end: end };
+        a.onended = function () { end(true); };
+        a.onerror = function () { end('err'); };
+        t = setTimeout(function () { end(true); }, 4000);
+        try { a.currentTime = 0; var p = a.play(); if (p && p.catch) p.catch(function () { end('err'); }); } catch (e) { end('err'); }
+      });
+    }
+    function playSeq(keys, gap) { // 依序念幾個單音
+      var tok = runId;
+      return keys.reduce(function (pr, k, i) {
+        return pr.then(function () {
+          if (tok !== runId) return 'stop';
+          return playClip('p_' + k).then(function (r) { return i < keys.length - 1 && r !== 'stop' ? new Promise(function (ok) { later(ok, gap); }) : r; });
+        });
+      }, Promise.resolve());
+    }
+    // 課程裡的真字用錄好的音檔（同一個老師的聲音），其他（字母名、假字）用瀏覽器語音
+    var sayTTS = say;
+    say = function (t) {
+      var w = String(t || '').replace(/-/g, '');
+      try { if (api.stopSpeak) api.stopSpeak(); } catch (e) {}
+      if (!WORDSET[w]) { stopClip(); sayTTS(t); return; }
+      playClip('w_' + w).then(function (r) { if (r === 'err') sayTTS(t); });
+    };
     function prog() { var p = store('prog'); return (p && typeof p === 'object') ? p : {}; }
     function nextLesson() {
       var p = prog();
@@ -680,6 +768,19 @@
       if (tab === 'learn') learn(body); else if (tab === 'blend') blend(body); else practice(body);
     }
 
+    // 這課重點音的小按鈕：短 a、sh、bl（b＋l）…
+    function chipsHtml(l) {
+      var c = [];
+      if (l.kind === 'cvc') uniq((l.pats.length ? l.pats.map(function (p) { return p[0]; }) : 'aeiou'.split(''))).forEach(function (v) { c.push(['短 ' + v, [PH_ONE[v]]]); });
+      else if (l.kind === 'dig' || l.kind === 'team') l.pats.forEach(function (p) { c.push([p, [PH_CHUNK[p]]]); });
+      else if (l.kind === 'blend') l.pats.forEach(function (p) { c.push([p, [letterPhone(p[0]), letterPhone(p[1])]]); });
+      else if (l.kind === 'magic') l.pats.forEach(function (p) { c.push([p + '_e', [p === 'u' ? 'yoo' : PH_LONG[p]]]); });
+      if (!c.length) return '';
+      return '<div class="ph-chips"><span>' + Z('聽聽這課的音：') + '</span>' + c.map(function (x) {
+        return '<button class="ph-chip" data-ph="' + x[1].join(',') + '">🔊 <span class="en">' + esc(x[0]) + '</span></button>';
+      }).join('') + '</div>';
+    }
+
     function learn(body) {
       var l = cur, h = '';
       if (l.kind === 'letter') {
@@ -691,13 +792,14 @@
             '<div class="wd"><span aria-hidden="true">' + x[2] + '</span> <span class="en">' + hl(x[1], l) + '</span></div>' +
             '<div class="tip">' + Z((c === 'x' ? '字母音＝' + x[1] + ' 的最後一個音。' : '字母音＝' + x[1] + ' 的第一個音。') + x[3]) + '</div>' +
             '<div class="bt"><button class="btn" data-name="' + c + '">🔊 ' + Z('字母名') + '</button>' +
+            '<button class="btn hot" data-ph="' + letterPhone(c) + '">🔊 ' + Z('字母音') + '</button>' +
             '<button class="btn" data-say="' + x[1] + '">🔊 ' + Z('聽例字') + '</button></div></div>';
         });
-        h += '</div><p class="ph-note">' + Z('小提醒：電腦語音沒辦法單獨念出「字母音」，所以請聽例字，注意紅色字母那一個音，跟著老師的提示念念看。') + '</p></div>';
+        h += '</div><p class="ph-note">' + Z('先聽「字母音」，再聽例字，注意紅色字母那一個音。p、t、k、h 這幾個音本來就很短、只有一點氣，要仔細聽喔！') + '</p></div>';
         h += '<div class="ph-row"><button class="btn primary" data-go="practice">' + Z('我學會了，去練習 →') + '</button></div>';
       } else {
         h += '<div class="ph-lwrap"><div class="ph-card ph-big"><div class="pat en">' + esc(l.big) + '</div>' +
-          '<div class="hint">' + Z(l.hint) + '</div>' +
+          '<div class="hint">' + Z(l.hint) + '</div>' + chipsHtml(l) +
           '<button class="btn primary" data-say="' + l.words[0][0] + '">🔊 ' + Z('聽例字') + ' <span class="en">' + esc(l.words[0][0]) + '</span></button>' +
           '<p class="ph-note">' + Z('點下面的字聽聽看。紅色是這課的重點' + (l.kind === 'magic' ? '，劃線的 e 不發音' : '') + '。') + '</p></div>';
         h += '<div class="ph-card"><div class="ph-words">';
@@ -705,60 +807,90 @@
           h += '<button class="ph-w" data-say="' + w[0] + '"><span class="em" aria-hidden="true">' + (w[1] || '🔤') + '</span><span class="en">' + hl(w[0], l) + '</span><span class="sp" aria-hidden="true">🔊</span></button>';
         });
         h += '</div></div></div>';
-        h += '<div class="ph-row"><button class="btn primary" data-go="blend">' + Z('下一步：拼讀動畫 →') + '</button></div>';
+        h += '<div class="ph-row"><button class="btn primary" data-go="blend">' + Z('下一步：看拼讀示範 →') + '</button></div>';
       }
       body.innerHTML = h;
       body.querySelectorAll('[data-say]').forEach(function (b) { b.onclick = function () { say(b.dataset.say); }; });
-      body.querySelectorAll('[data-name]').forEach(function (b) { b.onclick = function () { say(b.dataset.name.toUpperCase()); }; });
+      body.querySelectorAll('[data-name]').forEach(function (b) { b.onclick = function () { stopClip(); say(b.dataset.name.toUpperCase()); }; });
+      body.querySelectorAll('[data-ph]').forEach(function (b) { b.onclick = function () { stopAll(); playSeq(b.dataset.ph.split(','), 120); }; });
       body.querySelectorAll('[data-go]').forEach(function (b) { b.onclick = function () { tab = b.dataset.go; drawLesson(); }; });
     }
 
     function blend(body) {
       var l = cur, sel = l.words[0][0];
-      var h = '<div class="ph-card"><p class="ph-sub">' + Z('選一個字，按「拼拼看」：字母會一個一個亮起來，你跟著在心裡念，最後合成一個字。') + '</p>';
+      var h = '<div class="ph-card"><p class="ph-sub">' + Z('選一個字，按「示範拼讀」：先一個音、一個音念，再念快一點把音連起來，最後合成一個字。') + '</p>';
       h += '<div class="ph-pick" role="group" aria-label="選字">';
       l.words.forEach(function (w) { h += '<button class="en" data-w="' + w[0] + '">' + esc(w[0]) + '</button>'; });
-      h += '</div><div class="ph-stage"><div class="ph-tiles" data-tiles></div><div class="ph-word en" data-word aria-live="polite"></div></div>';
-      h += '<div class="ph-row"><button class="btn primary" data-play>▶ ' + Z('拼拼看') + '</button><button class="btn" data-again>🔊 ' + Z('聽整個字') + '</button><button class="btn" data-nextw>' + Z('下一個字') + ' →</button></div>';
-      h += '<p class="ph-note">' + Z('顏色：紅＝母音、藍＝字母組合（念一個音）、紫＝Magic e（前面母音念長音，e 不發音）、黑＝子音。電腦語音只能念整個字，逐音的部分請看字母亮起來自己念。') + '</p></div>';
+      h += '</div><div class="ph-stage"><div class="ph-cap" data-cap aria-live="polite"></div><div class="ph-tiles" data-tiles></div><div class="ph-word en" data-word aria-live="polite"></div></div>';
+      h += '<div class="ph-row"><button class="btn primary" data-play>▶ ' + Z('示範拼讀') + '</button><button class="btn" data-again>🔊 ' + Z('聽整個字') + '</button><button class="btn" data-nextw>' + Z('下一個字') + ' →</button></div>';
+      h += '<p class="ph-note">' + Z('點任何一個字母塊，可以單獨聽那個音。顏色：紅＝母音、藍＝字母組合（念一個音）、紫＝Magic e（前面母音念長音，e 不發音）、黑＝子音。看完示範換你念：手指著字母，一個音一個音念，再越念越快！') + '</p></div>';
       h += '<div class="ph-row"><button class="btn primary" data-go="practice">' + Z('去練習 →') + '</button></div>';
       body.innerHTML = h;
-      var tilesEl = body.querySelector('[data-tiles]'), wordEl = body.querySelector('[data-word]');
+      var tilesEl = body.querySelector('[data-tiles]'), wordEl = body.querySelector('[data-word]'), capEl = body.querySelector('[data-cap]');
+      function cap(t) { capEl.innerHTML = t ? Z(t) : '&nbsp;'; }
       function setup() {
         stopAll();
         body.querySelectorAll('[data-w]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.w === sel); });
-        tilesEl.classList.remove('merge');
-        tilesEl.innerHTML = units(sel).map(function (u) {
-          return '<span class="ph-tile en ' + u.kind + '">' + esc(u.t) + (u.silent ? '<span class="lb">' + Z('不發音') + '</span>' : '') + '</span>';
+        tilesEl.classList.remove('merge', 'close');
+        var ph = phones(sel);
+        tilesEl.innerHTML = units(sel).map(function (u, i) {
+          return '<span class="ph-tile en ' + u.kind + '"' + (ph[i] ? ' data-k="' + ph[i] + '" role="button" tabindex="0" aria-label="聽 ' + esc(u.t) + ' 的音"' : '') + '>' +
+            esc(u.t) + (ph[i] ? '' : '<span class="lb">' + Z('不發音') + '</span>') + '</span>';
         }).join('');
         wordEl.innerHTML = '&nbsp;';
+        cap('');
+        ph.forEach(function (k) { if (k) clip('p_' + k); });
+        clip('w_' + sel);
       }
       function play() {
         setup();
-        var ts = tilesEl.querySelectorAll('.ph-tile');
-        function finish() {
-          ts.forEach(function (t) { t.classList.add('on'); });
-          tilesEl.classList.add('merge');
-          wordEl.innerHTML = (EMOJI[sel] ? '<span aria-hidden="true">' + EMOJI[sel] + '</span>' : '') + esc(sel);
-          say(sel);
+        var tok = runId, ts = [].slice.call(tilesEl.querySelectorAll('.ph-tile')), ph = phones(sel);
+        function alive() { return tok === runId && root.isConnected; }
+        function light(i) {
+          ts.forEach(function (t, j) { t.classList.toggle('on', j === i); t.classList.toggle('lit', j < i); });
         }
-        if (rm) { finish(); return; }
-        var step = 0;
-        (function go() {
-          if (step < ts.length) {
-            ts.forEach(function (t, i) { t.classList.toggle('lit', i < step); });
-            ts[step].classList.add('on'); ts[step].classList.remove('lit');
-            if (step > 0) { ts[step - 1].classList.remove('on'); ts[step - 1].classList.add('lit'); }
-            step++; later(go, 750);
-          } else {
-            ts.forEach(function (t) { t.classList.remove('lit'); });
-            later(finish, 200);
-          }
-        })();
+        // 一塊一塊念；gap＝音和音之間停多久
+        function walk(gap, silentWait, done) {
+          var i = 0;
+          (function go() {
+            if (!alive()) return;
+            if (i >= ts.length) { done(); return; }
+            light(i);
+            var k = ph[i]; i++;
+            if (!k) { later(go, silentWait); return; }
+            playClip('p_' + k).then(function (r) { if (alive() && r !== 'stop') later(go, r === 'err' ? gap + 300 : gap); });
+          })();
+        }
+        cap('① 一個音、一個音念');
+        walk(550, 700, function () {
+          later(function () {
+            cap('② 念快一點，把音連起來');
+            tilesEl.classList.add('close');
+            walk(40, 120, function () {
+              later(function () {
+                cap('③ 合起來就是：');
+                ts.forEach(function (t) { t.classList.remove('lit'); t.classList.add('on'); });
+                tilesEl.classList.add('merge');
+                wordEl.innerHTML = (EMOJI[sel] ? '<span aria-hidden="true">' + EMOJI[sel] + '</span>' : '') + esc(sel);
+                say(sel);
+                later(function () { if (alive()) cap('換你念念看！👆'); }, 1600);
+              }, 350);
+            });
+          }, 600);
+        });
       }
+      function tapTile(t) {
+        if (!t || !t.dataset.k) return;
+        stopAll();
+        ts0().forEach(function (x) { x.classList.toggle('on', x === t); x.classList.remove('lit'); });
+        playClip('p_' + t.dataset.k);
+      }
+      function ts0() { return [].slice.call(tilesEl.querySelectorAll('.ph-tile')); }
+      tilesEl.onclick = function (e) { tapTile(e.target.closest('.ph-tile')); };
+      tilesEl.onkeydown = function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tapTile(e.target.closest('.ph-tile')); } };
       body.querySelectorAll('[data-w]').forEach(function (b) { b.onclick = function () { sel = b.dataset.w; play(); }; });
       body.querySelector('[data-play]').onclick = play;
-      body.querySelector('[data-again]').onclick = function () { say(sel); };
+      body.querySelector('[data-again]').onclick = function () { stopAll(); say(sel); };
       body.querySelector('[data-nextw]').onclick = function () {
         var ws = l.words.map(function (w) { return w[0]; });
         sel = ws[(ws.indexOf(sel) + 1) % ws.length]; play();
