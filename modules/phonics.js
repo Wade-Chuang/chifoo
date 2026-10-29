@@ -257,12 +257,12 @@
   var PH_LONG = { a: 'ay', i: 'ie', o: 'oh', u: 'oo' };
   // 不照規則念的字（和 units() 一塊對一塊）
   var PH_OVR = {
-    tiger: ['t', 'ie', 'g', 'er'], turtle: ['t', 'er', 't', 'el', ''], this: ['dh', 'ih', 's'], that: ['dh', 'ae', 't'],
+    tiger: ['t', 'ie', 'g', 'axr'], turtle: ['t', 'er', 't', 'el', ''], this: ['dh', 'ih', 's'], that: ['dh', 'ae', 't'],
     book: ['b', 'uu', 'k'], look: ['l', 'uu', 'k'], cook: ['k', 'uu', 'k'], foot: ['f', 'uu', 't'],
     cube: ['k', 'yoo', 'b', ''], cute: ['k', 'yoo', 't', ''], mule: ['m', 'yoo', 'l', ''], use: ['yoo', 'z', ''],
     rose: ['r', 'oh', 'z', ''], nose: ['n', 'oh', 'z', ''], long: ['l', 'aw', 'ng'], song: ['s', 'aw', 'ng']
   };
-  var PH_KEYS = 'b k d f g h j l m n p kw r s t v w ks y z ae eh ih ah uh aw sh ch th dh ng ee ay ie oh yoo oo uu ar or er el'.split(' ');
+  var PH_KEYS = 'b k d f g h j l m n p kw r s t v w ks y z ae eh ih ah uh aw sh ch th dh ng ee ay ie oh yoo oo uu ar or er el axr'.split(' ');
   // 每一塊念什麼音：'' ＝不發音
   function phones(w) {
     var u = units(w);
@@ -811,14 +811,14 @@
       }
       body.innerHTML = h;
       body.querySelectorAll('[data-say]').forEach(function (b) { b.onclick = function () { say(b.dataset.say); }; });
-      body.querySelectorAll('[data-name]').forEach(function (b) { b.onclick = function () { stopClip(); say(b.dataset.name.toUpperCase()); }; });
+      body.querySelectorAll('[data-name]').forEach(function (b) { b.onclick = function () { var c = b.dataset.name; stopAll(); playClip('n_' + c).then(function (r) { if (r === 'err') sayTTS(c.toUpperCase()); }); }; });
       body.querySelectorAll('[data-ph]').forEach(function (b) { b.onclick = function () { stopAll(); playSeq(b.dataset.ph.split(','), 120); }; });
       body.querySelectorAll('[data-go]').forEach(function (b) { b.onclick = function () { tab = b.dataset.go; drawLesson(); }; });
     }
 
     function blend(body) {
       var l = cur, sel = l.words[0][0];
-      var h = '<div class="ph-card"><p class="ph-sub">' + Z('選一個字，按「示範拼讀」：先一個音、一個音念，再念快一點把音連起來，最後合成一個字。') + '</p>';
+      var h = '<div class="ph-card"><p class="ph-sub">' + Z('選一個字，按「示範拼讀」：先把字母名念完，再念每個字母的音，最後拼出整個字。') + '</p>';
       h += '<div class="ph-pick" role="group" aria-label="選字">';
       l.words.forEach(function (w) { h += '<button class="en" data-w="' + w[0] + '">' + esc(w[0]) + '</button>'; });
       h += '</div><div class="ph-stage"><div class="ph-cap" data-cap aria-live="polite"></div><div class="ph-tiles" data-tiles></div><div class="ph-word en" data-word aria-live="polite"></div></div>';
@@ -840,41 +840,52 @@
         wordEl.innerHTML = '&nbsp;';
         cap('');
         ph.forEach(function (k) { if (k) clip('p_' + k); });
+        sel.split('').forEach(function (c) { clip('n_' + c); });
         clip('w_' + sel);
       }
       function play() {
         setup();
-        var tok = runId, ts = [].slice.call(tilesEl.querySelectorAll('.ph-tile')), ph = phones(sel);
+        var tok = runId, ts = [].slice.call(tilesEl.querySelectorAll('.ph-tile')), ph = phones(sel), us = units(sel);
         function alive() { return tok === runId && root.isConnected; }
         function light(i) {
           ts.forEach(function (t, j) { t.classList.toggle('on', j === i); t.classList.toggle('lit', j < i); });
         }
-        // 一塊一塊念；gap＝音和音之間停多久
-        function walk(gap, silentWait, done) {
+        function wait(ms) { return new Promise(function (ok) { later(ok, ms); }); }
+        // 依序把每一塊亮起來，each(i) 回傳這一塊要播的 Promise
+        function walk(each, gap, done) {
           var i = 0;
           (function go() {
             if (!alive()) return;
-            if (i >= ts.length) { done(); return; }
+            if (i >= ts.length) { ts.forEach(function (t) { t.classList.remove('on'); t.classList.add('lit'); }); done(); return; }
             light(i);
-            var k = ph[i]; i++;
-            if (!k) { later(go, silentWait); return; }
-            playClip('p_' + k).then(function (r) { if (alive() && r !== 'stop') later(go, r === 'err' ? gap + 300 : gap); });
+            each(i++).then(function (r) { if (alive() && r !== 'stop') later(go, gap); });
           })();
         }
-        cap('① 一個音、一個音念');
-        walk(550, 700, function () {
+        // ① 字母名：每一塊的字母一個一個念（sh 念 S、H）
+        function names(i) {
+          return us[i].t.split('').reduce(function (pr, c, j) {
+            return pr.then(function (r) {
+              if (r === 'stop' || !alive()) return 'stop';
+              return (j ? wait(150) : Promise.resolve()).then(function () { return alive() ? playClip('n_' + c) : 'stop'; });
+            });
+          }, Promise.resolve());
+        }
+        // ② 字母音：不發音的塊停一下
+        function sound(i) { return ph[i] ? playClip('p_' + ph[i]) : wait(500); }
+        cap('① 先念字母名');
+        walk(names, 350, function () {
           later(function () {
-            cap('② 念快一點，把音連起來');
-            tilesEl.classList.add('close');
-            walk(40, 120, function () {
+            cap('② 再念字母音');
+            ts.forEach(function (t) { t.classList.remove('lit'); });
+            walk(sound, 550, function () {
               later(function () {
-                cap('③ 合起來就是：');
+                cap('③ 最後拼出整個字：');
                 ts.forEach(function (t) { t.classList.remove('lit'); t.classList.add('on'); });
                 tilesEl.classList.add('merge');
                 wordEl.innerHTML = (EMOJI[sel] ? '<span aria-hidden="true">' + EMOJI[sel] + '</span>' : '') + esc(sel);
                 say(sel);
                 later(function () { if (alive()) cap('換你念念看！👆'); }, 1600);
-              }, 350);
+              }, 500);
             });
           }, 600);
         });
@@ -1053,6 +1064,8 @@
     desc: '看字就會念：字母音、短母音、Magic e',
     render: render,
     selfCheck: selfCheck,
-    _lessons: LESSONS
+    _lessons: LESSONS,
+    _phones: phones,
+    _units: units
   });
 })();

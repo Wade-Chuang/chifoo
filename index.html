@@ -726,7 +726,7 @@ footer a.tch{font-weight:700;color:var(--muted)}
 
 <!-- 首屏只載入小型索引（單元清單、題數）＋英文單字表；題庫、數學出題程式、注音表都在要用時才下載（loadJS） -->
 <script>var BANK=[];</script>
-<script src="data/index.js?v=f1adc45c"></script>
+<script src="data/index.js?v=89dfd96b"></script>
 <script src="data/english_vocab.js?v=e0a3e917"></script>
 <script>
 /* ================= 基本設定 ================= */
@@ -1073,8 +1073,8 @@ function viewHome(){
   <h2 class="h2s">${greet()} 今天練哪一科？<small class="hint">${GZH[g]}年級</small></h2>
   <div class="subjects2 n${prog.length}" style="--n:${prog.length}">${prog.map(({s})=>{const us=unitsFor(s,g);const got=us.reduce((a,u)=>a+(S.best[u.id]||0),0),mx=Math.max(1,us.length*3);
     return`<button class="stile tap" style="${tintVars(s)}" data-s="${s}" aria-label="${s}，${us.length} 個單元，已拿 ${got} 顆星"><span class="ic" aria-hidden="true">${SUBJ[s].ic}</span><b>${s}</b><span class="meta" aria-hidden="true">${us.length} 單元・⭐${got}</span><span class="mini" aria-hidden="true"><i style="width:${Math.min(100,got/mx*100)}%"></i></span></button>`}).join('')}</div>
-  ${(()=>{const ids=['phonics','englevel','engtest'],tl=toolList(),en=ids.map(i=>tl.find(t=>t.id===i)).filter(Boolean);if(!en.length)return'';
-    const sub={phonics:'看字就會念',englevel:'Level 1～6',engtest:'10 分鐘測程度'},nm={phonics:'自然發音',englevel:'分級闖關',engtest:'程度檢測'};
+  ${(()=>{const ids=['phonics','kk','englevel','engtest'],tl=toolList(),en=ids.map(i=>tl.find(t=>t.id===i)).filter(Boolean);if(!en.length)return'';
+    const sub={phonics:'看字就會念',kk:'看音標會念',englevel:'Level 1～6',engtest:'10 分鐘測程度'},nm={phonics:'自然發音',kk:'KK 音標',englevel:'分級闖關',engtest:'程度檢測'};
     return`<div class="enrow" role="group" aria-label="英文練習"><span class="enlab" aria-hidden="true">🔤 英文練習</span>${en.map(t=>`<a class="enchip tap" href="#/tools/${t.id}"><span class="ic" aria-hidden="true">${esc(t.icon||'')}</span><span class="t"><b>${nm[t.id]||esc(t.title)}</b><small>${sub[t.id]||''}</small></span></a>`).join('')}</div>`})()}
   <h2><span class="hi" aria-hidden="true">🚀</span>今天也來挑戰</h2>
   <div class="row">
@@ -2279,8 +2279,8 @@ function viewTool(id,hw){const t=toolList().find(x=>x.id===id);if(!t)return hw?v
    完成碼 v1 位元：版本2｜分數7｜座號7（0＝沒填）｜完成日12｜驗證碼22（作業碼＋分數＋座號＋日期算出）
    學生紀錄（存在目前小朋友的 S，換小朋友分開）：S.hw=[{c:作業碼,at,seat,it:{項目序號:{done,best,last,t}},fin:{score,day,cc}}] */
 const HW_AB='23456789ABCDEFGHJKLMNPQRSTUVWXYZ',HW_NS=[5,8,10,15,20,25,30,40],HW_SALT='chifoo-hw-v1',HW_MAX=8;
-const HW_TOOLS=['stroke','times','phonics','englevel','engtest','hello'];   // 只能往後加、不能改順序（舊作業碼靠這個編號）
-const HW_TOOL_NAME={stroke:'國字筆順',times:'九九乘法速算',phonics:'自然發音',englevel:'英語分級闖關',engtest:'英語小測驗',hello:'點星星暖身'};
+const HW_TOOLS=['stroke','times','phonics','englevel','engtest','hello','kk'];   // 只能往後加、不能改順序（舊作業碼靠這個編號）
+const HW_TOOL_NAME={stroke:'國字筆順',times:'九九乘法速算',phonics:'自然發音',englevel:'英語分級闖關',engtest:'英語小測驗',hello:'點星星暖身',kk:'KK 音標'};
 const HW_LV={phonics:{w:'課',max:32},englevel:{w:'關',max:42},engtest:{none:1}};   // 關卡的叫法／上限；none＝沒有關卡
 /* 從模組取關卡名稱表（標準：m.levels＝[名稱]；也認 phonics 的 _lessons、englevel 的 _t.STAGES） */
 function toolLevelNames(id){const m=cfxGet(id);if(!m)return null;
@@ -2387,7 +2387,7 @@ function viewTeacher(){const T=TCH;if(T.g==null)T.g=S.grade;const subs=subjOf(T.
   const all=unitsFor(T.s,T.g),books=[...new Set(all.map(u=>u.book).filter(Boolean))];if(T.book!=='*'&&T.book!==''&&!books.includes(T.book))T.book='*';
   const shown=all.filter(u=>T.book==='*'||(T.book===''?!u.book:u.book===T.book));
   const isSel=x=>T.sel.some(y=>x.t?y.t===x.t:y.u===x.u);
-  const tools=HW_TOOLS.filter(id=>id!=='hello'||toolList().some(t=>t.id==='hello'));
+  const tools=HW_TOOLS.filter(id=>toolList().some(t=>t.id===id));   // 只列這個版本有上架的小工具
   const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
   const selName=x=>{if(x.t){const tl=toolList().find(t=>t.id===x.t);return(tl?tl.title:HW_TOOL_NAME[x.t]||x.t)+((T.tlv[x.t]|0)?'・'+hwLvTxt(x.t,T.tlv[x.t]|0):'')}const u=unitById(x.u);return u?u.s+'・'+u.name:x.u};
   const recent=tchRecent();
